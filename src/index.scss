@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Roboto:wght@100;300;400;500;700&display=swap");
+@import "./scss/scss-utils/color";
 *,
 html,
 ::before,
@@ -11,11 +12,18 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	font-family: "Open Sans", "Roboto", sans-serif;
+	background-color: $body;
 }
 a {
-	text-decoration: unset;
-	color: unset;
+	text-decoration: none;
+	color: inherit;
+	transition: all 0.02s linear;
+
 	&:hover {
-		color: #7199ff;
+		color: $semi_blue;
+		transition: all 0.02s linear;
 	}
+}
+ul {
+	list-style: none;
 }
