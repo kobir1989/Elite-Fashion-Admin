@@ -1,0 +1,65 @@
+@import "../../../scss/scss-utils/color";
+@import "../../../scss/scss-utils/mixins";
+
+.common_btn {
+	background-color: unset;
+	border: unset;
+	font-size: 0.95rem;
+	letter-spacing: 0.6px;
+	font-weight: 500;
+	padding: 0.6rem 1.5rem;
+	border-radius: 4px;
+	cursor: pointer;
+	@include flex-row-center;
+	justify-content: center;
+	gap: 0.5rem;
+	@include screens-md {
+		font-size: 1rem;
+		padding: 0.52rem 1.5rem;
+	}
+}
+
+.variant-primary {
+	background-color: $navy_main;
+	color: $light_gray;
+	transition: all 0.2s linear;
+	&:hover {
+		background-color: $navy_3;
+		transition: all 0.2s linear;
+		@include box-shadow-blue;
+	}
+}
+.variant-rounded {
+	background-color: $navy_main;
+	color: $light_gray;
+	transition: all 0.2s linear;
+	border-radius: 2.2rem;
+	&:hover {
+		background-color: $navy_3;
+		transition: all 0.2s linear;
+		@include box-shadow-blue;
+	}
+}
+.icon-btn-normal {
+	background-color: unset;
+	border: unset;
+	padding: 0.3rem 0.8rem;
+}
+.full-rounded {
+	border: 1px solid $navy_3;
+	border-radius: 50%;
+	background-color: unset;
+	padding: 0.4rem 0.8rem;
+}
+.border_btn {
+	background-color: unset;
+	color: $body_text;
+	border-radius: 4px;
+	border: 1px solid $navy_3;
+	transition: all 0.2s linear;
+	&:hover {
+		background-color: $navy_3;
+		@include box-shadow-blue;
+		transition: all 0.2s linear;
+	}
+}
