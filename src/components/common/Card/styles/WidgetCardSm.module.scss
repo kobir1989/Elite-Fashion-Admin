@@ -1,0 +1,24 @@
+@import "../../../../scss/scss-utils/color";
+@import "../../../../scss/scss-utils/mixins";
+
+.widget_card_sm_wrapper {
+	height: 9rem;
+	border-radius: 8px;
+	@include box-shadow-sm;
+	padding: 1.5rem;
+	background-color: $white;
+	@include flex-row-space-between;
+	gap: 0.5rem;
+	.data_wrapper {
+		@include flex-col-space-between;
+		.percentage_number {
+			@include flex-col;
+			gap: 0.2rem;
+		}
+	}
+	.process_bar_wrapper {
+		width: 5rem;
+		height: 5rem;
+		// height: 8rem;
+	}
+}

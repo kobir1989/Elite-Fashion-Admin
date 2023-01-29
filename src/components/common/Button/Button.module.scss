@@ -27,6 +27,7 @@
 		background-color: $navy_3;
 		transition: all 0.2s linear;
 		@include box-shadow-blue;
+		color: $white;
 	}
 }
 .variant-rounded {

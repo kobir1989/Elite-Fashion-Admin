@@ -10,7 +10,12 @@ const variantMap = {
    h6: "h6",
    subtitle: "h2",
    body: "p",
-   small: "p"
+   small: "p",
+   widgetAmount: "h2",
+   widgetCount: "p",
+   widgetTitle: "p",
+
+
 }
 
 const Typography = ({ variant, color = "primary", children, ...otherProps }) => {

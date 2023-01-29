@@ -3,13 +3,23 @@
 
 nav {
 	@include flex-row-space-between;
-	margin: 0 3rem;
+	align-items: center;
+	padding: 0 3rem;
+	background-color: $white;
 	.website_link {
-		@include flex-row-center;
-		gap: 0.5rem;
-		background-color: $body;
-		padding: 0.5rem 0.7rem;
-		border-radius: 4px;
+		display: none;
+		@include screens-md {
+			@include flex-row-center;
+			gap: 0.5rem;
+			background-color: $body;
+			padding: 0.5rem 0.7rem;
+			border-radius: 4px;
+		}
+	}
+	.menue_btn {
+		@include screens-md {
+			display: none;
+		}
 	}
 	.nav_buttons_wrapper {
 		@include flex-row-center;

@@ -14,7 +14,7 @@
 }
 
 .typography__variant_h2 {
-	font-size: 1.8rem;
+	font-size: 1.2rem;
 	font-weight: 500;
 	@include screens-lg {
 		font-size: 2.2rem;
@@ -58,8 +58,34 @@
 	font-size: 1.2rem;
 	font-weight: 400;
 	letter-spacing: 0.5px;
+	color: $navy_main;
 	@include screens-lg {
 		font-size: 1.5rem;
+	}
+}
+
+.typography__variant_widgetAmount {
+	font-size: 0.9rem;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+	@include screens-lg {
+		font-size: 1.2rem;
+	}
+}
+.typography__variant_widgetTitle {
+	font-size: 0.9rem;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+}
+
+.typography__variant_widgetCount {
+	font-size: 0.8rem;
+	font-weight: 500;
+	letter-spacing: 0.5px;
+	@include flex-row-center;
+	gap: 0.1rem;
+	@include screens-lg {
+		font-size: 0.9rem;
 	}
 }
 
@@ -75,6 +101,8 @@
 .typography__variant_small {
 	font-size: 0.68rem;
 	letter-spacing: 0.5px;
+	@include flex-row-center;
+	// gap: 0rem;
 	@include screens-lg {
 		font-size: 0.85rem;
 	}
@@ -93,4 +121,10 @@
 }
 .typography__color_light-gray {
 	color: $light_gray;
+}
+.typography__color_blue {
+	color: $navy_3;
+}
+.typography__color_green {
+	color: $green;
 }

@@ -13,6 +13,21 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import LanguageIcon from '@mui/icons-material/Language';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import StoreIcon from '@mui/icons-material/Store';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import CategoryIcon from '@mui/icons-material/Category';
+import WidgetsIcon from '@mui/icons-material/Widgets';
+import PieChartIcon from '@mui/icons-material/PieChart';
+import StackedBarChartIcon from '@mui/icons-material/StackedBarChart';
+import RateReviewIcon from '@mui/icons-material/RateReview';
+import SettingsInputCompositeIcon from '@mui/icons-material/SettingsInputComposite';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import SettingsSystemDaydreamIcon from '@mui/icons-material/SettingsSystemDaydream';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined';
+import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 
 const icons = {
    viewOn: VisibilityIcon,
@@ -28,7 +43,22 @@ const icons = {
    notification: NotificationsNoneIcon,
    search: SearchIcon,
    earth: LanguageIcon,
-   addOrder: AddShoppingCartIcon
+   addOrder: AddShoppingCartIcon,
+   dashboard: DashboardIcon,
+   store: StoreIcon,
+   order: AssignmentIcon,
+   category: CategoryIcon,
+   subCategory: WidgetsIcon,
+   roundPie: PieChartIcon,
+   barChart: StackedBarChartIcon,
+   review: RateReviewIcon,
+   siteSettings: SettingsInputCompositeIcon,
+   account: ManageAccountsIcon,
+   systemSettings: SettingsSystemDaydreamIcon,
+   users: PeopleAltIcon,
+   menue: MenuOpenIcon,
+   upArrow: ArrowDropUpOutlinedIcon,
+   downArrow: ArrowDropDownOutlinedIcon
 }
 const Icons = React.forwardRef((props, ref) => {
    const { name, size, color, ...others } = props;

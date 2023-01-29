@@ -16,6 +16,11 @@ const Navbar = () => {
                <Icons name={"earth"} color={"#7d879c"} />
                <Typography variant={"h5"}>Browse Elite Fashion</Typography>
             </div>
+            <div className={styles.menue_btn}>
+               <Button variant={"icon-btn-bg"}>
+                  <Icons name={"menue"} size={"2.1rem"} color={"#7d879c"} />
+               </Button>
+            </div>
          </Link>
          <div className={styles.nav_buttons_wrapper}>
             <Button variant={"icon-btn-bg"}>
