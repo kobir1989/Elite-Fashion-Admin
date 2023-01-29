@@ -4,23 +4,25 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import Widgets from '../../components/Widgets/Widgets';
+import AreaCharts from '../../components/Charts/AreaCharts';
 
 const HomePage = () => {
    return (
-      <>
-         <main className={styles.home_page_content_wrapper}>
-            <section className={styles.sidebar_wrapper}>
+      <main>
+         <div className={styles.home_page_content_wrapper}>
+            <div className={styles.sidebar_wrapper}>
                <Sidebar />
-            </section>
-            <section className={styles.routes_content_wrapper}>
+            </div>
+            <div className={styles.navigated_content_wrapper}>
                <Navbar />
-               <div className={styles.widgets_wrapper}>
+               <div className={styles.main_layout_wrapper}>
                   <Widgets />
+                  <AreaCharts />
                </div>
-            </section>
-         </main>
-         <Footer />
-      </>
+               <Footer />
+            </div>
+         </div>
+      </main>
    )
 }
 

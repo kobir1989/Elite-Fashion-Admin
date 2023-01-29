@@ -15,6 +15,9 @@
 			@include flex-col;
 			gap: 0.2rem;
 		}
+		span {
+			margin-left: -0.3rem;
+		}
 	}
 	.process_bar_wrapper {
 		width: 5rem;

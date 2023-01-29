@@ -5,7 +5,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import "react-circular-progressbar/dist/styles.css"
 import styles from "./styles/WidgetCardSm.module.scss";
 
-const WidgetCardSm = ({ title, amount, percentage }) => {
+const WidgetCardSm = ({ title, count, percentage }) => {
 
    return (
       <div className={styles.widget_card_sm_wrapper}>
@@ -15,10 +15,12 @@ const WidgetCardSm = ({ title, amount, percentage }) => {
             </Typography>
             <div className={styles.percentage_number}>
                <Typography variant={"widgetAmount"}>
-                  &#2547; {amount}
+                  {count}
                </Typography>
                <Typography variant={"widgetCount"} color={percentage > 0 ? "blue" : "red"}>
-                  <Icons name={percentage > 0 ? "upArrow" : "downArrow"} />
+                  <span>
+                     <Icons name={percentage > 0 ? "upArrow" : "downArrow"} />
+                  </span>
                   {percentage}%
                </Typography>
             </div>
@@ -27,11 +29,11 @@ const WidgetCardSm = ({ title, amount, percentage }) => {
             <CircularProgressbar
                styles={buildStyles({
                   textColor: percentage > 0 ? "#2c74b3" : "#cc2121",
-                  pathColor: percentage > 0 ? "#205295" : "#cc2121",
+                  pathColor: percentage > 0 ? "#2c74b3" : "#cc2121",
                   trailColor: percentage > 0 ? "#e5e5e5" : "#cc2121",
                })}
                value={percentage}
-               text={percentage} />
+               text={`${percentage}%`} />
 
             {/* <CircularProgressbar
                value={50}

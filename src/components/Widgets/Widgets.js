@@ -12,26 +12,26 @@ const Widgets = () => {
          </div>
          <div className={styles.col_2}>
             <WidgetCardSm
-               title={"Order"}
-               amount={"1520"}
+               title={"Orders"}
+               count={"1520"}
                percentage={-15} />
          </div>
          <div className={styles.col_4}>
             <WidgetCardSm
-               title={"Gross Sale"}
-               amount={"12520"}
+               title={"Earnings"}
+               count={"TK. 12520"}
                percentage={63} />
          </div>
          <div className={styles.col_5}>
             <WidgetCardSm
-               title={"Total Shipping Cost"}
-               amount={"520"}
+               title={"Total Users"}
+               count={"520"}
                percentage={15} />
          </div>
          <div className={styles.col_6}>
             <WidgetCardSm
                title={"Weekly Sales"}
-               amount={"101520"}
+               count={"TK. 101520"}
                percentage={50} />
          </div>
       </div>
