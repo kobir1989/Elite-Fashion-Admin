@@ -46,7 +46,7 @@ const data = [
 const AreaCharts = () => {
    return (
       <div className={styles.area_chart_wrapper}>
-         <Typography variant={"subtitle"} color={"paragraph "}>
+         <Typography variant={"widgetTitle"} color={"paragraph "}>
             Last Year Revenue
          </Typography>
          <div className={styles.area_chart}>

@@ -23,6 +23,12 @@ main {
 		margin-top: 2rem;
 		@include flex-col-center;
 	}
+	.recent_update_section {
+		@include flex-row-center;
+		justify-content: center;
+		gap: 2rem;
+		width: 100%;
+	}
 	::-webkit-scrollbar {
 		width: 6px;
 		background-color: $navy_main;

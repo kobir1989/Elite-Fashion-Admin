@@ -57,11 +57,13 @@
 	color: $body_text;
 	border-radius: 4px;
 	border: 1px solid $navy_3;
+	font-size: 0.9rem;
 	transition: all 0.2s linear;
 	&:hover {
 		background-color: $navy_3;
 		@include box-shadow-blue;
 		transition: all 0.2s linear;
+		color: $white;
 	}
 }
 .variant-icon-btn-bg {

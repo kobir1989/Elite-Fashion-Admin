@@ -76,6 +76,7 @@
 	font-size: 1rem;
 	font-weight: 600;
 	letter-spacing: 0.5px;
+	@include flex-row-center;
 }
 
 .typography__variant_widgetCount {
