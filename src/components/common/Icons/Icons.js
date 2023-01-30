@@ -28,7 +28,12 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined';
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
-
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import PlaylistAddCheckCircleIcon from '@mui/icons-material/PlaylistAddCheckCircle';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 const icons = {
    viewOn: VisibilityIcon,
    viewOff: VisibilityOffIcon,
@@ -58,7 +63,13 @@ const icons = {
    users: PeopleAltIcon,
    menue: MenuOpenIcon,
    upArrow: ArrowDropUpOutlinedIcon,
-   downArrow: ArrowDropDownOutlinedIcon
+   downArrow: ArrowDropDownOutlinedIcon,
+   arrowForward: KeyboardArrowRightIcon,
+   arrowBack: ArrowBackIosNewIcon,
+   list: ListAltIcon,
+   addList: PlaylistAddCheckCircleIcon,
+   categoryList: FormatListNumberedIcon,
+   downArrowOutlined: KeyboardArrowDownIcon
 }
 const Icons = React.forwardRef((props, ref) => {
    const { name, size, color, ...others } = props;

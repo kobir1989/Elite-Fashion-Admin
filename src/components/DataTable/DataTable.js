@@ -51,7 +51,11 @@ const DataTable = ({ title, btnTitle, tableHeadData }) => {
                            {row.name}
                         </TableCell>
                         <TableCell >{row.calories}</TableCell>
-                        <TableCell >{row.fat}</TableCell>
+                        <TableCell >
+                           <Typography variant={"small"} color={"green"}>
+                              {row.fat}
+                           </Typography>
+                        </TableCell>
                         <TableCell >{row.carbs}</TableCell>
                      </TableRow>
                   ))}

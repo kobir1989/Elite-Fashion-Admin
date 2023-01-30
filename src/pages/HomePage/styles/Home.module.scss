@@ -1,50 +1,9 @@
 @import "../../../scss/scss-utils/color";
 @import "../../../scss/scss-utils/mixins";
 
-main {
-	height: 100vh;
-}
-.home_page_content_wrapper {
-	@include flex-row-space-between;
+.recent_update_section {
+	@include flex-row-center;
+	justify-content: center;
+	gap: 2rem;
 	width: 100%;
-	height: 100%;
-	.sidebar_wrapper {
-		background-color: $navy_main;
-		padding: 2rem 0;
-		overflow-y: scroll;
-		flex: 1;
-	}
-	.navigated_content_wrapper {
-		background-color: $body;
-		flex: 6;
-		overflow-y: scroll;
-	}
-	.main_layout_wrapper {
-		margin-top: 2rem;
-		@include flex-col-center;
-	}
-	.recent_update_section {
-		@include flex-row-center;
-		justify-content: center;
-		gap: 2rem;
-		width: 100%;
-	}
-	::-webkit-scrollbar {
-		width: 6px;
-		background-color: $navy_main;
-		border: unset;
-	}
-	::-moz-scrollbar {
-		width: 6px;
-		background-color: $navy_main;
-		border: unset;
-	}
-	::-webkit-scrollbar-thumb {
-		background-color: $light_gray;
-		border-radius: 10px;
-	}
-	::-moz-webkit-scrollbar-thumb {
-		background-color: $light_gray;
-		border-radius: 10px;
-	}
 }
