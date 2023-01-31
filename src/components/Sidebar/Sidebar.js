@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styles from "./styles/Sidebar.module.scss";
 import Icons from '../common/Icons/Icons';
 import Typography from '../common/Typography/Typography';
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { Context } from "../../store/Context";
 import { toggleShowProduct, toggleShowCategory, toggleShowSubCategory } from "../../store/Action"
 // import { motion } from "framer-motion"
@@ -15,7 +15,9 @@ const Sidebar = () => {
    return (
       <div className={styles.dashboard_sidebar}>
          <div className={styles.dashboard_sidebar_logo}>
-            <img src="/assets/logo-white.png" alt="logo.png" />
+            <Link to={"/home"}>
+               <img src="/assets/logo-white.png" alt="logo.png" />
+            </Link>
          </div>
          <div className={styles.dashboard_sidebar_lists}>
             <ul >

@@ -1,8 +1,8 @@
 import React from 'react';
 import Pagination from '@mui/material/Pagination';
 import LinearProgress from '@mui/material/LinearProgress';
-import Button from '../../components/common/Button/Button';
-import Icons from '../../components/common/Icons/Icons';
+import Button from '../common/Button/Button';
+import Icons from '../common/Icons/Icons';
 import {
    DataGrid,
    gridPageCountSelector,
@@ -27,7 +27,8 @@ function CustomPagination() {
       />
    );
 }
-const MuiDataGrid = ({ error, loading, rows, columns, shadow = "enable" }) => {
+const MuiDataGrid = ({ error, loading, rows = [], columns, shadow = "enable" }) => {
+   console.log(rows, "ROWS")
    const actionColumn = [
       {
          field: "action", headerName: "Actions", headerAlign: "center", sortable: false, filterable: false, width: 280, renderCell: () => {
@@ -53,6 +54,7 @@ const MuiDataGrid = ({ error, loading, rows, columns, shadow = "enable" }) => {
          <DataGrid
             rowHeight={49}
             rows={rows}
+            getRowId={(row) => row._id || row.id}
             columns={columns.concat(actionColumn)}
             error={error}
             loading={loading}

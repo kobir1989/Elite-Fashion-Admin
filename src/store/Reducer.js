@@ -17,7 +17,11 @@ export default (state, action) => {
             ...state,
             showSubCategory: action.payload
          }
-
+      case "AUTH_TOKEN":
+         return {
+            ...state,
+            authToken: action.payload
+         }
       default:
          return state;
    }

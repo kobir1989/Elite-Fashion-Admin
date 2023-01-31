@@ -1,23 +1,24 @@
 
 export const stockOutColumns = [
    {
-      field: "id", headerName: "Product ID", width: 200
+      field: "_id", headerName: "Product ID", width: 200
    },
    {
-      field: "image", headerName: "Image", width: 150, align: "center", headerAlign: "center", renderCell: () => {
+      field: "image", headerName: "Image", width: 150, align: "center", headerAlign: "center", renderCell: (params) => {
          return (
             <div className="data-grid-cell">
-               <img src="https://res.cloudinary.com/dhkdpjwjm/image/upload/v1674496325/products/uamzub2ylgkdu77qxlqd.jpg" alt="product.png" />
+               <img src={params.row.image} alt="product.png" />
             </div>
          )
       }
    },
    {
-      field: "name", headerName: "Product Name", width: 230,
+      field: "title", headerName: "Product Name", width: 230,
    },
    {
-      field: "Stock", headerName: "Stock", align: "center", headerAlign: "center", width: 150, renderCell: () => {
-         return <span className="stock-out">100</span>
+      field: "Stock", headerName: "Stock", align: "center", headerAlign: "center", width: 150, renderCell: (params) => {
+         console.log(params.row.stock, "PPPPPPPPP")
+         return <span className="stock-out">{params.row.stock}</span>
       }
    },
    {

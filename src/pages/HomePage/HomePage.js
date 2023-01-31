@@ -1,23 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "./styles/Home.module.scss";
 import Widgets from '../../components/Widgets/Widgets';
 import AreaCharts from '../../components/Charts/AreaCharts';
 import PageLayout from '../../layouts/PageLayout';
-import DataGrid from "../../components/dataGrid/DataGrid";
+import MuiDataGrid from "../../components/dataGrid/MuiDataGrid";
 import { stockOutColumns } from "../../dataGridColumns/StockOutProducts"
 import BacsicCard from "../../components/common/Card/BasicCard";
+import { useHttpHook } from "../../hooks/useHttpHook";
 
 const HomePage = () => {
+   const [stockoutProduct, setStockOutProduct] = useState([]);
+   const getResponseData = (data) => {
+      setStockOutProduct(data?.stockout)
+   }
+   const { isLoading, error, sendRequest } = useHttpHook()
+   useEffect(() => {
+      sendRequest({ url: "/product/stock-out" }, getResponseData)
+   }, [])
+   // console.log(stockout, "FFFF")
    return (
       <PageLayout>
          <Widgets />
          <AreaCharts />
          <div className={styles.recent_update_section}>
             <BacsicCard title={"Stock Out Products"}>
-               <DataGrid
+               <MuiDataGrid
                   shadow={"disable"}
                   columns={stockOutColumns}
-                  rows={[]} />
+                  rows={stockoutProduct}
+                  loading={isLoading}
+                  error={error} />
             </BacsicCard>
          </div>
       </PageLayout>
