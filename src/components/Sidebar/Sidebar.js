@@ -1,42 +1,24 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import styles from "./styles/Sidebar.module.scss";
 import Icons from '../common/Icons/Icons';
 import Typography from '../common/Typography/Typography';
-import { Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import { Context } from "../../store/Context";
+import { toggleShowProduct, toggleShowCategory, toggleShowSubCategory } from "../../store/Action"
 // import { motion } from "framer-motion"
 
+//TODO: add all path conditons
 const Sidebar = () => {
-   const [showProduct, setShowProduct] = useState(false)
-   const [showCategory, setShowCategory] = useState(false)
-   const [showSubCategory, setShowSubCategory] = useState(false)
-   const [active, setActive] = useState("dashboard")
-
-   const productHandler = () => {
-      setShowProduct(!showProduct)
-      setShowCategory(false)
-      setShowSubCategory(false)
-      setActive("product")
-   }
-   const categoryHandler = () => {
-      setShowCategory(!showCategory)
-      setShowProduct(false)
-      setShowSubCategory(false)
-      setActive("category")
-   }
-   const subCategoryHandler = () => {
-      setShowSubCategory(!showSubCategory)
-      setShowCategory(false)
-      setShowProduct(false)
-      setActive("subCategory")
-
-   }
+   const { state, dispatch } = useContext(Context)
+   const location = useLocation()
+   console.log(location)
    return (
       <div className={styles.dashboard_sidebar}>
          <div className={styles.dashboard_sidebar_logo}>
             <img src="/assets/logo-white.png" alt="logo.png" />
          </div>
          <div className={styles.dashboard_sidebar_lists}>
-            <ul>
+            <ul >
                <li>
                   <Typography
                      variant={"small"}
@@ -44,14 +26,15 @@ const Sidebar = () => {
                      MAIN
                   </Typography>
                </li>
-               <Link to={"/home"}>
-                  <li className={active === "dashboard" ? `${styles.active_li}` : ""}
-                     onClick={() => { setActive("dashboard") }}>
+               <NavLink
+                  to={"/home"}
+                  className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
+                  <li>
                      <Icons
                         name={"dashboard"} />
                      Dashboard
                   </li>
-               </Link>
+               </NavLink>
                <li>
                   <Typography
                      variant={"small"}
@@ -59,8 +42,8 @@ const Sidebar = () => {
                      INVENTORY
                   </Typography>
                </li>
-               <li className={`${styles.li_nasted} ${active === "product" ? `${styles.active_li}` : ""}`}
-                  onClick={productHandler}>
+               <li className={location.pathname === "/product/list" || location.pathname === "product/create-new" ? `${styles.active_li} ${styles.li_nasted}` : ` ${styles.li_nasted}`}
+                  onClick={() => { dispatch(toggleShowProduct(!state.showProduct)) }}>
                   <div className={styles.li_dropdown}>
                      <span>
                         <Icons name={"store"} />
@@ -68,89 +51,77 @@ const Sidebar = () => {
                      </span>
                      <span className={styles.rotate}>
                         <Icons
-                           name={showProduct ? "downArrowOutlined" : "arrowForward"} />
+                           name={state.showProduct ? "downArrowOutlined" : "arrowForward"} />
                      </span>
 
                   </div>
-                  {showProduct &&
-                     <ul onClick={(e) => { e.stopPropagation() }} className={showProduct && "add_transition"}>
-                        <Link to="/product/list">
-                           <li
-                              className={active === "productList" ? `${styles.active_li}` : ""}
-                              onClick={() => { setActive("productList") }}>
+                  {state.showProduct &&
+                     <ul onClick={(e) => { e.stopPropagation() }}>
+                        <NavLink to="/product/list"
+                           className={({ isActive }) => isActive ? `${styles.active_li}` : ""} >
+                           <li>
                               <Icons size={"1rem"} name={"list"} />
                               Products List
                            </li>
-                        </Link>
-                        <li
-                           className={active === "addProduct" ? `${styles.active_li}` : ""}
-                           onClick={() => { setActive("addProduct") }}>
+                        </NavLink>
+                        <li>
                            <Icons size={"1rem"} name={"addList"} />
                            Create Product
                         </li>
                      </ul>
                   }
                </li>
-               <li className={`${styles.li_nasted} ${active === "category" ? `${styles.active_li}` : ""}`}
-                  onClick={categoryHandler}>
+               <li className={state.showCategory ? `${styles.active_li_parent} ${styles.li_nasted}` : ` ${styles.li_nasted}`}
+                  onClick={() => { dispatch(toggleShowCategory(!state.showCategory)) }}>
                   <div className={styles.li_dropdown}>
                      <span>
                         <Icons name={"category"} />
                         Categories
                      </span>
                      <span className={styles.rotate}>
-                        <Icons name={showCategory ? "downArrowOutlined" : "arrowForward"} />
+                        <Icons name={state.showCategory ? "downArrowOutlined" : "arrowForward"} />
                      </span>
 
                   </div>
-                  {showCategory &&
+                  {state.showCategory &&
                      <ul onClick={(e) => { e.stopPropagation() }}>
-                        <li
-                           className={active === "categoryList" ? `${styles.active_li}` : ""}
-                           onClick={() => { setActive("categoryList") }}>
+                        <li>
                            <Icons size={"1rem"} name={"categoryList"} />
                            Category List</li>
-                        <li
-                           className={active === "addCategory" ? `${styles.active_li}` : ""}
-                           onClick={() => { setActive("addCategory") }}>
+                        <li>
                            <Icons size={"1rem"} name={"addList"} />
                            Add Category</li>
                      </ul>}
                </li>
                <li
-                  className={`${styles.li_nasted} ${active === "subCategory" ? `${styles.active_li}` : ""}`}
-                  onClick={subCategoryHandler}>
+                  className={state.showSubCategory ? `${styles.active_li_parent} ${styles.li_nasted}` : ` ${styles.li_nasted}`}
+                  onClick={() => { dispatch(toggleShowSubCategory(!state.showSubCategory)) }}>
                   <div className={styles.li_dropdown}>
                      <span>
                         <Icons name={"subCategory"} />
                         Sub-Categories
                      </span>
                      <span className={styles.rotate}>
-                        <Icons name={showSubCategory ? "downArrowOutlined" : "arrowForward"} />
+                        <Icons name={state.showSubCategory ? "downArrowOutlined" : "arrowForward"} />
                      </span>
                   </div>
-                  {showSubCategory &&
+                  {state.showSubCategory &&
                      <ul onClick={(e) => { e.stopPropagation() }}>
-                        <li
-                           className={active === "subCategoryList" ? `${styles.active_li}` : ""}
-                           onClick={() => { setActive("subCategoryList") }}>
+                        <li>
                            <Icons size={"1rem"} name={"categoryList"} />
                            Sub-Category List
                         </li>
-                        <li className={active === "addSubCategory" ? `${styles.active_li}` : ""}
-                           onClick={() => { setActive("addSubCategory") }}>
+                        <li>
                            <Icons size={"1rem"} name={"addList"} />
                            Add Sub-Category
                         </li>
                      </ul>}
                </li>
-               <li className={active === "orders" ? `${styles.active_li}` : ""}
-                  onClick={() => { setActive("orders") }}>
+               <li>
                   <Icons name={"order"} />
                   Orders
                </li>
-               <li className={active === "customers" ? `${styles.active_li}` : ""}
-                  onClick={() => { setActive("customers") }}>
+               <li>
                   <Icons name={"users"} />
                   Customers
                </li>
@@ -161,18 +132,15 @@ const Sidebar = () => {
                      ANALYTICS
                   </Typography>
                </li>
-               <li className={active === "earnings" ? `${styles.active_li}` : ""}
-                  onClick={() => { setActive("earnings") }}>
+               <li>
                   <Icons name={"roundPie"} />
                   Earnings
                </li>
-               <li className={active === "statistics" ? `${styles.active_li}` : ""}
-                  onClick={() => { setActive("statistics") }}>
+               <li>
                   <Icons name={"barChart"} />
                   Statistics
                </li>
-               <li className={active === "statistics" ? `${styles.active_li}` : ""}
-                  onClick={() => { setActive("statistics") }}>
+               <li>
                   <Icons name={"review"} />
                   Reviews
                </li>
@@ -181,27 +149,21 @@ const Sidebar = () => {
                      ADMINISTRATION
                   </Typography>
                </li>
-               <li
-                  className={active === "siteSettings" ? `${styles.active_li}` : ""}
-                  onClick={() => { setActive("siteSettings") }}>
+               <li>
                   <Icons name={"siteSettings"} />
                   Site Settings
                </li>
-               <li
-                  className={active === "account" ? `${styles.active_li}` : ""}
-                  onClick={() => { setActive("account") }}>
+               <li>
                   <Icons name={"account"} />
                   Account Settings
                </li>
-               <li
-                  className={active === "systemSettings" ? `${styles.active_li}` : ""}
-                  onClick={() => { setActive("systemSettings") }}>
+               <li>
                   <Icons name={"systemSettings"} />
                   System Health
                </li>
             </ul>
-         </div>
-      </div>
+         </div >
+      </div >
    )
 }
 
