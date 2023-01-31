@@ -1,0 +1,16 @@
+@import "../../../scss/scss-utils/color";
+@import "../../../scss/scss-utils/mixins";
+
+.data_grid_wrapper {
+	width: 100%;
+	padding: 1.8rem;
+	height: 100%;
+	background-color: $white;
+	border-radius: 8px;
+}
+.shadow-enable {
+	@include box-shadow-sm;
+}
+.shadow-disable {
+	box-shadow: unset;
+}

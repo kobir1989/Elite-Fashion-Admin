@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from "./styles/Sidebar.module.scss";
 import Icons from '../common/Icons/Icons';
 import Typography from '../common/Typography/Typography';
+import { Link } from "react-router-dom";
 // import { motion } from "framer-motion"
 
 const Sidebar = () => {
@@ -43,12 +44,14 @@ const Sidebar = () => {
                      MAIN
                   </Typography>
                </li>
-               <li className={active === "dashboard" ? `${styles.active_li}` : ""}
-                  onClick={() => { setActive("dashboard") }}>
-                  <Icons
-                     name={"dashboard"} />
-                  Dashboard
-               </li>
+               <Link to={"/home"}>
+                  <li className={active === "dashboard" ? `${styles.active_li}` : ""}
+                     onClick={() => { setActive("dashboard") }}>
+                     <Icons
+                        name={"dashboard"} />
+                     Dashboard
+                  </li>
+               </Link>
                <li>
                   <Typography
                      variant={"small"}
@@ -71,12 +74,14 @@ const Sidebar = () => {
                   </div>
                   {showProduct &&
                      <ul onClick={(e) => { e.stopPropagation() }} className={showProduct && "add_transition"}>
-                        <li
-                           className={active === "productList" ? `${styles.active_li}` : ""}
-                           onClick={() => { setActive("productList") }}>
-                           <Icons size={"1rem"} name={"list"} />
-                           Products List
-                        </li>
+                        <Link to="/product/list">
+                           <li
+                              className={active === "productList" ? `${styles.active_li}` : ""}
+                              onClick={() => { setActive("productList") }}>
+                              <Icons size={"1rem"} name={"list"} />
+                              Products List
+                           </li>
+                        </Link>
                         <li
                            className={active === "addProduct" ? `${styles.active_li}` : ""}
                            onClick={() => { setActive("addProduct") }}>

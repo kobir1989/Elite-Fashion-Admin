@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Roboto:wght@100;300;400;500;700&display=swap");
 @import "./scss/scss-utils/color";
+@import "./scss/scss-utils/mixins";
 *,
 html,
 ::before,
@@ -20,7 +21,7 @@ a {
 	transition: all 0.02s linear;
 
 	&:hover {
-		color: $semi_blue;
+		color: $blue;
 		transition: all 0.02s linear;
 	}
 }
@@ -46,4 +47,23 @@ ul {
 ::-moz-webkit-scrollbar-thumb {
 	background-color: $light_gray;
 	border-radius: 10px;
+}
+.data-grid-cell {
+	@include flex-row-center;
+	gap: 0.5rem;
+	img {
+		width: 3rem;
+		height: 3rem;
+		padding: 0.2rem;
+		border-radius: 50%;
+	}
+}
+.stock-out {
+	background-color: rgba(248, 176, 176, 0.658);
+	padding: 0.1rem 1.2rem;
+	border-radius: 1rem;
+	color: $red_main;
+	font-size: 0.9rem;
+	letter-spacing: 0.2px;
+	font-weight: 700;
 }

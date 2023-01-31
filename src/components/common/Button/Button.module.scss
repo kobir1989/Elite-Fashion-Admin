@@ -30,6 +30,19 @@
 		color: $white;
 	}
 }
+
+.variant-blue_btn {
+	background-color: $navy_3;
+	color: $light_gray;
+	transition: all 0.2s linear;
+	padding: 0.7rem 1.2rem;
+	&:hover {
+		background-color: $navy_2;
+		transition: all 0.2s linear;
+		@include box-shadow-blue;
+		color: $white;
+	}
+}
 .variant-rounded {
 	background-color: $navy_main;
 	color: $light_gray;

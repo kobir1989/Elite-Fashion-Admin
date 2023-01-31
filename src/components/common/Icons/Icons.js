@@ -34,6 +34,9 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import PlaylistAddCheckCircleIcon from '@mui/icons-material/PlaylistAddCheckCircle';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 const icons = {
    viewOn: VisibilityIcon,
    viewOff: VisibilityOffIcon,
@@ -69,7 +72,10 @@ const icons = {
    list: ListAltIcon,
    addList: PlaylistAddCheckCircleIcon,
    categoryList: FormatListNumberedIcon,
-   downArrowOutlined: KeyboardArrowDownIcon
+   downArrowOutlined: KeyboardArrowDownIcon,
+   edit: EditIcon,
+   delete: DeleteForeverIcon,
+   checked: CheckCircleIcon
 }
 const Icons = React.forwardRef((props, ref) => {
    const { name, size, color, ...others } = props;
