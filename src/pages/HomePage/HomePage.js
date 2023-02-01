@@ -17,7 +17,7 @@ const HomePage = () => {
    useEffect(() => {
       sendRequest({ url: "/product/stock-out" }, getResponseData)
    }, [])
-   // console.log(stockout, "FFFF")
+   // console.log(stockout, "STOCK-OUT")
    return (
       <PageLayout>
          <Widgets />
@@ -30,7 +30,7 @@ const HomePage = () => {
                   rows={stockoutProduct}
                   loading={isLoading}
                   error={error}
-                  rowHeight={60} />
+                  rowHeight={70} />
             </BacsicCard>
          </div>
       </PageLayout>

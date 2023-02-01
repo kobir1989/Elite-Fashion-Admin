@@ -27,20 +27,30 @@ function CustomPagination() {
       />
    );
 }
-const MuiDataGrid = ({ rowHeight = 49, error, loading, rows = [], columns, shadow = "enable" }) => {
+const MuiDataGrid = (
+   {
+      rowHeight = 49,
+      page = 10,
+      error,
+      loading,
+      rows = [],
+      columns,
+      shadow = "enable"
+   }
+) => {
    console.log(rows, "ROWS")
    const actionColumn = [
       {
-         field: "action", headerName: "Actions", headerAlign: "center", sortable: false, filterable: false, width: 280, renderCell: () => {
+         field: "action", headerName: "Actions", headerAlign: "center", sortable: false, filterable: false, align: "center", width: 280, renderCell: () => {
             return (
-               <div className={"data-grid-cell"}>
-                  <Button variant={"icon-btn"}>
+               <div className={"data-grid-flex-col"}>
+                  <Button variant={"icon-btn-normal"}>
                      <Icons name={"viewOn"} color={"#7d879c"} />
                   </Button>
-                  <Button variant={"icon-btn"}>
+                  <Button variant={"icon-btn-normal"}>
                      <Icons name={"edit"} color={"#2c74b3"} />
                   </Button>
-                  <Button variant={"icon-btn"}>
+                  <Button variant={"icon-btn-normal"}>
                      <Icons name={"delete"} color={"#cc2121"} />
                   </Button>
                </div>
@@ -84,8 +94,8 @@ const MuiDataGrid = ({ rowHeight = 49, error, loading, rows = [], columns, shado
                   opacity: 'inherit !important',
                },
             }}
-            pageSize={10}
-            rowsPerPageOptions={[10]}
+            pageSize={page}
+            rowsPerPageOptions={[page]}
             components={{
                Pagination: CustomPagination,
             }}
