@@ -43,6 +43,14 @@ nav {
 			gap: 0.8rem;
 			transform: scale(1);
 			animation: popup 0.1s linear;
+			button {
+				padding: 0;
+				font-size: 0.9rem;
+				font-weight: 500;
+				&:hover {
+					color: $blue;
+				}
+			}
 			.admin_details {
 				border-bottom: 1px dashed $off_white;
 				padding: 0.5rem 0.8rem;
@@ -58,6 +66,7 @@ nav {
 					&:hover {
 						background-color: $body;
 						border-radius: 4px;
+						// color: $blue;
 					}
 				}
 			}

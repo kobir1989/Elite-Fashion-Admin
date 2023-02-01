@@ -1,12 +1,14 @@
 import { useState, useCallback, useContext } from 'react';
 import { axiosInstance } from "../utils/axios";
 import { Context } from "../store/Context";
+import { logout } from "../store/Action";
 
 // const BASE_URL = process.env.REACT_APP_BASE_URL;
 export const useHttpHook = () => {
    const [error, setError] = useState(null)
    const [isLoading, setIsLoading] = useState(null);
-   const { state } = useContext(Context)
+   const { state, dispatch } = useContext(Context)
+   const { authToken } = state
    const sendRequest = useCallback(async (reqConfig, getResponseData) => {
       setIsLoading(true);
       try {
@@ -16,7 +18,7 @@ export const useHttpHook = () => {
             data: reqConfig.postData ? reqConfig.postData : {},
             headers: {
                'Content-Type': 'application/json',
-               Authorization: `Bearer ${state.authToken.token}`
+               Authorization: `Bearer ${authToken?.token}`
 
             }
          });
@@ -25,8 +27,11 @@ export const useHttpHook = () => {
          setIsLoading(false);
 
       } catch (err) {
-         setError(err?.response?.data);
-         console.log(err?.response?.data, "ERROR FROM USEHTTP HOOK");
+         setError(err?.response?.data || err?.message);
+         if (err.response.status === 401 || err.response.status === 403) {
+            dispatch(logout())
+         }
+         console.log(err, "ERROR FROM USEHTTP HOOK");
          setIsLoading(false);
       }
    }, []);

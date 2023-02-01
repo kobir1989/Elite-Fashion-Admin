@@ -27,7 +27,7 @@ function CustomPagination() {
       />
    );
 }
-const MuiDataGrid = ({ error, loading, rows = [], columns, shadow = "enable" }) => {
+const MuiDataGrid = ({ rowHeight = 49, error, loading, rows = [], columns, shadow = "enable" }) => {
    console.log(rows, "ROWS")
    const actionColumn = [
       {
@@ -51,8 +51,11 @@ const MuiDataGrid = ({ error, loading, rows = [], columns, shadow = "enable" }) 
    ]
    return (
       <div className={`${styles.data_grid_wrapper} ${styles[`shadow-${shadow}`]}`}>
+         <div className={styles.loading_line}>
+            {loading && <LinearProgress />}
+         </div>
          <DataGrid
-            rowHeight={49}
+            rowHeight={rowHeight}
             rows={rows}
             getRowId={(row) => row._id || row.id}
             columns={columns.concat(actionColumn)}
@@ -85,7 +88,6 @@ const MuiDataGrid = ({ error, loading, rows = [], columns, shadow = "enable" }) 
             rowsPerPageOptions={[10]}
             components={{
                Pagination: CustomPagination,
-               LoadingOverlay: LinearProgress,
             }}
             // hideFooter={true}
             hideFooterSelectedRowCount

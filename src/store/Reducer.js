@@ -22,6 +22,11 @@ export default (state, action) => {
             ...state,
             authToken: action.payload
          }
+      case "LOGOUT":
+         return {
+            ...state,
+            authToken: action.payload || null
+         }
       default:
          return state;
    }

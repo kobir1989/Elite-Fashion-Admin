@@ -29,7 +29,8 @@ const HomePage = () => {
                   columns={stockOutColumns}
                   rows={stockoutProduct}
                   loading={isLoading}
-                  error={error} />
+                  error={error}
+                  rowHeight={60} />
             </BacsicCard>
          </div>
       </PageLayout>

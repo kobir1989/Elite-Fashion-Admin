@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Typography from '../common/Typography/Typography';
 import Icons from '../common/Icons/Icons';
 import Avatar from '@mui/material/Avatar';
 import styles from "./styles/Navbar.module.scss";
 import { Link } from "react-router-dom";
 import Button from '../common/Button/Button';
+import { Context } from "../../store/Context";
+import { logout } from "../../store/Action"
 
 const Navbar = () => {
    const [showDropdown, setShowDropdown] = useState(false)
-   const [showNotification, setShowNotification] = useState(false)
+   const [showNotification, setShowNotification] = useState(false);
+   const { dispatch } = useContext(Context)
    return (
       <nav>
          <Link to={"#"}>
@@ -80,7 +83,6 @@ const Navbar = () => {
                      <Typography variant={"small"} color={"light-gray"}>
                         Admin
                      </Typography>
-                     <span></span>
                   </div>
                   <ul>
                      <li>
@@ -90,8 +92,9 @@ const Navbar = () => {
                         <Link to={"#"}>Settings</Link>
                      </li>
                      <li>
-                        <span></span>
-                        <Link to={"#"}>Logout</Link>
+                        <Button variant={"icon-btn-normal"} onClick={() => { dispatch(logout()) }}>
+                           Logout
+                        </Button>
                      </li>
                   </ul>
                </div>}

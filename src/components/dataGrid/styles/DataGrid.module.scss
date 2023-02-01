@@ -7,10 +7,18 @@
 	height: 100%;
 	background-color: $white;
 	border-radius: 8px;
+	position: relative;
+	overflow: hidden;
 }
 .shadow-enable {
 	@include box-shadow-sm;
 }
 .shadow-disable {
 	box-shadow: unset;
+}
+.loading_line {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	left: 0;
 }

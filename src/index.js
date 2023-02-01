@@ -11,8 +11,8 @@ root.render(
   <React.StrictMode>
     <ContextProvider>
       <BrowserRouter>
-        <Toaster position="top-right" toastOptions={{ duration: 3500, }} />
         <App />
+        <Toaster position="top-right" toastOptions={{ duration: 3500, }} />
       </BrowserRouter>
     </ContextProvider>
   </React.StrictMode>

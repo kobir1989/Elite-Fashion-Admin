@@ -18,4 +18,9 @@ export const toggleShowSubCategory = payload => ({
 export const getAuthToken = payload => ({
    type: "AUTH_TOKEN",
    payload
+});
+
+export const logout = _payload => ({
+   type: "LOGOUT",
+   payload: null
 })

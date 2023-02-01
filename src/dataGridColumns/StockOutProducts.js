@@ -22,7 +22,11 @@ export const stockOutColumns = [
       }
    },
    {
-      field: "price", headerName: "Price", width: 180,
+      field: "price", headerName: "Price", width: 180, renderCell: (params) => {
+         return (
+            <span className="product-price">TK. {params.row?.price.toFixed(2)}</span>
+         )
+      }
    }
 ]
 

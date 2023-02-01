@@ -10,6 +10,7 @@ const ContextProvider = ({ children }) => {
 
    useEffect(() => {
       localStorage.setItem("admin", JSON.stringify(authToken))
+      // console.log("USE_EFFECT_RUNS")
    }, [authToken]);
 
    const value = { state, dispatch };
