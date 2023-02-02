@@ -1,16 +1,14 @@
-import { useState, useCallback, useContext } from 'react';
+import { useCallback, useContext } from 'react';
 import { axiosInstance } from "../utils/axios";
 import { Context } from "../store/Context";
-import { logout } from "../store/Action";
+import { logout, setIsLoading, setError } from "../store/Action";
 
 // const BASE_URL = process.env.REACT_APP_BASE_URL;
 export const useHttpHook = () => {
-   const [error, setError] = useState(null)
-   const [isLoading, setIsLoading] = useState(null);
    const { state, dispatch } = useContext(Context)
    const { authToken } = state
    const sendRequest = useCallback(async (reqConfig, getResponseData) => {
-      setIsLoading(true);
+      dispatch(setIsLoading(true))
       try {
          const response = await axiosInstance({
             method: reqConfig.method ? reqConfig.method : "get",
@@ -22,9 +20,9 @@ export const useHttpHook = () => {
 
             }
          });
-         console.log(response.data, "FROM USEHTTP HOOK")
+         // console.log(response.data, "FROM USEHTTP HOOK")
          getResponseData(response?.data);
-         setIsLoading(false);
+         dispatch(setIsLoading(false))
 
       } catch (err) {
          setError(err?.response?.data || err?.message);
@@ -34,13 +32,10 @@ export const useHttpHook = () => {
          console.log(err, "ERROR FROM USEHTTP HOOK");
          setIsLoading(false);
       }
-   }, []);
+   }, [authToken, dispatch]);
 
    return {
-      isLoading,
-      error,
       sendRequest,
-      setError
    }
 
 }

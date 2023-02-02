@@ -1,12 +1,12 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 import { initialState } from "./State";
-import reducer from "./Reducer";
+import { reducer } from "./Reducer";
 import { Context } from "./Context";
 
 const ContextProvider = ({ children }) => {
    const [state, dispatch] = useReducer(reducer, initialState);
    const { authToken } = state
-   console.log(authToken)
+   // console.log(authToken)
 
    useEffect(() => {
       localStorage.setItem("admin", JSON.stringify(authToken))

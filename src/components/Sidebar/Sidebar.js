@@ -11,7 +11,7 @@ import { toggleShowProduct, toggleShowCategory, toggleShowSubCategory } from "..
 const Sidebar = () => {
    const { state, dispatch } = useContext(Context)
    const location = useLocation()
-   console.log(location)
+   // console.log(location)
    return (
       <div className={styles.dashboard_sidebar}>
          <div className={styles.dashboard_sidebar_logo}>
@@ -66,10 +66,13 @@ const Sidebar = () => {
                               Products List
                            </li>
                         </NavLink>
-                        <li>
-                           <Icons size={"1rem"} name={"addList"} />
-                           Create Product
-                        </li>
+                        <NavLink to="/product/create-new"
+                           className={({ isActive }) => isActive ? `${styles.active_li}` : ""} >
+                           <li>
+                              <Icons size={"1rem"} name={"addList"} />
+                              Create New Product
+                           </li>
+                        </NavLink>
                      </ul>
                   }
                </li>

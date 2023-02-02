@@ -20,7 +20,7 @@ const Input = ({
          color={color || "primary"}
          error={error || false}
          sx={{
-            m: ".7rem 0", fontSize: "0.8rem",
+            fontSize: "0.8rem",
             "& .MuiOutlinedInput-root.Mui-focused": {
                "& > fieldset": {
                   borderColor: "#E3F6FF"

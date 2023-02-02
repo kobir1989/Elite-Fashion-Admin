@@ -1,0 +1,114 @@
+@import "../../../scss/scss-utils/color";
+@import "../../../scss/scss-utils/mixins";
+
+.form_container {
+	width: 60%;
+	.form_title_wrapper {
+		margin-bottom: 2rem;
+	}
+	form {
+		@include flex-col;
+		gap: 2rem;
+		//Upload Section
+		.upload_wrapper {
+			width: 100%;
+			height: 16rem;
+			background-color: $body;
+			border-radius: 6px;
+			margin-bottom: 2rem;
+			@include flex-col-center;
+			justify-content: space-around;
+			.upload_body {
+				@include flex-col-center;
+				justify-content: center;
+				width: 100%;
+				gap: 1rem;
+			}
+			.with_border {
+				@include flex-row;
+				align-items: center;
+				justify-content: center;
+				gap: 0.7rem;
+				&::before {
+					content: "";
+					width: 4rem;
+					border: 1px solid #d3d8e09a;
+				}
+				&::after {
+					content: "";
+					width: 4rem;
+					border: 1px solid #d3d8e09a;
+				}
+			}
+		}
+		//Input Section
+		.options_wrapper {
+			width: 100%;
+			@include flex-row;
+			gap: 1.5rem;
+			.category_options,
+			.sub_category_options {
+				width: 100%;
+			}
+		}
+		.description_wrapper {
+			width: 100%;
+			textarea {
+				width: 100%;
+				border: 1px solid $light_gray;
+				border-radius: 6px;
+				padding: 1rem;
+				font-size: 0.9rem;
+				font-family: "Roboto", sans-serif;
+				letter-spacing: 0.5px;
+				outline: none;
+				transition: all 0.2s linear;
+				&::placeholder {
+					font-family: "Roboto", sans-serif;
+					font-size: 1rem;
+				}
+				&:focus {
+					border: 1px solid #e3f6ff;
+					transition: all 0.2s linear;
+				}
+			}
+			p {
+				font-size: 0.8rem;
+				font-weight: 400;
+				margin-left: 1rem;
+			}
+			.errorClass {
+				border: 1px solid $red_main;
+				&:focus {
+					border: 1px solid $red_main;
+				}
+				&::placeholder {
+					color: $red_main;
+				}
+			}
+		}
+		//Product Pricing section
+		.stock_and_cost_wrapper {
+			width: 100%;
+			@include flex-row;
+			gap: 1.5rem;
+			.stock,
+			.cost {
+				width: 100%;
+			}
+		}
+		.price_wrapper {
+			width: 100%;
+			@include flex-row;
+			gap: 1.5rem;
+			.regular_price,
+			.sell_price {
+				width: 100%;
+			}
+		}
+		.submit_btn {
+			@include flex-col-center;
+			justify-content: center;
+		}
+	}
+}

@@ -37,6 +37,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 const icons = {
    viewOn: VisibilityIcon,
    viewOff: VisibilityOffIcon,
@@ -75,7 +77,9 @@ const icons = {
    downArrowOutlined: KeyboardArrowDownIcon,
    edit: EditIcon,
    delete: DeleteForeverIcon,
-   checked: CheckCircleIcon
+   checked: CheckCircleIcon,
+   camera: AddAPhotoIcon,
+   upload: DriveFolderUploadIcon
 }
 const Icons = React.forwardRef((props, ref) => {
    const { name, size, color, ...others } = props;

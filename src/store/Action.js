@@ -23,4 +23,19 @@ export const getAuthToken = payload => ({
 export const logout = _payload => ({
    type: "LOGOUT",
    payload: null
-})
+});
+
+export const getAllProductData = payload => ({
+   type: "PRODUCT_DATA",
+   payload
+});
+
+export const setIsLoading = payload => ({
+   type: "LOADING_STATE",
+   payload
+});
+
+export const setError = payload => ({
+   type: "ERROR_STATE",
+   payload
+});

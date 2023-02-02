@@ -1,6 +1,6 @@
 
 // Reducer
-export default (state, action) => {
+export const reducer = (state, action) => {
    switch (action.type) {
       case "TOGGLE_SHOW_PRODUCT":
          return {
@@ -26,6 +26,21 @@ export default (state, action) => {
          return {
             ...state,
             authToken: action.payload || null
+         }
+      case "PRODUCT_DATA":
+         return {
+            ...state,
+            products: action.payload
+         }
+      case "LOADING_STATE":
+         return {
+            ...state,
+            isLoading: action.payload
+         }
+      case "ERROR_STATE":
+         return {
+            ...state,
+            error: action.payload
          }
       default:
          return state;

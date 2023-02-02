@@ -1,23 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import PageLayout from "../../layouts/PageLayout";
 import MuiDataGrid from '../../components/dataGrid/MuiDataGrid';
 import styles from "./styles/ProductListPage.module.scss";
 import Typography from '../../components/common/Typography/Typography';
 import Button from '../../components/common/Button/Button';
-import { useHttpHook } from "../../hooks/useHttpHook";
 import { productColumns } from "../../dataGridColumns/productColumns";
-
+import { Context } from "../../store/Context";
 const ProductsListPage = () => {
-   const [userData, setUserData] = useState([])
-   const getResponseData = (data) => {
-      console.log(data)
-      setUserData(data?.products)
-   }
-   const { isLoading, error, sendRequest, } = useHttpHook()
-   useEffect(() => {
-      sendRequest({ url: "/products/all" }, getResponseData)
-   }, [])
-   console.log(userData)
+   const { state } = useContext(Context);
+   const { products, isLoading, error } = state;
+   // console.log(products)
    return (
       <PageLayout>
          <div className={styles.product_list_page_wrapper}>
@@ -31,7 +23,7 @@ const ProductsListPage = () => {
                <MuiDataGrid
                   loading={isLoading}
                   error={error}
-                  rows={userData}
+                  rows={products}
                   columns={productColumns}
                   rowHeight={70}
                   page={7}
