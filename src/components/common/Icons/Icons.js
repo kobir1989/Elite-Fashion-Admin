@@ -39,6 +39,8 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
+import CancelIcon from '@mui/icons-material/Cancel';
+
 const icons = {
    viewOn: VisibilityIcon,
    viewOff: VisibilityOffIcon,
@@ -79,7 +81,8 @@ const icons = {
    delete: DeleteForeverIcon,
    checked: CheckCircleIcon,
    camera: AddAPhotoIcon,
-   upload: DriveFolderUploadIcon
+   upload: DriveFolderUploadIcon,
+   cancel: CancelIcon
 }
 const Icons = React.forwardRef((props, ref) => {
    const { name, size, color, ...others } = props;

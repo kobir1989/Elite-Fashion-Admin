@@ -7,8 +7,10 @@ import SelectOptions from '../common/SelectOptionInput/SelectOptionInput';
 import BasicCard from "../common/Card/BasicCard";
 import Icons from "../common/Icons/Icons";
 import { getCategory } from "../../API/endpoints/category"
-import { getSubCategory } from "../../API/endpoints/subCategory"
+import { getSubCategory } from "../../API/endpoints/subCategory";
+import { useDropzone } from 'react-dropzone'
 
+//TODO: Rrduce code from here. spllit upload section 
 const Form = (
    {
       formTitle,
@@ -19,12 +21,24 @@ const Form = (
       changeHandler,
       submitHandler,
       hasError,
-      fileHandler
+      onDrop,
+      imageUrl,
+      removeFileHandler
    }
 ) => {
    const [categories, setCategories] = useState([])
    const [subCategories, setSubCategories] = useState([])
-   // console.log(hasError, "EEEE")
+   //Drag nad Drop 
+   const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone(
+      {
+         onDrop,
+         accept: {
+            "image/png": [".png"],
+            "image/jpeg": [".jpeg"],
+            "image/jpg": [".jpg"]
+         }
+      })
+
    useEffect(() => {
       const fetchCtgData = async () => {
          try {
@@ -58,7 +72,23 @@ const Form = (
          <BasicCard>
             <form onSubmit={submitHandler}>
                {/* Upload section Start*/}
-               <div className={styles.upload_wrapper}>
+               <div className={hasError?.file ? `${styles.upload_wrapper} ${styles.imageError}` : `${styles.upload_wrapper}`}  {...getRootProps()}>
+                  {hasError?.file
+                     &&
+                     <Typography variant={"small"} color={"red"}>
+                        {hasError?.file}
+                     </Typography>
+                  }
+                  {isDragActive &&
+                     <div className={isDragReject ? `${styles.drag_error}` : `${styles.drag_active}`}>
+                        <Typography
+                           variant={"body"}
+                           color={isDragReject ? "red" : "primary"}>
+                           {isDragReject ? "Upload only .jpeg .png .jpg Image" : " Drop the files here"}
+
+                        </Typography>
+                     </div>
+                  }
                   <div className={styles.upload_body}>
                      <Icons
                         name={"camera"}
@@ -77,28 +107,43 @@ const Form = (
                         </Typography>
                      </div>
                   </div>
-                  <Button variant={"blue_btn"}
-                     onClick={() => { document.getElementById("upload").click() }}>
+                  <Button variant={"blue_btn"}>
                      <Icons name={"upload"} />
                      Select File
                   </Button>
                   <Typography
                      variant={"small"}
                      color={"light-gray"}>
-                     Image Size (480 * 620) *Recommended
+                     Image Size (480 * 620) image Type *JPEG, *PNG and *JPG
                   </Typography>
-                  <input name="file" onChange={fileHandler} id="upload" type="file" style={{ display: "none" }} />
+                  <input type={"file"} {...getInputProps()} style={{ display: "none" }} />
+
+                  {/* Upload section end*/}
                </div>
-               {/* Upload section end*/}
+
+               {/*Display selected Image */}
+               {imageUrl &&
+                  <div className={styles.display_selected_image}>
+                     <img src={imageUrl} alt="img.png" />
+                     <Button
+                        variant={"icon-btn-nomal"}
+                        onClick={removeFileHandler}>
+                        <Icons
+                           name={"cancel"}
+                           color={"#cc2121"}
+                           size={"1.2rem"} />
+                     </Button>
+                  </div>
+               }
 
                {/**********Input section Start********/}
-               <div>
+               <div className={styles.product_title}>
                   <Input
                      error={hasError?.title ? true : false}
                      helperText={hasError?.title}
                      required={true}
                      label={titleLabel}
-                     full={true}
+                     fullWidth={true}
                      type={"text"}
                      value={inputValue?.title}
                      onChange={changeHandler}
@@ -136,7 +181,7 @@ const Form = (
                      {/* Description section start*/}
                      <div className={styles.description_wrapper}>
                         <textarea
-                           className={hasError?.description || hasError.all ? `${styles.errorClass}` : ""}
+                           className={hasError?.description || hasError.all ? `${styles.errorTextarea}` : ""}
                            rows={6}
                            value={inputValue?.description}
                            onChange={changeHandler}
@@ -183,21 +228,21 @@ const Form = (
                      <div className={styles.price_wrapper}>
                         <div className={styles.regular_price}>
                            <Input
-                              error={hasError?.regularPrice ? true : false}
-                              helperText={hasError?.regularPrice}
+                              error={hasError?.price ? true : false}
+                              helperText={hasError?.price}
                               required={true}
                               label={"Regular Price"}
                               full={true}
-                              name={"regularPrice"}
+                              name={"price"}
                               type={"number"}
-                              value={inputValue?.regularPrice}
+                              value={inputValue?.price}
                               onChange={changeHandler}
                            />
                         </div>
                         <div className={styles.sell_price}>
                            <Input
-                              error={hasError?.regularPrice ? true : false}
-                              helperText={hasError?.regularPrice}
+                              error={hasError?.sellPrice ? true : false}
+                              helperText={hasError?.sellPrice}
                               required={true}
                               label={"Sell Price (Optional)"}
                               full={true}

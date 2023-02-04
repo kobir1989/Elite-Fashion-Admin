@@ -7,7 +7,6 @@ const ContextProvider = ({ children }) => {
    const [state, dispatch] = useReducer(reducer, initialState);
    const { authToken } = state
    // console.log(authToken)
-
    useEffect(() => {
       localStorage.setItem("admin", JSON.stringify(authToken))
       // console.log("USE_EFFECT_RUNS")
