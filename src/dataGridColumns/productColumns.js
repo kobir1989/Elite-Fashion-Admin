@@ -53,7 +53,7 @@ export const productColumns = [
       field: "price", headerName: "Product Cost", headerAlign: "center", align: "center", width: 150, renderCell: (params) => {
          return (
             <Typography variant={"body"}>
-               &#2547; {params?.row?.price.toFixed(2)}
+               &#2547; {params?.row?.price?.toFixed(2)}
             </Typography>
          )
       }

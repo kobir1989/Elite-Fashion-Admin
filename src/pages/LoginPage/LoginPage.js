@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styles from "./styles/Login.module.scss";
 import Input from "../../components/common/Input/Input";
 import Icons from '../../components/common/Icons/Icons';
@@ -15,47 +15,48 @@ import { Context } from "../../store/Context";
 const LoginPage = () => {
    const [showPassword, setShowPassword] = useState(false)
    const [isTouched, setIsTouched] = useState(false)
-   const [hasError, setHasError] = useState(null)
+   const [vaidationError, setValidationError] = useState(null)
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
    const navigate = useNavigate()
-   const { dispatch } = useContext(Context)
+   const { dispatch, state } = useContext(Context)
 
+   // useEffect(() => {
+   //    if (state.authToken.token) {
+   //       return navigate("/")
+   //    }
+   // }, [])
    const getResponseData = (payload) => {
-      const { userPayload, token } = payload
-      if (window !== "undefined") {
-         // localStorage.setItem("admin", JSON.stringify({ userPayload, token }));
-         dispatch(getAuthToken({ userPayload, token }))
-      }
+      const { userPayload, token } = payload;
+      dispatch(getAuthToken({ userPayload, token }));
       if (payload.token) {
-         navigate("/home");
+         navigate("/");
          toast.success(`Welcome Back! Mr.${payload?.userPayload?.name}`)
       }
-   }
-   const { isLoading, error, sendRequest, setError } = useHttpHook()
+   };
+
+   const { sendRequest, loading, hasError } = useHttpHook()
 
    const emailChangeHandler = (e) => {
       setEmail(e.target.value)
       if (e.target.value !== "") {
-         setHasError(null);
-         setError(null);
+         setValidationError(null);
       }
-   }
-   const passwordChangeHandler = (e) => {
-      if (e.target.value.length < 8) {
-         setHasError({ name: "password", message: "Password Should be more then 8 characters" })
-      }
-      setPassword(e.target.value);
+   };
 
+   const passwordChangeHandler = (e) => {
+      setPassword(e.target.value);
       if (e.target.value !== "") {
-         setHasError(null);
-         setError(null);
+         setValidationError(null);
          setIsTouched(true)
       }
-   }
+   };
 
    const submitHandler = (e) => {
       e.preventDefault();
+      if (password.length < 8) {
+         return setValidationError({ name: "password", message: "Password Should be more then 8 characters" })
+      }
       sendRequest(
          {
             method: "POST",
@@ -75,7 +76,7 @@ const LoginPage = () => {
          <main className={styles.main_section}>
             <div className={styles.login_from_wrapper}>
                <div className={styles.loading}>
-                  {isLoading && <LinearProgress />}
+                  {loading && <LinearProgress />}
 
                </div>
                <div className={styles.logo_wrapper}>
@@ -90,8 +91,8 @@ const LoginPage = () => {
                <form onSubmit={submitHandler}>
                   <div>
                      <Input
-                        error={error || hasError ? true : false}
-                        helperText={error ? error?.message : ""}
+                        error={hasError || vaidationError ? true : false}
+                        helperText={hasError ? hasError?.message : ""}
                         required={true}
                         fullWidth
                         size={"small"}
@@ -117,8 +118,8 @@ const LoginPage = () => {
                         }
                      </div>
                      <Input
-                        error={error || hasError ? true : false}
-                        helperText={error || hasError ? error?.message || hasError?.message : ""}
+                        error={vaidationError || hasError ? true : false}
+                        helperText={vaidationError ? vaidationError?.message : hasError?.message}
                         required={true}
                         fullWidth
                         size={"small"}

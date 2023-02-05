@@ -1,9 +1,8 @@
-import React, { useState, useCallback, useContext } from 'react';
+import React, { useState, useCallback } from 'react';
 import PageLayout from "../../layouts/PageLayout";
 import Form from '../../components/Form/Form';
 import { validator } from "../../helper/inputValidator";
 import { useHttpHook } from "../../hooks/useHttpHook";
-import { Context } from "../../store/Context"
 import { toast } from 'react-hot-toast';
 
 const defaultProductValue = {
@@ -17,13 +16,11 @@ const defaultProductValue = {
    sellPrice: ""
 }
 
-const CrateProductPage = () => {
-   const [productValue, setProductValue] = useState(defaultProductValue);
-   const [image, setImage] = useState("");
-   const [imageUrl, setImageUrl] = useState("")
-   const [hasError, setHasError] = useState({})
-   const { state } = useContext(Context);
-   const { authToken } = state;
+const CrateProductPage = ({ id, updateImage, updateProduct }) => {
+   const [productValue, setProductValue] = useState(id ? updateProduct : defaultProductValue);
+   const [image, setImage] = useState(id ? updateImage : "");
+   const [imageUrl, setImageUrl] = useState(id ? updateImage : "");
+   const [hasError, setHasError] = useState({});
 
    const getResponseData = (data) => {
       // if post Successfull, Set form to default state 
@@ -40,7 +37,7 @@ const CrateProductPage = () => {
          });
          setImage("")
          setImageUrl("")
-         toast.success("New Product Added")
+         toast.success(id ? "Product Updated" : "New Product Added")
       };
    }
    const { sendRequest, loading, error } = useHttpHook()
@@ -78,8 +75,8 @@ const CrateProductPage = () => {
       // console.log(hasError, "HAS_ERROR")
       sendRequest(
          {
-            url: `/create/product/${authToken?.userPayload?._id}`,
-            method: "POST",
+            url: id ? `/product/edit/${id}` : `/create/product`,
+            method: id ? "PUT" : "POST",
             postData: { ...productValue, image }
          }, getResponseData)
 
@@ -91,9 +88,9 @@ const CrateProductPage = () => {
    return (
       <PageLayout>
          <Form
-            formTitle={"Create New Prooduct"}
+            formTitle={id ? "Edit Product" : "Create New Prooduct"}
             isProduct={true}
-            btnTitle={"Save Product"}
+            btnTitle={id ? "Save Update" : "Save Product"}
             titleLabel={"Product Title"}
             changeHandler={changeHandler}
             inputValue={productValue}
@@ -105,6 +102,7 @@ const CrateProductPage = () => {
             loading={loading}
             imageUrl={imageUrl}
             removeFileHandler={removeFileHandler}
+            editProductId={id}
          />
       </PageLayout>
    )

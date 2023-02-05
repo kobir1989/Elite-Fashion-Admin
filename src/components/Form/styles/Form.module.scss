@@ -5,6 +5,12 @@
 	width: 60%;
 	.form_title_wrapper {
 		margin-bottom: 2rem;
+		position: relative;
+		.loading_progress {
+			position: absolute;
+			bottom: -2.25rem;
+			width: 100%;
+		}
 	}
 	form {
 		@include flex-col-center;

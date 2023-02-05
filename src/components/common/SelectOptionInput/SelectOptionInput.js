@@ -10,15 +10,17 @@ const SelectOptions = (
       options = [],
       ...otherProps
    }) => {
+   console.log(value, "VALUE")
+   console.log(options, "VALUE")
    return (
       <FormControl
          fullWidth
          required
          error={value === "" && error}>
-         <InputLabel>{label}</InputLabel>
+         <InputLabel >{label}</InputLabel>
          <Select
-            value={value}
-            label="Age"
+            value={options.find(opt => opt._id === value) ? value : ""}
+            label={label}
             {...otherProps}
          >
             {options.map((option) => (

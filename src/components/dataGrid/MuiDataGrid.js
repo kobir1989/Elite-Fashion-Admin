@@ -3,6 +3,7 @@ import Pagination from '@mui/material/Pagination';
 import LinearProgress from '@mui/material/LinearProgress';
 import Button from '../common/Button/Button';
 import Icons from '../common/Icons/Icons';
+import { useNavigate } from "react-router-dom"
 import {
    DataGrid,
    gridPageCountSelector,
@@ -35,19 +36,23 @@ const MuiDataGrid = (
       loading,
       rows = [],
       columns,
-      shadow = "enable"
+      shadow = "enable",
    }
 ) => {
-   console.log(rows, "ROWS")
+   const navigate = useNavigate()
+   const editHandler = (id) => {
+      navigate(`/product/edit/${id}`)
+   }
+   // console.log(rows, "ROWS")
    const actionColumn = [
       {
-         field: "action", headerName: "Actions", headerAlign: "center", sortable: false, filterable: false, align: "center", width: 280, renderCell: () => {
+         field: "action", headerName: "Actions", headerAlign: "center", sortable: false, filterable: false, align: "center", width: 280, renderCell: (row) => {
             return (
                <div className={"data-grid-flex-col"}>
                   <Button variant={"icon-btn-normal"}>
                      <Icons name={"viewOn"} color={"#7d879c"} />
                   </Button>
-                  <Button variant={"icon-btn-normal"}>
+                  <Button variant={"icon-btn-normal"} onClick={() => { editHandler(row?.id) }}>
                      <Icons name={"edit"} color={"#2c74b3"} />
                   </Button>
                   <Button variant={"icon-btn-normal"}>
@@ -57,7 +62,6 @@ const MuiDataGrid = (
             )
          }
       },
-
    ]
    return (
       <div className={`${styles.data_grid_wrapper} ${styles[`shadow-${shadow}`]}`}>

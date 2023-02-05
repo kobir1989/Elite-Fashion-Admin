@@ -8,7 +8,8 @@ import BasicCard from "../common/Card/BasicCard";
 import Icons from "../common/Icons/Icons";
 import { getCategory } from "../../API/endpoints/category"
 import { getSubCategory } from "../../API/endpoints/subCategory";
-import { useDropzone } from 'react-dropzone'
+import { useDropzone } from 'react-dropzone';
+import LinearProgress from '@mui/material/LinearProgress';
 
 //TODO: Rrduce code from here. spllit upload section 
 const Form = (
@@ -23,7 +24,9 @@ const Form = (
       hasError,
       onDrop,
       imageUrl,
-      removeFileHandler
+      removeFileHandler,
+      editProductId,
+      loading
    }
 ) => {
    const [categories, setCategories] = useState([])
@@ -39,18 +42,7 @@ const Form = (
          }
       })
 
-   useEffect(() => {
-      const fetchCtgData = async () => {
-         try {
-            const categoryData = await getCategory();
-            setCategories(categoryData?.allCategories);
-         } catch (err) {
-            console.log(err)
-         }
-      }
-      fetchCtgData()
-   }, [])
-
+   //Fetching sub-category data based on Category id, exmp: if user select Men category all the sub-category related to Men category will be fetched. 
    const fetchSubCtgData = async (id) => {
       try {
          const subCategoryData = await getSubCategory(id)
@@ -59,7 +51,27 @@ const Form = (
          console.log(err)
       }
    }
-   // console.log(categories, "C")
+
+   //Fetching category data from server
+   useEffect(() => {
+      const fetchCtgData = async () => {
+         try {
+            const categoryData = await getCategory();
+            setCategories(categoryData?.allCategories);
+            //fetchSubCtgData will Only Trigger if user wants to edit product.
+            if (editProductId) {
+               fetchSubCtgData(inputValue?.category)
+            }
+
+         } catch (err) {
+            console.log(err)
+         }
+      }
+      fetchCtgData()
+   }, [editProductId])
+
+
+   // console.log(categories, "CATEGORY")
    return (
       <div className={styles.form_container}>
          <div className={styles.form_title_wrapper}>
@@ -68,9 +80,14 @@ const Form = (
                color={"paragraph"}>
                {formTitle}
             </Typography>
+            {loading &&
+               <div className={styles.loading_progress}>
+                  <LinearProgress sx={{ borderRadius: "8px 8px 0 0 " }} />
+               </div>}
          </div>
          <BasicCard>
             <form onSubmit={submitHandler}>
+
                {/* Upload section Start*/}
                <div className={hasError?.file ? `${styles.upload_wrapper} ${styles.imageError}` : `${styles.upload_wrapper}`}  {...getRootProps()}>
                   {hasError?.file
@@ -170,7 +187,7 @@ const Form = (
                         onChange={changeHandler}
                         name={"subCategory"}
                         label={"Sub Category"}
-                        options={subCategories}
+                        options={subCategories || inputValue?.subCategory}
                      />
                   </div>
                </div>
@@ -181,7 +198,7 @@ const Form = (
                      {/* Description section start*/}
                      <div className={styles.description_wrapper}>
                         <textarea
-                           className={hasError?.description || hasError.all ? `${styles.errorTextarea}` : ""}
+                           className={hasError?.description || hasError?.all ? `${styles.errorTextarea}` : ""}
                            rows={6}
                            value={inputValue?.description}
                            onChange={changeHandler}

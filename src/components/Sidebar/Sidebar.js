@@ -15,7 +15,7 @@ const Sidebar = () => {
    return (
       <div className={styles.dashboard_sidebar}>
          <div className={styles.dashboard_sidebar_logo}>
-            <Link to={"/home"}>
+            <Link to={"/"}>
                <img src="/assets/logo-white.png" alt="logo.png" />
             </Link>
          </div>
@@ -29,7 +29,7 @@ const Sidebar = () => {
                   </Typography>
                </li>
                <NavLink
-                  to={"/home"}
+                  to={"/"}
                   className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
                   <li>
                      <Icons

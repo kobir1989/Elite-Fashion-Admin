@@ -6,10 +6,12 @@ import Typography from '../../components/common/Typography/Typography';
 import Button from '../../components/common/Button/Button';
 import { productColumns } from "../../dataGridColumns/productColumns";
 import { Context } from "../../store/Context";
+
 const ProductsListPage = () => {
    const { state } = useContext(Context);
    const { products, isLoading, error } = state;
    // console.log(products)
+
    return (
       <PageLayout>
          <div className={styles.product_list_page_wrapper}>
