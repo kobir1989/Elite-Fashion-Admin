@@ -90,3 +90,17 @@
 		transition: all 0.2s ease-in-out;
 	}
 }
+.variant-red-border {
+	background-color: unset;
+	border: 1px solid rgba(247, 126, 150, 0.315);
+	color: $red_main;
+	transition: all 0.2s linear;
+	padding: 0.7rem 1.2rem;
+	&:hover {
+		background-color: $red_main;
+		color: $white;
+		transition: all 0.2s linear;
+		@include box-shadow-blue;
+		color: $white;
+	}
+}

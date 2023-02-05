@@ -8,7 +8,8 @@ import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import { useHttpHook } from "./hooks/useHttpHook";
 import { Context } from "./store/Context";
 import { getAllProductData } from "./store/Action";
-import EditPage from "./pages/Product/EditPage/EditPage";
+import ProductEditPage from "./pages/Product/ProductEditPage";
+import CategoryListPage from "./pages/category/CategoryListPage";
 
 const App = () => {
   const { dispatch } = useContext(Context);
@@ -28,7 +29,8 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/product/list" element={<ProductsListPage />} />
         <Route path="/product/create-new" element={<CreateProductPage />} />
-        <Route path="/product/edit/:id" element={<EditPage />} />
+        <Route path="/product/edit/:id" element={<ProductEditPage />} />
+        <Route path="/category/list" element={<CategoryListPage />} />
       </Route>
       <Route path='*' element={<Navigate to='/' replace />} />
     </Routes>

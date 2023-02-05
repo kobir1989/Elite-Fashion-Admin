@@ -44,7 +44,7 @@ const Sidebar = () => {
                      INVENTORY
                   </Typography>
                </li>
-               <li className={location.pathname === "/product/list" || location.pathname === "product/create-new" ? `${styles.active_li} ${styles.li_nasted}` : ` ${styles.li_nasted}`}
+               <li className={location.pathname === "/product/list" || location.pathname === "/product/create-new" ? `${styles.active_li} ${styles.li_nasted}` : ` ${styles.li_nasted}`}
                   onClick={() => { dispatch(toggleShowProduct(!state.showProduct)) }}>
                   <div className={styles.li_dropdown}>
                      <span>
@@ -76,7 +76,7 @@ const Sidebar = () => {
                      </ul>
                   }
                </li>
-               <li className={state.showCategory ? `${styles.active_li_parent} ${styles.li_nasted}` : ` ${styles.li_nasted}`}
+               <li className={location.pathname === "/category/list" || location.pathname === "/" ? `${styles.active_li} ${styles.li_nasted}` : ` ${styles.li_nasted}`}
                   onClick={() => { dispatch(toggleShowCategory(!state.showCategory)) }}>
                   <div className={styles.li_dropdown}>
                      <span>
@@ -86,16 +86,23 @@ const Sidebar = () => {
                      <span className={styles.rotate}>
                         <Icons name={state.showCategory ? "downArrowOutlined" : "arrowForward"} />
                      </span>
-
                   </div>
                   {state.showCategory &&
                      <ul onClick={(e) => { e.stopPropagation() }}>
-                        <li>
-                           <Icons size={"1rem"} name={"categoryList"} />
-                           Category List</li>
-                        <li>
-                           <Icons size={"1rem"} name={"addList"} />
-                           Add Category</li>
+                        <NavLink to="/category/list"
+                           className={({ isActive }) => isActive ? `${styles.active_li}` : ""} >
+                           <li>
+                              <Icons size={"1rem"} name={"categoryList"} />
+                              Category List
+                           </li>
+                        </NavLink>
+                        <NavLink to="/"
+                           className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
+                           <li>
+                              <Icons size={"1rem"} name={"addList"} />
+                              Add Category
+                           </li>
+                        </NavLink>
                      </ul>}
                </li>
                <li

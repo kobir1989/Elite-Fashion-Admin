@@ -25,6 +25,7 @@ export const useHttpHook = () => {
          // console.log(response.data, "FROM USEHTTP HOOK")
          getResponseData(response?.data);
          dispatch(setIsLoading(false))
+         setLoading(false)
 
       } catch (err) {
          setError(err?.response?.data || err?.message);

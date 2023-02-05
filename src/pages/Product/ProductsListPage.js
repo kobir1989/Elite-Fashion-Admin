@@ -6,6 +6,7 @@ import Typography from '../../components/common/Typography/Typography';
 import Button from '../../components/common/Button/Button';
 import { productColumns } from "../../dataGridColumns/productColumns";
 import { Context } from "../../store/Context";
+import { Link } from "react-router-dom";
 
 const ProductsListPage = () => {
    const { state } = useContext(Context);
@@ -19,7 +20,11 @@ const ProductsListPage = () => {
                <Typography variant={"subtitle"} color={"primary"}>
                   Products List
                </Typography>
-               <Button variant={"blue_btn"}>Create New Product</Button>
+               <Link to={"/product/create-new"}>
+                  <Button variant={"blue_btn"}>
+                     Create New Product
+                  </Button>
+               </Link>
             </div>
             <div className={styles.data_grid_wrapper}>
                <MuiDataGrid

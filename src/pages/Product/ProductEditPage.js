@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { useParams } from "react-router-dom";
-import CrateProductPage from '../CrateProductPage';
-import { Context } from "../../../store/Context";
+import CrateProductPage from './CrateProductPage';
+import { Context } from "../../store/Context";
 
-const EditPage = () => {
+const ProductEditPage = () => {
    const { state } = useContext(Context);
    const { products } = state;
    const { id } = useParams()
@@ -23,6 +23,7 @@ const EditPage = () => {
          imageId: product?.imageId
       }
    });
+   console.log(updateProduct, "UPDATEW ")
    return (
       <CrateProductPage
          id={id}
@@ -31,4 +32,4 @@ const EditPage = () => {
    )
 }
 
-export default EditPage;
+export default ProductEditPage;

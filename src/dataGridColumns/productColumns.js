@@ -19,7 +19,7 @@ export const productColumns = [
       }
    },
    {
-      field: "subCategory", headerName: "Category", width: 250,
+      field: "subCategory", headerName: "Category / Sub Category", width: 250, align: "center", headerAlign: "center",
       renderCell: (params) => {
          return <Typography variant={"dataGridSubTitle"}>
             {params?.row?.category?.name} / {params?.row?.subCategory?.name}

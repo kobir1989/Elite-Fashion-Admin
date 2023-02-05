@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Pagination from '@mui/material/Pagination';
 import LinearProgress from '@mui/material/LinearProgress';
 import Button from '../common/Button/Button';
 import Icons from '../common/Icons/Icons';
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { useHttpHook } from "../../hooks/useHttpHook";
+import Typography from "../common/Typography/Typography";
+import toast from 'react-hot-toast';
 import {
    DataGrid,
    gridPageCountSelector,
@@ -39,23 +42,54 @@ const MuiDataGrid = (
       shadow = "enable",
    }
 ) => {
+   const [selectedProduct, setSelectedProduct] = useState(null)
    const navigate = useNavigate()
+   const { sendRequest } = useHttpHook();
+
+   //Edit Handler
    const editHandler = (id) => {
       navigate(`/product/edit/${id}`)
    }
-   // console.log(rows, "ROWS")
+   //Get delete response data 
+   const getResponseData = (data) => {
+      if (data?.success) {
+         toast.success("Product Deleted")
+      }
+      console.log(data, "DATA DELETE")
+   }
+   //Delete Handler
+   const deleteProductHandler = () => {
+      if (selectedProduct) {
+         sendRequest(
+            {
+               url: `/product/delete/${selectedProduct?.id}`,
+               method: "DELETE",
+               postData: {
+                  imageId: selectedProduct?.imageId
+               }
+            },
+            getResponseData
+         )
+      }
+      setSelectedProduct(false)
+   };
+
    const actionColumn = [
       {
-         field: "action", headerName: "Actions", headerAlign: "center", sortable: false, filterable: false, align: "center", width: 280, renderCell: (row) => {
+         field: "action", headerName: "Actions", headerAlign: "center", sortable: false, filterable: false, align: "center", width: 220, renderCell: (row) => {
             return (
                <div className={"data-grid-flex-col"}>
                   <Button variant={"icon-btn-normal"}>
                      <Icons name={"viewOn"} color={"#7d879c"} />
                   </Button>
-                  <Button variant={"icon-btn-normal"} onClick={() => { editHandler(row?.id) }}>
+                  <Button
+                     variant={"icon-btn-normal"}
+                     onClick={() => { editHandler(row?.id) }}>
                      <Icons name={"edit"} color={"#2c74b3"} />
                   </Button>
-                  <Button variant={"icon-btn-normal"}>
+                  <Button
+                     variant={"icon-btn-normal"}
+                     onClick={() => { setSelectedProduct({ id: row?.id, imageId: row?.row?.imageId }) }}>
                      <Icons name={"delete"} color={"#cc2121"} />
                   </Button>
                </div>
@@ -65,6 +99,28 @@ const MuiDataGrid = (
    ]
    return (
       <div className={`${styles.data_grid_wrapper} ${styles[`shadow-${shadow}`]}`}>
+         {selectedProduct &&
+            <div className={styles.confirm_popup_wrapper}>
+               <div className={styles.confirm_inner_wrapper}>
+                  <Typography variant={"small"} color={"red"}>
+                     <Icons size={"2rem"} name={"warning"} />
+                     Are you sure you want to delete this Product?
+                  </Typography>
+                  <div className={styles.warning_btns}>
+                     <Button
+                        variant={"blue_btn"}
+                        onClick={deleteProductHandler}>
+                        Yes
+                     </Button>
+                     <Button
+                        variant={"red-border"}
+                        onClick={() => { setSelectedProduct(null) }}>
+                        Cancel
+                     </Button>
+                  </div>
+               </div>
+            </div>
+         }
          <div className={styles.loading_line}>
             {loading && <LinearProgress />}
          </div>

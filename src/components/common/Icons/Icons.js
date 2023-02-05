@@ -40,6 +40,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import CancelIcon from '@mui/icons-material/Cancel';
+import WarningIcon from '@mui/icons-material/Warning';
 
 const icons = {
    viewOn: VisibilityIcon,
@@ -82,7 +83,8 @@ const icons = {
    checked: CheckCircleIcon,
    camera: AddAPhotoIcon,
    upload: DriveFolderUploadIcon,
-   cancel: CancelIcon
+   cancel: CancelIcon,
+   warning: WarningIcon
 }
 const Icons = React.forwardRef((props, ref) => {
    const { name, size, color, ...others } = props;
