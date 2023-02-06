@@ -6,6 +6,7 @@ export const initialState = {
    showSubCategory: false,
    authToken: JSON.parse(localStorage.getItem("admin")) || null,
    products: [],
+   category: [],
    isLoading: false,
    error: null
 }

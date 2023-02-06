@@ -30,6 +30,11 @@ export const getAllProductData = payload => ({
    payload
 });
 
+export const getAllCategoryData = payload => ({
+   type: "CATEGORY_DATA",
+   payload
+});
+
 export const setIsLoading = payload => ({
    type: "LOADING_STATE",
    payload

@@ -1,4 +1,4 @@
-export const validator = (inputValue, setHasError, image) => {
+export const validator = (inputValue, image) => {
    let newErrors = {};
    // console.log(inputValue, "VVVVVVV")
    if (image === "") {
@@ -7,10 +7,10 @@ export const validator = (inputValue, setHasError, image) => {
    if (Object.values(inputValue).some(value => value === '')) {
       newErrors.all = "Value Can not be Empty!";
    }
-   if (inputValue?.title.length < 10) {
-      newErrors.title = "Product title should be more than 20 characters";
+   if (inputValue?.title?.length < 5) {
+      newErrors.title = "Title should be more than 5 characters";
    }
-   if (inputValue?.description.length < 150) {
+   if (inputValue?.description?.length < 150) {
       newErrors.description = "Description should be more than 200 characters";
    }
    if (inputValue?.stock < 1) {

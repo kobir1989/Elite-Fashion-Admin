@@ -34,6 +34,8 @@ const ProductsListPage = () => {
                   columns={productColumns}
                   rowHeight={70}
                   page={7}
+                  editUrl={"/product/edit"}
+                  deleteUrl={"/product/delete"}
                />
             </div>
          </div>

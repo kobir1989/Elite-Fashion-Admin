@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styles from "./styles/Form.module.scss";
 import Typography from '../common/Typography/Typography';
 import Button from "../common/Button/Button";
@@ -6,12 +6,11 @@ import Input from "../common/Input/Input";
 import SelectOptions from '../common/SelectOptionInput/SelectOptionInput';
 import BasicCard from "../common/Card/BasicCard";
 import Icons from "../common/Icons/Icons";
-import { getCategory } from "../../API/endpoints/category"
-import { getSubCategory } from "../../API/endpoints/subCategory";
-import { useDropzone } from 'react-dropzone';
 import LinearProgress from '@mui/material/LinearProgress';
+import { useHttpHook } from '../../hooks/useHttpHook';
+import { Context } from "../../store/Context";
+import DragAndDrop from '../DragAndDrop/DragAndDrop';
 
-//TODO: Rrduce code from here. spllit upload section 
 const Form = (
    {
       formTitle,
@@ -29,47 +28,25 @@ const Form = (
       loading
    }
 ) => {
-   const [categories, setCategories] = useState([])
    const [subCategories, setSubCategories] = useState([])
-   //Drag nad Drop 
-   const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone(
-      {
-         onDrop,
-         accept: {
-            "image/png": [".png"],
-            "image/jpeg": [".jpeg"],
-            "image/jpg": [".jpg"]
-         }
-      })
+   const { state } = useContext(Context);
+   const { category } = state;
 
    //Fetching sub-category data based on Category id, exmp: if user select Men category all the sub-category related to Men category will be fetched. 
-   const fetchSubCtgData = async (id) => {
-      try {
-         const subCategoryData = await getSubCategory(id)
-         setSubCategories(subCategoryData?.subCategories)
-      } catch (err) {
-         console.log(err)
-      }
+   const getRelatedSubCtg = (data) => {
+      setSubCategories(data?.subCategories);
+      console.log(data, "DDDDDDDD")
    }
-
-   //Fetching category data from server
+   const { sendRequest } = useHttpHook()
+   const fetchSubCtgData = (id) => {
+      console.log(id, "ID")
+      sendRequest({ url: `/sub-category/${id}` }, getRelatedSubCtg)
+   }
    useEffect(() => {
-      const fetchCtgData = async () => {
-         try {
-            const categoryData = await getCategory();
-            setCategories(categoryData?.allCategories);
-            //fetchSubCtgData will Only Trigger if user wants to edit product.
-            if (editProductId) {
-               fetchSubCtgData(inputValue?.category)
-            }
-
-         } catch (err) {
-            console.log(err)
-         }
+      if (editProductId) {
+         fetchSubCtgData(inputValue?.category)
       }
-      fetchCtgData()
    }, [editProductId])
-
 
    // console.log(categories, "CATEGORY")
    return (
@@ -86,57 +63,13 @@ const Form = (
                </div>}
          </div>
          <BasicCard>
-            <form onSubmit={submitHandler}>
-
-               {/* Upload section Start*/}
-               <div className={hasError?.file ? `${styles.upload_wrapper} ${styles.imageError}` : `${styles.upload_wrapper}`}  {...getRootProps()}>
-                  {hasError?.file
-                     &&
-                     <Typography variant={"small"} color={"red"}>
-                        {hasError?.file}
-                     </Typography>
-                  }
-                  {isDragActive &&
-                     <div className={isDragReject ? `${styles.drag_error}` : `${styles.drag_active}`}>
-                        <Typography
-                           variant={"body"}
-                           color={isDragReject ? "red" : "primary"}>
-                           {isDragReject ? "Upload only .jpeg .png .jpg Image" : " Drop the files here"}
-
-                        </Typography>
-                     </div>
-                  }
-                  <div className={styles.upload_body}>
-                     <Icons
-                        name={"camera"}
-                        size={"2.5rem"}
-                        color={"#aeb4be"} />
-                     <Typography
-                        variant={"widgetTitle"}
-                        color={"paragraph"}>
-                        Drag & drop product image here
-                     </Typography>
-                     <div className={styles.with_border}>
-                        <Typography
-                           variant={"small"}
-                           color={"light-gray"}>
-                           OR
-                        </Typography>
-                     </div>
-                  </div>
-                  <Button variant={"blue_btn"}>
-                     <Icons name={"upload"} />
-                     Select File
-                  </Button>
-                  <Typography
-                     variant={"small"}
-                     color={"light-gray"}>
-                     Image Size (480 * 620) image Type *JPEG, *PNG and *JPG
-                  </Typography>
-                  <input type={"file"} {...getInputProps()} style={{ display: "none" }} />
-
-                  {/* Upload section end*/}
+            <form onSubmit={submitHandler}
+               className={loading ? `${styles.add_opacity}` : ""}>
+               {/*Upload section start*/}
+               <div className={styles.drag_and_drop_wrapper}>
+                  <DragAndDrop onDrop={onDrop} hasError={hasError} />
                </div>
+               {/*Upload section end*/}
 
                {/*Display selected Image */}
                {imageUrl &&
@@ -168,29 +101,31 @@ const Form = (
                   />
                </div>
                {/* OPtions Start*/}
-               < div className={styles.options_wrapper} >
-                  <div className={styles.category_options}>
-                     <SelectOptions
-                        value={inputValue?.category}
-                        onChange={(e) => {
-                           changeHandler(e);
-                           fetchSubCtgData(e.target.value)
-                        }}
-                        name={"category"}
-                        label={"Category"}
-                        options={categories}
-                     />
+               {isProduct &&
+                  < div className={styles.options_wrapper} >
+                     <div className={styles.category_options}>
+                        <SelectOptions
+                           value={inputValue?.category}
+                           onChange={(e) => {
+                              changeHandler(e);
+                              fetchSubCtgData(e.target.value)
+                           }}
+                           name={"category"}
+                           label={"Category"}
+                           options={category}
+                        />
+                     </div>
+                     <div className={styles.sub_category_options}>
+                        <SelectOptions
+                           value={inputValue?.subCategory}
+                           onChange={changeHandler}
+                           name={"subCategory"}
+                           label={"Sub Category"}
+                           options={subCategories || inputValue?.subCategory}
+                        />
+                     </div>
                   </div>
-                  <div className={styles.sub_category_options}>
-                     <SelectOptions
-                        value={inputValue?.subCategory}
-                        onChange={changeHandler}
-                        name={"subCategory"}
-                        label={"Sub Category"}
-                        options={subCategories || inputValue?.subCategory}
-                     />
-                  </div>
-               </div>
+               }
                {/* Options End*/}
 
                {isProduct &&
@@ -274,7 +209,6 @@ const Form = (
                   </>
                }
                {/* Input section End*/}
-
                <div className={styles.submit_btn}>
                   <Button type="submit" variant={"blue_btn"}>
                      {btnTitle}

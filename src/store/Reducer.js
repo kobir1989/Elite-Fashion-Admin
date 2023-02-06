@@ -32,6 +32,11 @@ export const reducer = (state, action) => {
             ...state,
             products: action.payload
          }
+      case "CATEGORY_DATA":
+         return {
+            ...state,
+            category: action.payload
+         }
       case "LOADING_STATE":
          return {
             ...state,

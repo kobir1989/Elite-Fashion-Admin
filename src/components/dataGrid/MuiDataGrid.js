@@ -40,6 +40,8 @@ const MuiDataGrid = (
       rows = [],
       columns,
       shadow = "enable",
+      editUrl,
+      deleteUrl
    }
 ) => {
    const [selectedProduct, setSelectedProduct] = useState(null)
@@ -48,12 +50,12 @@ const MuiDataGrid = (
 
    //Edit Handler
    const editHandler = (id) => {
-      navigate(`/product/edit/${id}`)
+      navigate(`${editUrl}/${id}`)
    }
    //Get delete response data 
    const getResponseData = (data) => {
       if (data?.success) {
-         toast.success("Product Deleted")
+         toast.success(deleteUrl === "/category/remove" ? "Category Deleted" : "Product Deleted")
       }
       console.log(data, "DATA DELETE")
    }
@@ -62,7 +64,7 @@ const MuiDataGrid = (
       if (selectedProduct) {
          sendRequest(
             {
-               url: `/product/delete/${selectedProduct?.id}`,
+               url: `${deleteUrl}/${selectedProduct?.id}`,
                method: "DELETE",
                postData: {
                   imageId: selectedProduct?.imageId

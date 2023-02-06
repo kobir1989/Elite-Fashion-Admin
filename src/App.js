@@ -7,19 +7,24 @@ import CreateProductPage from "./pages/Product/CrateProductPage";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import { useHttpHook } from "./hooks/useHttpHook";
 import { Context } from "./store/Context";
-import { getAllProductData } from "./store/Action";
+import { getAllProductData, getAllCategoryData } from "./store/Action";
 import ProductEditPage from "./pages/Product/ProductEditPage";
 import CategoryListPage from "./pages/category/CategoryListPage";
+import CreateCategoryPage from "./pages/category/CreateCategoryPage";
+import EditCategory from "./pages/category/EditCategory";
 
 const App = () => {
   const { dispatch } = useContext(Context);
-  const getResponseData = (data) => {
-    // console.log(data)
+  const getCategoryData = (data) => {
+    dispatch(getAllCategoryData(data?.allCategories))
+  }
+  const getProductData = (data) => {
     dispatch(getAllProductData(data?.products))
   }
-  const { sendRequest } = useHttpHook()
+  const { sendRequest } = useHttpHook();
   useEffect(() => {
-    sendRequest({ url: "/products/all" }, getResponseData)
+    sendRequest({ url: "/products/all" }, getProductData);
+    sendRequest({ url: "/categories/all" }, getCategoryData)
   }, [])
 
   return (
@@ -31,6 +36,8 @@ const App = () => {
         <Route path="/product/create-new" element={<CreateProductPage />} />
         <Route path="/product/edit/:id" element={<ProductEditPage />} />
         <Route path="/category/list" element={<CategoryListPage />} />
+        <Route path="/category/create-new" element={<CreateCategoryPage />} />
+        <Route path="/category/edit/:id" element={<EditCategory />} />
       </Route>
       <Route path='*' element={<Navigate to='/' replace />} />
     </Routes>

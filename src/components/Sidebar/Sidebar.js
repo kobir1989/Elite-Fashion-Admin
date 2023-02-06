@@ -96,7 +96,7 @@ const Sidebar = () => {
                               Category List
                            </li>
                         </NavLink>
-                        <NavLink to="/"
+                        <NavLink to="/category/create-new"
                            className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
                            <li>
                               <Icons size={"1rem"} name={"addList"} />
