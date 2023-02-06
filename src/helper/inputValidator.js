@@ -1,4 +1,5 @@
 export const validator = (inputValue, image) => {
+   console.log(inputValue, "FROM VALIDATOR")
    let newErrors = {};
    // console.log(inputValue, "VVVVVVV")
    if (image === "") {

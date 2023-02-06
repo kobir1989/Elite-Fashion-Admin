@@ -37,6 +37,11 @@ export const reducer = (state, action) => {
             ...state,
             category: action.payload
          }
+      case "SELECTED_SUB_CATEGORY":
+         return {
+            ...state,
+            subCategory: action.payload
+         }
       case "LOADING_STATE":
          return {
             ...state,

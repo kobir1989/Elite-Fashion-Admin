@@ -7,6 +7,7 @@ export const initialState = {
    authToken: JSON.parse(localStorage.getItem("admin")) || null,
    products: [],
    category: [],
+   subCategory: null,
    isLoading: false,
    error: null
 }

@@ -44,3 +44,8 @@ export const setError = payload => ({
    type: "ERROR_STATE",
    payload
 });
+
+export const selectedSubCategory = payload => ({
+   type: "SELECTED_SUB_CATEGORY",
+   payload
+})

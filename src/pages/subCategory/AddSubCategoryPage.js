@@ -9,10 +9,11 @@ const defaultSubCategoryValue = {
    title: "",
    category: "",
 }
-const AddSubCategoryPage = ({ id }) => {
-   const [subCategoryValue, setSubCategoryValue] = useState(defaultSubCategoryValue);
-   const [image, setImage] = useState("");
-   const [imageUrl, setImageUrl] = useState("");
+const AddSubCategoryPage = ({ id, updateImage, updateCategory }) => {
+   console.log(id, "IIIIIDDDDDD")
+   const [subCategoryValue, setSubCategoryValue] = useState(id ? updateCategory : defaultSubCategoryValue);
+   const [image, setImage] = useState(id ? updateImage : "");
+   const [imageUrl, setImageUrl] = useState(id ? updateImage : "");
    const [hasError, setHasError] = useState({});
 
    const getResponseData = (data) => {
@@ -24,7 +25,7 @@ const AddSubCategoryPage = ({ id }) => {
          });
          setImage("")
          setImageUrl("")
-         toast.success("New Product Added")
+         toast.success(id ? "Sub-Category Updated" : "New Sub-Category Added")
       };
    }
    const { sendRequest, loading, hasError: error } = useHttpHook();
@@ -53,7 +54,7 @@ const AddSubCategoryPage = ({ id }) => {
    const subCategorysubmitHandler = (e) => {
       e.preventDefault()
       //Validator keeps reference in the memory so that its value can be use to check Error.
-      const validated = validator(subCategoryValue, setHasError, image)
+      const validated = validator(subCategoryValue, image)
       setHasError(validated)
       // console.log(validated, "VALIDATED")
       if (Object.keys(validated).length > 0) {
@@ -62,8 +63,8 @@ const AddSubCategoryPage = ({ id }) => {
       // console.log(hasError, "HAS_ERROR")
       sendRequest(
          {
-            url: `/sub-category/create`,
-            method: "POST",
+            url: id ? `sub-category/edit/${id}` : `/sub-category/create/new`,
+            method: id ? "PUT" : "POST",
             postData: { ...subCategoryValue, image }
          }, getResponseData)
 
@@ -75,9 +76,9 @@ const AddSubCategoryPage = ({ id }) => {
    return (
       <PageLayout>
          <Form
-            formTitle={"Create New Sub-Category"}
+            formTitle={id ? "Edit Sub-Category" : "Create New Sub-Category"}
             isSubCategory={true}
-            btnTitle={"Save Sub-Category"}
+            btnTitle={id ? "Save Update" : "Save Sub-Category"}
             titleLabel={"Sub-Category Title"}
             onDrop={onDrop}
             inputValue={subCategoryValue}
@@ -86,6 +87,7 @@ const AddSubCategoryPage = ({ id }) => {
             changeHandler={changeHandler}
             imageUrl={imageUrl}
             submitHandler={subCategorysubmitHandler}
+            removeFileHandler={removeFileHandler}
          />
       </PageLayout>
    )

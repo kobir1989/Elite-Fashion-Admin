@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Pagination from '@mui/material/Pagination';
 import LinearProgress from '@mui/material/LinearProgress';
 import Button from '../common/Button/Button';
@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useHttpHook } from "../../hooks/useHttpHook";
 import Typography from "../common/Typography/Typography";
 import toast from 'react-hot-toast';
+import { Context } from "../../store/Context";
+import { selectedSubCategory } from "../../store/Action";
 import {
    DataGrid,
    gridPageCountSelector,
@@ -47,10 +49,17 @@ const MuiDataGrid = (
    const [selectedProduct, setSelectedProduct] = useState(null)
    const navigate = useNavigate()
    const { sendRequest, loading: isLoading } = useHttpHook();
+   const { dispatch } = useContext(Context);
 
    //Edit Handler
-   const editHandler = (id) => {
-      navigate(`${editUrl}/${id}`)
+   const editHandler = (row) => {
+      navigate(`${editUrl}/${row?.id}`)
+      dispatch(selectedSubCategory({
+         title: row?.row?.name,
+         imageId: row?.row?.imageId,
+         image: row?.row?.image,
+         category: row?.row?.category?._id
+      }))
    }
    //Get delete response data 
    const getResponseData = (data) => {
@@ -86,7 +95,7 @@ const MuiDataGrid = (
                   </Button>
                   <Button
                      variant={"icon-btn-normal"}
-                     onClick={() => { editHandler(row?.id) }}>
+                     onClick={() => { editHandler(row) }}>
                      <Icons name={"edit"} color={"#2c74b3"} />
                   </Button>
                   <Button

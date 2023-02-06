@@ -14,6 +14,7 @@ import CreateCategoryPage from "./pages/category/CreateCategoryPage";
 import EditCategoryPage from "./pages/category/EditCategoryPage";
 import SubCategoryListPage from "./pages/subCategory/SubCategoryListPage";
 import AddSubCategoryPage from "./pages/subCategory/AddSubCategoryPage";
+import EditSubCategoryPage from "./pages/subCategory/EditSubCategoryPage";
 
 const App = () => {
   const { dispatch } = useContext(Context);
@@ -45,6 +46,7 @@ const App = () => {
           path="/sub-category/create-new"
           element={<AddSubCategoryPage />}
         />
+        <Route path="/sub-category/edit/:id" element={<EditSubCategoryPage />} />
       </Route>
       <Route path='*' element={<Navigate to='/' replace />} />
     </Routes>

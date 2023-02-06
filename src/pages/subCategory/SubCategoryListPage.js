@@ -23,11 +23,11 @@ const SubCategoryListPage = () => {
          <div className={styles.sub_category_page_wrapper}>
             <div className={styles.section_title_wrapper}>
                <Typography variant={"subtitle"} color={"primary"}>
-                  Products List
+                  Sub-Category List
                </Typography>
-               <Link to={"/product/create-new"}>
+               <Link to={"/sub-category/create-new"}>
                   <Button variant={"blue_btn"}>
-                     Create New Product
+                     Create New Sub-Category
                   </Button>
                </Link>
             </div>
@@ -40,6 +40,7 @@ const SubCategoryListPage = () => {
                   rowHeight={100}
                   page={5}
                   deleteUrl={"/sub-category/remove"}
+                  editUrl={"/sub-category/edit"}
                />
             </div>
          </div>
