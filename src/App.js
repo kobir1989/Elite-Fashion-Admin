@@ -11,7 +11,9 @@ import { getAllProductData, getAllCategoryData } from "./store/Action";
 import ProductEditPage from "./pages/Product/ProductEditPage";
 import CategoryListPage from "./pages/category/CategoryListPage";
 import CreateCategoryPage from "./pages/category/CreateCategoryPage";
-import EditCategory from "./pages/category/EditCategory";
+import EditCategoryPage from "./pages/category/EditCategoryPage";
+import SubCategoryListPage from "./pages/subCategory/SubCategoryListPage";
+import AddSubCategoryPage from "./pages/subCategory/AddSubCategoryPage";
 
 const App = () => {
   const { dispatch } = useContext(Context);
@@ -37,7 +39,12 @@ const App = () => {
         <Route path="/product/edit/:id" element={<ProductEditPage />} />
         <Route path="/category/list" element={<CategoryListPage />} />
         <Route path="/category/create-new" element={<CreateCategoryPage />} />
-        <Route path="/category/edit/:id" element={<EditCategory />} />
+        <Route path="/category/edit/:id" element={<EditCategoryPage />} />
+        <Route path="/sub-category/list" element={<SubCategoryListPage />} />
+        <Route
+          path="/sub-category/create-new"
+          element={<AddSubCategoryPage />}
+        />
       </Route>
       <Route path='*' element={<Navigate to='/' replace />} />
     </Routes>

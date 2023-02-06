@@ -4,7 +4,7 @@ import Widgets from '../../components/Widgets/Widgets';
 import AreaCharts from '../../components/Charts/AreaCharts';
 import PageLayout from '../../layouts/PageLayout';
 import MuiDataGrid from "../../components/dataGrid/MuiDataGrid";
-import { stockOutColumns } from "../../dataGridColumns/StockOutProducts"
+import { stockOutColumns } from "../../components/dataGrid/dataGridColumns/StockOutProducts";
 import BacsicCard from "../../components/common/Card/BasicCard";
 import { Context } from "../../store/Context";
 

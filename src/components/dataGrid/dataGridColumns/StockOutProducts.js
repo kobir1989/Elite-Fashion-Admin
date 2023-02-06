@@ -1,4 +1,4 @@
-import Typography from "../components/common/Typography/Typography";
+import Typography from "../../common/Typography/Typography";
 
 export const stockOutColumns = [
    {

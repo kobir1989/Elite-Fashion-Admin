@@ -76,7 +76,7 @@ const Sidebar = () => {
                      </ul>
                   }
                </li>
-               <li className={location.pathname === "/category/list" || location.pathname === "/" ? `${styles.active_li} ${styles.li_nasted}` : ` ${styles.li_nasted}`}
+               <li className={location.pathname === "/category/list" || location.pathname === "/category/create-new" ? `${styles.active_li} ${styles.li_nasted}` : ` ${styles.li_nasted}`}
                   onClick={() => { dispatch(toggleShowCategory(!state.showCategory)) }}>
                   <div className={styles.li_dropdown}>
                      <span>
@@ -100,13 +100,13 @@ const Sidebar = () => {
                            className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
                            <li>
                               <Icons size={"1rem"} name={"addList"} />
-                              Add Category
+                              Create New Category
                            </li>
                         </NavLink>
                      </ul>}
                </li>
                <li
-                  className={state.showSubCategory ? `${styles.active_li_parent} ${styles.li_nasted}` : ` ${styles.li_nasted}`}
+                  className={location.pathname === "/sub-category/list" || location.pathname === "/sub-category/create-new" ? `${styles.active_li} ${styles.li_nasted}` : ` ${styles.li_nasted}`}
                   onClick={() => { dispatch(toggleShowSubCategory(!state.showSubCategory)) }}>
                   <div className={styles.li_dropdown}>
                      <span>
@@ -119,14 +119,20 @@ const Sidebar = () => {
                   </div>
                   {state.showSubCategory &&
                      <ul onClick={(e) => { e.stopPropagation() }}>
-                        <li>
-                           <Icons size={"1rem"} name={"categoryList"} />
-                           Sub-Category List
-                        </li>
-                        <li>
-                           <Icons size={"1rem"} name={"addList"} />
-                           Add Sub-Category
-                        </li>
+                        <NavLink to="/sub-category/list"
+                           className={({ isActive }) => isActive ? `${styles.active_li}` : ""} >
+                           <li>
+                              <Icons size={"1rem"} name={"categoryList"} />
+                              Sub-Category List
+                           </li>
+                        </NavLink>
+                        <NavLink to="/sub-category/create-new"
+                           className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
+                           <li>
+                              <Icons size={"1rem"} name={"addList"} />
+                              Add Sub-Category
+                           </li>
+                        </NavLink>
                      </ul>}
                </li>
                <li>

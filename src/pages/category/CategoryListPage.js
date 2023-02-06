@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PageLayout from "../../layouts/PageLayout";
 import MuiDateGrid from "../../components/dataGrid/MuiDataGrid";
-import { categoryColumns } from '../../dataGridColumns/categoryColumns';
+import { categoryColumns } from "../../components/dataGrid/dataGridColumns/categoryColumns";
 import styles from "./styles/CategoryListPage.module.scss";
 import Typography from '../../components/common/Typography/Typography';
 import Button from '../../components/common/Button/Button';

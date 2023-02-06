@@ -46,7 +46,7 @@ const MuiDataGrid = (
 ) => {
    const [selectedProduct, setSelectedProduct] = useState(null)
    const navigate = useNavigate()
-   const { sendRequest } = useHttpHook();
+   const { sendRequest, loading: isLoading } = useHttpHook();
 
    //Edit Handler
    const editHandler = (id) => {
@@ -124,7 +124,7 @@ const MuiDataGrid = (
             </div>
          }
          <div className={styles.loading_line}>
-            {loading && <LinearProgress />}
+            {loading || isLoading && <LinearProgress />}
          </div>
          <DataGrid
             rowHeight={rowHeight}

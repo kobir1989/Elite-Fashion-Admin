@@ -25,7 +25,8 @@ const Form = (
       imageUrl,
       removeFileHandler,
       editProductId,
-      loading
+      loading,
+      isSubCategory = false
    }
 ) => {
    const [subCategories, setSubCategories] = useState([])
@@ -101,8 +102,8 @@ const Form = (
                   />
                </div>
                {/* OPtions Start*/}
-               {isProduct &&
-                  < div className={styles.options_wrapper} >
+               < div className={styles.options_wrapper} >
+                  {isProduct || isSubCategory ?
                      <div className={styles.category_options}>
                         <SelectOptions
                            value={inputValue?.category}
@@ -115,17 +116,21 @@ const Form = (
                            options={category}
                         />
                      </div>
-                     <div className={styles.sub_category_options}>
-                        <SelectOptions
-                           value={inputValue?.subCategory}
-                           onChange={changeHandler}
-                           name={"subCategory"}
-                           label={"Sub Category"}
-                           options={subCategories || inputValue?.subCategory}
-                        />
-                     </div>
+                     :
+                     null
+                  }
+                  {isProduct && !isSubCategory ? <div className={styles.sub_category_options}>
+                     <SelectOptions
+                        value={inputValue?.subCategory}
+                        onChange={changeHandler}
+                        name={"subCategory"}
+                        label={"Sub Category"}
+                        options={subCategories || inputValue?.subCategory}
+                     />
                   </div>
-               }
+                     : null
+                  }
+               </div>
                {/* Options End*/}
 
                {isProduct &&

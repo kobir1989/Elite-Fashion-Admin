@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import CreateCategoryPage from './CreateCategoryPage';
 import { useParams } from "react-router-dom";
 import { Context } from "../../store/Context";
-const EditCategory = () => {
+const EditCategoryPage = () => {
    const { id } = useParams();
    const { state, dispatch } = useContext(Context);
    const { category } = state;
@@ -23,4 +23,4 @@ const EditCategory = () => {
    )
 }
 
-export default EditCategory;
+export default EditCategoryPage;
