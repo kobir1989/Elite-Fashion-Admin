@@ -12,9 +12,7 @@ const EditSubCategoryPage = () => {
       title: subCategory?.title,
       imageId: subCategory?.imageId,
       category: subCategory?.category
-   }
-
-   console.log(selectedSubCategory)
+   };
 
    return (
       <AddSubCategoryPage

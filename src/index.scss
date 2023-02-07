@@ -72,16 +72,31 @@ ul {
 	font-weight: 500;
 }
 .red_bg {
-	background-color: rgba(220, 20, 60, 0.089);
+	background-color: #dc143c17;
 	border: 1px solid $red_main;
 }
 .gray_bg {
 	background-color: $body;
 	border: 1px solid $light_gray;
 }
+.yellow_bg {
+	background-color: #f7f2e6cb;
+	border: 1px solid #ffbb0093;
+}
+.green_bg {
+	background-color: #d3f8e967;
+	border: 1px solid #00808071;
+}
 .blue_bg {
-	background-color: rgba(175, 202, 240, 0.295);
+	background-color: #afcaf04b;
 	border: 1px solid $navy_3;
+}
+.row_address__wrapper {
+	@include flex-col;
+	gap: 0.4rem;
+	p {
+		text-transform: capitalize;
+	}
 }
 .product_details {
 	@include flex-row-center;

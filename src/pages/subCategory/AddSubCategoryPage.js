@@ -1,20 +1,22 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import PageLayout from "../../layouts/PageLayout";
 import Form from "../../components/Form/Form";
 import { useHttpHook } from "../../hooks/useHttpHook";
 import { validator } from "../../helper/inputValidator";
 import toast from 'react-hot-toast';
+import { Context } from "../../store/Context";
+import { updateState } from "../../store/Action";
 
 const defaultSubCategoryValue = {
    title: "",
    category: "",
 }
 const AddSubCategoryPage = ({ id, updateImage, updateCategory }) => {
-   console.log(id, "IIIIIDDDDDD")
    const [subCategoryValue, setSubCategoryValue] = useState(id ? updateCategory : defaultSubCategoryValue);
    const [image, setImage] = useState(id ? updateImage : "");
    const [imageUrl, setImageUrl] = useState(id ? updateImage : "");
    const [hasError, setHasError] = useState({});
+   const { dispatch } = useContext(Context)
 
    const getResponseData = (data) => {
       // if post Successfull, Set form to default state 
@@ -25,7 +27,8 @@ const AddSubCategoryPage = ({ id, updateImage, updateCategory }) => {
          });
          setImage("")
          setImageUrl("")
-         toast.success(id ? "Sub-Category Updated" : "New Sub-Category Added")
+         toast.success(id ? "Sub-Category Updated" : "New Sub-Category Added");
+         dispatch(updateState(1))
       };
    }
    const { sendRequest, loading, hasError: error } = useHttpHook();

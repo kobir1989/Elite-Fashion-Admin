@@ -1,0 +1,14 @@
+@import "../../../scss/scss-utils/color";
+@import "../../../scss/scss-utils/mixins";
+
+.order_page_wrapper {
+	width: 80%;
+	min-height: 70vh;
+	margin-top: 2rem;
+	.order_title_wrapper {
+		margin-bottom: 2rem;
+	}
+	.data_grid_wrapper {
+		margin-bottom: 4rem;
+	}
+}

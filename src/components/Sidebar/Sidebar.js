@@ -135,10 +135,13 @@ const Sidebar = () => {
                         </NavLink>
                      </ul>}
                </li>
-               <li>
-                  <Icons name={"order"} />
-                  Orders
-               </li>
+               <NavLink to="/order/list"
+                  className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
+                  <li>
+                     <Icons name={"order"} />
+                     Orders
+                  </li>
+               </NavLink>
                <li>
                   <Icons name={"users"} />
                   Customers

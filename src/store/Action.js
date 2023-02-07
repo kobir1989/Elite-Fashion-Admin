@@ -48,4 +48,14 @@ export const setError = payload => ({
 export const selectedSubCategory = payload => ({
    type: "SELECTED_SUB_CATEGORY",
    payload
-})
+});
+
+export const updateState = payload => ({
+   type: "UPDATE_STATE",
+   payload
+});
+
+export const getSelectedOrder = payload => ({
+   type: "SELECTED_ORDER",
+   payload
+});

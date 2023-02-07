@@ -15,9 +15,11 @@ import EditCategoryPage from "./pages/category/EditCategoryPage";
 import SubCategoryListPage from "./pages/subCategory/SubCategoryListPage";
 import AddSubCategoryPage from "./pages/subCategory/AddSubCategoryPage";
 import EditSubCategoryPage from "./pages/subCategory/EditSubCategoryPage";
-
+import OrderListPage from "./pages/Order/OrderListPage";
+import OrderDetailsPage from "./pages/Order/OrderDetailsPage";
 const App = () => {
-  const { dispatch } = useContext(Context);
+  const { state, dispatch } = useContext(Context);
+  const { isUpdated } = state;
   const getCategoryData = (data) => {
     dispatch(getAllCategoryData(data?.allCategories))
   }
@@ -28,8 +30,8 @@ const App = () => {
   useEffect(() => {
     sendRequest({ url: "/products/all" }, getProductData);
     sendRequest({ url: "/categories/all" }, getCategoryData)
-  }, [])
-
+  }, [isUpdated])
+  console.log(state?.isUpdated, "IS UPDATED")
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
@@ -47,6 +49,8 @@ const App = () => {
           element={<AddSubCategoryPage />}
         />
         <Route path="/sub-category/edit/:id" element={<EditSubCategoryPage />} />
+        <Route path="/order/list" element={<OrderListPage />} />
+        <Route path="/order-details/:id" element={<OrderDetailsPage />} />
       </Route>
       <Route path='*' element={<Navigate to='/' replace />} />
     </Routes>

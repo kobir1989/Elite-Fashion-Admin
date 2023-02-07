@@ -1,9 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import PageLayout from '../../layouts/PageLayout';
 import Form from '../../components/Form/Form';
 import { validator } from '../../helper/inputValidator';
 import toast from 'react-hot-toast';
 import { useHttpHook } from "../../hooks/useHttpHook";
+import { Context } from '../../store/Context';
+import { updateState } from '../../store/Action';
 
 const defaultCategoryValue = {
    title: "",
@@ -13,6 +15,7 @@ const CreateCategoryPage = ({ id, updateCategory, updateImage }) => {
    const [image, setImage] = useState(id ? updateImage : "");
    const [imageUrl, setImageUrl] = useState(id ? updateImage : "");
    const [hasError, setHasError] = useState("");
+   const { dispatch } = useContext(Context)
 
    const getResponseData = (data) => {
       console.log(data)
@@ -23,6 +26,7 @@ const CreateCategoryPage = ({ id, updateCategory, updateImage }) => {
          });
          setImage("")
          setImageUrl("")
+         dispatch(updateState(4));
       }
    }
    const { sendRequest, error, loading } = useHttpHook()

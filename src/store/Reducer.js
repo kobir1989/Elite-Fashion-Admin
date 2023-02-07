@@ -42,10 +42,20 @@ export const reducer = (state, action) => {
             ...state,
             subCategory: action.payload
          }
+      case "SELECTED_ORDER":
+         return {
+            ...state,
+            selectedOrder: action.payload
+         }
       case "LOADING_STATE":
          return {
             ...state,
             isLoading: action.payload
+         }
+      case "UPDATE_STATE":
+         return {
+            ...state,
+            isUpdated: action.payload
          }
       case "ERROR_STATE":
          return {

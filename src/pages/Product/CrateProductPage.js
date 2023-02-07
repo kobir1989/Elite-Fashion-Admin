@@ -1,9 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import PageLayout from "../../layouts/PageLayout";
 import Form from '../../components/Form/Form';
 import { validator } from "../../helper/inputValidator";
 import { useHttpHook } from "../../hooks/useHttpHook";
 import { toast } from 'react-hot-toast';
+import { Context } from "../../store/Context";
+import { updateState } from "../../store/Action";
 
 const defaultProductValue = {
    title: "",
@@ -21,6 +23,7 @@ const CrateProductPage = ({ id, updateImage, updateProduct }) => {
    const [image, setImage] = useState(id ? updateImage : "");
    const [imageUrl, setImageUrl] = useState(id ? updateImage : "");
    const [hasError, setHasError] = useState({});
+   const { dispatch } = useContext(Context)
 
    const getResponseData = (data) => {
       // if post Successfull, Set form to default state 
@@ -37,7 +40,8 @@ const CrateProductPage = ({ id, updateImage, updateProduct }) => {
          });
          setImage("")
          setImageUrl("")
-         toast.success(id ? "Product Updated" : "New Product Added")
+         toast.success(id ? "Product Updated" : "New Product Added");
+         dispatch(updateState(3))
       };
    }
    const { sendRequest, loading, error } = useHttpHook()
@@ -66,7 +70,7 @@ const CrateProductPage = ({ id, updateImage, updateProduct }) => {
    const submitHandler = (e) => {
       e.preventDefault()
       //Validator keeps reference in the memory so that its value can be use to check Error.
-      const validated = validator(productValue, setHasError, image)
+      const validated = validator(productValue, image)
       setHasError(validated)
       // console.log(validated, "VALIDATED")
       if (Object.keys(validated).length > 0) {

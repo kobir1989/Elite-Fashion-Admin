@@ -8,7 +8,7 @@ import { useHttpHook } from "../../hooks/useHttpHook";
 import Typography from "../common/Typography/Typography";
 import toast from 'react-hot-toast';
 import { Context } from "../../store/Context";
-import { selectedSubCategory } from "../../store/Action";
+import { selectedSubCategory, updateState, getSelectedOrder } from "../../store/Action";
 import {
    DataGrid,
    gridPageCountSelector,
@@ -43,13 +43,22 @@ const MuiDataGrid = (
       columns,
       shadow = "enable",
       editUrl,
-      deleteUrl
+      deleteUrl,
+      isOrder = false,
    }
 ) => {
    const [selectedProduct, setSelectedProduct] = useState(null)
    const navigate = useNavigate()
    const { sendRequest, loading: isLoading } = useHttpHook();
    const { dispatch } = useContext(Context);
+
+   //View Handler 
+   const viewHandler = (rowData) => {
+      dispatch(getSelectedOrder(rowData?.row))
+      console.log(rowData?.row, "ROW");
+      navigate(`/order-details/${rowData?.id}`)
+
+   }
 
    //Edit Handler
    const editHandler = (row) => {
@@ -64,10 +73,11 @@ const MuiDataGrid = (
    //Get delete response data 
    const getResponseData = (data) => {
       if (data?.success) {
-         toast.success(deleteUrl === "/category/remove" ? "Category Deleted" : "Product Deleted")
-      }
-      console.log(data, "DATA DELETE")
-   }
+         dispatch(updateState(0))
+         toast.success(deleteUrl === "/product/delete" ? "Product Deleted" : "Collection Deleted");
+
+      };
+   };
    //Delete Handler
    const deleteProductHandler = () => {
       if (selectedProduct) {
@@ -80,29 +90,38 @@ const MuiDataGrid = (
                }
             },
             getResponseData
-         )
-      }
-      setSelectedProduct(false)
+         );
+      };
+      setSelectedProduct(null)
    };
 
    const actionColumn = [
       {
-         field: "action", headerName: "Actions", headerAlign: "center", sortable: false, filterable: false, align: "center", width: 220, renderCell: (row) => {
+         field: "action", headerName: "Actions", headerAlign: "center", sortable: false, filterable: false, align: "center", width: isOrder ? 100 : 220, renderCell: (row) => {
             return (
                <div className={"data-grid-flex-col"}>
-                  <Button variant={"icon-btn-normal"}>
-                     <Icons name={"viewOn"} color={"#7d879c"} />
-                  </Button>
-                  <Button
-                     variant={"icon-btn-normal"}
-                     onClick={() => { editHandler(row) }}>
-                     <Icons name={"edit"} color={"#2c74b3"} />
-                  </Button>
-                  <Button
-                     variant={"icon-btn-normal"}
-                     onClick={() => { setSelectedProduct({ id: row?.id, imageId: row?.row?.imageId }) }}>
-                     <Icons name={"delete"} color={"#cc2121"} />
-                  </Button>
+                  {isOrder ?
+                     <Button variant={"icon-btn-normal"}
+                        onClick={() => { viewHandler(row) }}>
+                        <Icons name={"viewOn"} color={"#7d879c"} />
+                     </Button>
+                     :
+                     <>
+                        <Button variant={"icon-btn-normal"}>
+                           <Icons name={"viewOn"} color={"#7d879c"} />
+                        </Button>
+                        <Button
+                           variant={"icon-btn-normal"}
+                           onClick={() => { editHandler(row) }}>
+                           <Icons name={"edit"} color={"#2c74b3"} />
+                        </Button>
+                        <Button
+                           variant={"icon-btn-normal"}
+                           onClick={() => { setSelectedProduct({ id: row?.id, imageId: row?.row?.imageId }) }}>
+                           <Icons name={"delete"} color={"#cc2121"} />
+                        </Button>
+                     </>
+                  }
                </div>
             )
          }
@@ -133,7 +152,7 @@ const MuiDataGrid = (
             </div>
          }
          <div className={styles.loading_line}>
-            {loading || isLoading && <LinearProgress />}
+            {loading || isLoading ? <LinearProgress /> : null}
          </div>
          <DataGrid
             rowHeight={rowHeight}
