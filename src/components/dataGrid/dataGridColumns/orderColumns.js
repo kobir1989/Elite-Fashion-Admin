@@ -24,12 +24,16 @@ export const orderColumns = [
    },
    {
       field: "address", headerName: "Shipping Address", headerAlign: "left", align: "left", width: 350, renderCell: (params) => {
+         console.log(params?.row?.row)
          return (
             <div className="row_address__wrapper">
-               <Typography variant={"body"} color={"primary"}>
+               <Typography variant={"small"} color={"paragraph"}>
+                  User: {params?.row?.user?.name}
+               </Typography>
+               <Typography variant={"small"} color={"paragraph"}>
                   City: {params?.row?.city}
                </Typography>
-               <Typography variant={"small"} color={"primary"}>
+               <Typography variant={"small"} color={"paragraph"}>
                   Shipping Address: {params?.row?.shippingAddress}
                </Typography>
             </div>
@@ -48,7 +52,10 @@ export const orderColumns = [
    {
       field: "status", headerName: "Order Status", headerAlign: "left", align: "left", width: 150, renderCell: (params) => {
          return (
-            <div className="with__bg yellow_bg">
+            <div className={`with__bg ${params?.row?.orderStatus === "PENDING" ? "yellow_bg" :
+               params?.row?.orderStatus === "SHIPPED" ? "blue_bg" :
+                  params?.row?.orderStatus === "DELIVERED" ? "green_bg" :
+                     params?.row?.orderStatus === "CANCELED" ? "red_bg" : ""}`}>
                <Typography variant={"small"} color={"paragraph"}>
                   {params?.row?.orderStatus}
                </Typography>

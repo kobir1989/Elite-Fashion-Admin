@@ -7,7 +7,7 @@ import Sidebar from "../components/Sidebar/Sidebar";
 const PageLayout = ({ children }) => {
    return (
       <div className={styles.page_layout_wrapper}>
-         <main>
+         <main className={styles.main}>
             <div className={styles.page_content_wrapper}>
                <div className={styles.sidebar_wrapper}>
                   <Sidebar />

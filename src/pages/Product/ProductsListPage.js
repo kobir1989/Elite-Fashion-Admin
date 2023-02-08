@@ -6,7 +6,7 @@ import Typography from '../../components/common/Typography/Typography';
 import Button from '../../components/common/Button/Button';
 import { productColumns } from "../../components/dataGrid/dataGridColumns/productColumns";
 import { Context } from "../../store/Context";
-import { Link } from "react-router-dom";
+import PageTitle from "../../components/common/PageTitle/PageTitle";
 
 const ProductsListPage = () => {
    const { state } = useContext(Context);
@@ -16,16 +16,10 @@ const ProductsListPage = () => {
    return (
       <PageLayout>
          <div className={styles.product_list_page_wrapper}>
-            <div className={styles.section_title_wrapper}>
-               <Typography variant={"subtitle"} color={"primary"}>
-                  Products List
-               </Typography>
-               <Link to={"/product/create-new"}>
-                  <Button variant={"blue_btn"}>
-                     Create New Product
-                  </Button>
-               </Link>
-            </div>
+            <PageTitle
+               title={"Products List"}
+               linkTo={"/product/create-new"}
+               btnTitle={" Create New Product"} />
             <div className={styles.data_grid_wrapper}>
                <MuiDataGrid
                   loading={isLoading}

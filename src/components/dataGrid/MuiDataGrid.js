@@ -170,7 +170,7 @@ const MuiDataGrid = (
                   border: 'none',
                },
                "& .MuiDataGrid-columnHeaders": {
-                  backgroundColor: "rgb(253, 253, 254);",
+                  backgroundColor: "#F3F5F9",
                   color: "#2b3445",
                   fontSize: 16
                },

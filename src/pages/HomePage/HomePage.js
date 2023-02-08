@@ -25,6 +25,8 @@ const HomePage = () => {
                   rows={stockoutProducts}
                   loading={isLoading}
                   error={error}
+                  editUrl={"/product/edit"}
+                  deleteUrl={"/product/delete"}
                   rowHeight={70} />
             </BacsicCard>
          </div>

@@ -1,11 +1,10 @@
 @import "../../../scss/scss-utils/color";
 @import "../../../scss/scss-utils/mixins";
-
-.order_page_wrapper {
+.user_page_wrapper {
 	width: 80%;
-	min-height: 70vh;
+	min-height: 75vh;
 	margin-top: 2rem;
-	.data_grid_wrapper {
-		margin-bottom: 4rem;
+	.user_title_wrapper {
+		margin-bottom: 2rem;
 	}
 }

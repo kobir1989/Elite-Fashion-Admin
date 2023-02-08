@@ -22,15 +22,13 @@ export const categoryColumns = [
       }
    },
    {
-      field: "_id", headerName: "Category Image", headerAlign: "center", align: "center", width: 300, renderCell: (params) => {
+      field: "image", headerName: "Category Image", headerAlign: "center", align: "center", width: 300, renderCell: (params) => {
          return (
             <div className="category_img">
                <img src={params?.row?.image} alt="product.png" />
             </div>
          )
       }
-   },
-
-
+   }
 ]
 

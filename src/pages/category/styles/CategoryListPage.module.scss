@@ -3,10 +3,7 @@
 .category_page_wrapper {
 	margin-top: 2rem;
 	width: 80%;
-	.category_title_wrapper {
-		margin-bottom: 2rem;
-		@include flex-row-space-between;
-	}
+	min-height: 70vh;
 	.data_grid_wrapper {
 		width: 100%;
 		margin-bottom: 6.5rem;

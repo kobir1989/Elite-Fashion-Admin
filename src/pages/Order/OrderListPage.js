@@ -3,8 +3,8 @@ import PageLayout from "../../layouts/PageLayout";
 import MuiDataGrid from "../../components/dataGrid/MuiDataGrid";
 import { orderColumns } from "../../components/dataGrid/dataGridColumns/orderColumns";
 import styles from "./styles/OrderListPage.module.scss";
-import Typography from '../../components/common/Typography/Typography';
 import { useHttpHook } from "../../hooks/useHttpHook";
+import PageTitle from "../../components/common/PageTitle/PageTitle";
 
 const OrderListPage = () => {
    const [orderData, setOrderData] = useState([]);
@@ -20,11 +20,7 @@ const OrderListPage = () => {
    return (
       <PageLayout>
          <div className={styles.order_page_wrapper}>
-            <div className={styles.order_title_wrapper}>
-               <Typography variant={"subtitle"} color={"primary"}>
-                  Order List
-               </Typography>
-            </div>
+            <PageTitle title={" Order List"} showBtn={false} />
             <div className={styles.data_grid_wrapper}>
                <MuiDataGrid
                   columns={orderColumns}
