@@ -7,10 +7,8 @@
 	background-color: $white;
 }
 .main_section {
-	height: 81vh;
 	@include flex-col-center;
-	justify-content: center;
-
+	margin-top: 5rem;
 	.login_from_wrapper {
 		width: 95%;
 		position: relative;
@@ -21,20 +19,9 @@
 		border-radius: 4px;
 		padding: 2rem;
 		background-color: $white;
-		gap: 1.1rem;
+		gap: 1rem;
 		@include screens-md {
 			width: 35%;
-		}
-		.eye_image {
-			margin: 1rem 0;
-			width: 10rem;
-			height: 4rem;
-			@include flex-row-center;
-			justify-content: center;
-			img {
-				width: 100%;
-				height: 100%;
-			}
 		}
 		.loading {
 			position: absolute;
@@ -44,8 +31,10 @@
 		}
 		.logo_wrapper {
 			width: 14rem;
-			height: 2.5rem;
-			margin: 1rem 0;
+			// height: 2.5rem;
+			margin: 1rem 0 2rem 0;
+			@include flex-col-center;
+			gap: 1rem;
 			img {
 				width: 100%;
 				height: 100%;
@@ -55,20 +44,29 @@
 		form {
 			width: 100%;
 			@include flex-col;
-			gap: 0.5rem;
+			gap: 1.2rem;
 			button {
-				margin-top: 1.5rem;
+				margin-top: 0.5rem;
 			}
+		}
+		.email_input_feild {
+			height: 3.5rem;
 		}
 		.password_input_feild {
 			position: relative;
+			height: 3.5rem;
 			.password_view_icon_wrapper {
 				position: absolute;
 				right: 2%;
-				top: 1.3rem;
+				top: 0.7rem;
 				z-index: 20;
 				cursor: pointer;
 			}
 		}
 	}
+}
+.footer {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
 }

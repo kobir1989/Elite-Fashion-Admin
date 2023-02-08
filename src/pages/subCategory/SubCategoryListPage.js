@@ -3,10 +3,8 @@ import PageLayout from "../../layouts/PageLayout";
 import MuiDataGrid from "../../components/dataGrid/MuiDataGrid";
 import { subCategoryColumns } from "../../components/dataGrid/dataGridColumns/subCategoryColumns";
 import styles from "./styles/SubCategoryListPage.module.scss";
-import Button from '../../components/common/Button/Button';
-import Typography from '../../components/common/Typography/Typography';
-import { Link } from "react-router-dom";
 import { useHttpHook } from "../../hooks/useHttpHook";
+import PageTitle from "../../components/common/PageTitle/PageTitle";
 
 const SubCategoryListPage = () => {
    const [subCategory, setSubCategory] = useState([])
@@ -21,16 +19,10 @@ const SubCategoryListPage = () => {
    return (
       <PageLayout>
          <div className={styles.sub_category_page_wrapper}>
-            <div className={styles.section_title_wrapper}>
-               <Typography variant={"subtitle"} color={"primary"}>
-                  Sub-Category List
-               </Typography>
-               <Link to={"/sub-category/create-new"}>
-                  <Button variant={"blue_btn"}>
-                     Create New Sub-Category
-                  </Button>
-               </Link>
-            </div>
+            <PageTitle
+               title={"Sub-Category List"}
+               linkTo={"/sub-category/create-new"}
+               btnTitle={"Create New Sub-Category"} />
             <div className={styles.sub_category_data_grid_wrapper}>
                <MuiDataGrid
                   columns={subCategoryColumns}

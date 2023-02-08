@@ -34,10 +34,10 @@ nav {
 			@include flex-col;
 			position: absolute;
 			right: 3%;
-			top: 4rem;
+			top: 3.4rem;
 			width: 12rem;
 			background-color: $white;
-			@include box-shadow-sm;
+			@include box-shadow-lg;
 			padding: 1.5rem;
 			border-radius: 4px;
 			gap: 0.8rem;
@@ -71,17 +71,6 @@ nav {
 					}
 				}
 			}
-			// &::before {
-			// 	content: "";
-			// 	border-left: 0.8rem solid transparent;
-			// 	border-right: 0.8rem solid transparent;
-			// 	border-bottom: 0.8rem solid $white;
-			// 	width: 0;
-			// 	height: 0;
-			// 	position: absolute;
-			// 	top: -0.5rem;
-			// 	right: 1.2rem;
-			// }
 		}
 		.notification_wrapper {
 			position: relative;
@@ -97,10 +86,10 @@ nav {
 				border-radius: 1rem;
 			}
 			.notification_dropdown_wrapper {
-				@include box-shadow-sm;
+				@include box-shadow-lg;
 				position: absolute;
 				right: 0.5rem;
-				top: 3.5rem;
+				top: 2.8rem;
 				width: 16rem;
 				background-color: $white;
 				padding-bottom: 1.2rem;

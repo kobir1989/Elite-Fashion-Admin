@@ -14,7 +14,6 @@ import { Context } from "../../store/Context";
 
 const LoginPage = () => {
    const [showPassword, setShowPassword] = useState(false)
-   const [isTouched, setIsTouched] = useState(false)
    const [vaidationError, setValidationError] = useState(null)
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
@@ -48,7 +47,6 @@ const LoginPage = () => {
       setPassword(e.target.value);
       if (e.target.value !== "") {
          setValidationError(null);
-         setIsTouched(true)
       }
    };
 
@@ -81,15 +79,12 @@ const LoginPage = () => {
                </div>
                <div className={styles.logo_wrapper}>
                   <img src="/assets/logo.png" alt="logo.png" />
+                  <Typography color={"primary"} variant={"subtitle"}>
+                     ADMIN LOGIN
+                  </Typography>
                </div>
-               <div className={styles.eye_image}>
-                  <img src={isTouched ? "/assets/eyeclose.png" : "/assets/eyeopen.png"} alt="" />
-               </div>
-               {/* <Typography color={"primary"} variant={"subtitle"}>
-                  ADMIN LOGIN
-               </Typography> */}
                <form onSubmit={submitHandler}>
-                  <div>
+                  <div className={styles.email_input_feild}>
                      <Input
                         error={hasError || vaidationError ? true : false}
                         helperText={hasError ? hasError?.message : ""}
@@ -127,7 +122,6 @@ const LoginPage = () => {
                         type={showPassword ? "text" : "password"}
                         value={password}
                         onChange={passwordChangeHandler}
-                        onBlur={() => { setIsTouched(!isTouched) }}
                      />
                   </div>
                   <Button variant={"primary"} type={"submit"}>
@@ -140,7 +134,9 @@ const LoginPage = () => {
                </Typography>
             </div>
          </main>
-         <Footer />
+         <section className={styles.footer}>
+            <Footer />
+         </section>
       </>
    )
 }

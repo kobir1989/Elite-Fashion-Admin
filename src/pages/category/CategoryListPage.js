@@ -7,22 +7,17 @@ import Typography from '../../components/common/Typography/Typography';
 import Button from '../../components/common/Button/Button';
 import { Link } from 'react-router-dom';
 import { Context } from "../../store/Context";
+import PageTitle from '../../components/common/PageTitle/PageTitle';
 const CategoryListPage = () => {
    const { state } = useContext(Context);
    const { category, isLoading, error } = state;
    return (
       <PageLayout>
          <div className={styles.category_page_wrapper}>
-            <div className={styles.category_title_wrapper}>
-               <Typography variant={"subtitle"} color={"primary"}>
-                  Category List
-               </Typography>
-               <Link to={"/category/create-new"}>
-                  <Button variant={"blue_btn"}>
-                     Create New Category
-                  </Button>
-               </Link>
-            </div>
+            <PageTitle
+               title={"Category List"}
+               linkTo={"/category/create-new"}
+               btnTitle={"Create New Category"} />
             <div className={styles.data_grid_wrapper}>
                <MuiDateGrid
                   columns={categoryColumns}

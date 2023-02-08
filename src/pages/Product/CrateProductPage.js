@@ -92,7 +92,7 @@ const CrateProductPage = ({ id, updateImage, updateProduct }) => {
    return (
       <PageLayout>
          <Form
-            formTitle={id ? "Edit Product" : "Create New Prooduct"}
+            formTitle={id ? "Edit Product" : "Create New Product"}
             isProduct={true}
             btnTitle={id ? "Save Update" : "Save Product"}
             titleLabel={"Product Title"}
