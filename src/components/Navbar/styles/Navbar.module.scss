@@ -43,6 +43,7 @@ nav {
 			gap: 0.8rem;
 			transform: scale(1);
 			animation: popup 0.1s linear;
+			z-index: 40;
 			button {
 				padding: 0;
 				font-size: 0.9rem;
@@ -84,6 +85,7 @@ nav {
 		}
 		.notification_wrapper {
 			position: relative;
+			z-index: 40;
 			&::before {
 				content: "";
 				position: absolute;

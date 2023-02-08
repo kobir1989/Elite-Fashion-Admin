@@ -1,16 +1,70 @@
+import Typography from "../../common/Typography/Typography";
+import Avatar from '@mui/material/Avatar';
 
 export const userColumns = [
    {
-      field: "id", headerName: "User Id", width: 230
+      field: "name", headerName: "Name", headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
+         console.log(params?.row, "PARAMS")
+         return (
+            <div className="data-grid-flex-col">
+               <Avatar
+                  alt="Remy Sharp"
+                  src="/assets/user.png"
+                  sx={{ width: 56, height: 56 }}
+               />
+               <Typography variant={"dataGridTitle"}>
+                  {params?.row?.name}
+               </Typography>
+            </div>
+         )
+      }
    },
    {
-      field: "name", headerName: "User Name", width: 230,
+      field: "email", headerName: "Email", headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
+         return (
+            <Typography variant={"dataGridTitle"}>
+               {params?.row?.email}
+            </Typography>
+         )
+      }
    },
    {
-      field: "email", headerName: "User Email", width: 230,
+      field: "phone", headerName: "Phone Number", headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
+         return (
+            <div className="with__bg gray_bg">
+               <Typography variant={"dataGridTitle"}>
+                  {params?.row?.phoneNumber || "None"}
+               </Typography>
+            </div>
+         )
+      }
    },
    {
-      field: "city", headerName: "Address", width: 250,
-   }
+      field: "address", headerName: "Address", headerAlign: "left", align: "left", width: 350, renderCell: (params) => {
+         console.log(params?.row?.row)
+         return (
+            <div className="row_address__wrapper">
+               <Typography variant={"small"} color={"paragraph"}>
+                  City: {params?.row?.city || "None"}
+               </Typography>
+               <Typography variant={"small"} color={"paragraph"}>
+                  Shipping Address: {params?.row?.shippingAddress || "None"}
+               </Typography>
+            </div>
+         )
+      }
+   },
+   {
+      field: "order", headerName: "Number of Order", headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
+         return (
+            <div className="with__bg gray_bg">
+               <Typography variant={"dataGridTitle"}>
+                  {params?.row?.purchases.length}
+               </Typography>
+            </div>
+         )
+      }
+   },
+
 ]
 

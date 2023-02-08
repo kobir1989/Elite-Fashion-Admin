@@ -142,10 +142,12 @@ const Sidebar = () => {
                      Orders
                   </li>
                </NavLink>
-               <li>
-                  <Icons name={"users"} />
-                  Customers
-               </li>
+               <NavLink to={"/user/list"} className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
+                  <li>
+                     <Icons name={"users"} />
+                     Customers
+                  </li>
+               </NavLink>
                <li>
                   <Typography
                      variant={"small"}
