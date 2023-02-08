@@ -48,7 +48,10 @@ export const orderColumns = [
    {
       field: "status", headerName: "Order Status", headerAlign: "left", align: "left", width: 150, renderCell: (params) => {
          return (
-            <div className="with__bg yellow_bg">
+            <div className={`with__bg ${params?.row?.orderStatus === "PENDING" ? "yellow_bg" :
+               params?.row?.orderStatus === "SHIPPED" ? "blue_bg" :
+                  params?.row?.orderStatus === "DELIVERED" ? "green_bg" :
+                     params?.row?.orderStatus === "CANCELED" ? "red_bg" : ""}`}>
                <Typography variant={"small"} color={"paragraph"}>
                   {params?.row?.orderStatus}
                </Typography>

@@ -74,6 +74,9 @@ ul {
 .red_bg {
 	background-color: #dc143c17;
 	border: 1px solid $red_main;
+	p {
+		color: $red_main;
+	}
 }
 .gray_bg {
 	background-color: $body;
@@ -82,14 +85,23 @@ ul {
 .yellow_bg {
 	background-color: #f7f2e6cb;
 	border: 1px solid #ffbb0093;
+	p {
+		color: #ff9a16;
+	}
 }
 .green_bg {
 	background-color: #d3f8e967;
 	border: 1px solid #00808071;
+	p {
+		color: $green;
+	}
 }
 .blue_bg {
 	background-color: #afcaf04b;
 	border: 1px solid $navy_3;
+	p {
+		color: $navy_3;
+	}
 }
 .row_address__wrapper {
 	@include flex-col;

@@ -16,7 +16,7 @@ const variantMap = {
    widgetTitle: "p",
    dataGridTitle: "h2",
    dataGridSubTitle: "p",
-   dataGridSmall: "p"
+   dataGridSmall: "p",
 
 
 }
