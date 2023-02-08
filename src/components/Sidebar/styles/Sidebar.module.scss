@@ -1,0 +1,79 @@
+@import "../../../scss/scss-utils/color";
+@import "../../../scss/scss-utils/mixins";
+
+.dashboard_sidebar {
+	@include flex-col-center;
+	gap: 1.5rem;
+	.dashboard_sidebar_logo {
+		width: 95%;
+
+		img {
+			width: 12rem;
+			height: 2rem;
+			margin-left: 1rem;
+		}
+	}
+	.dashboard_sidebar_lists {
+		width: 100%;
+		@include flex-col-center;
+		ul {
+			width: 90%;
+			@include flex-col;
+			gap: 1rem;
+			color: $white;
+			.active_li {
+				color: $blue;
+				background-color: $active_sidebar_background;
+			}
+			.active_li_parent {
+				color: #4d85b6;
+				background-color: $active_sidebar_background;
+			}
+			p {
+				padding-top: 0.6rem;
+			}
+			li {
+				@include flex-row-center;
+				gap: 0.5rem;
+				font-size: 0.9rem;
+				font-weight: 500;
+				letter-spacing: 0.5px;
+				cursor: pointer;
+				padding: 0.6rem 0.8rem;
+				border-radius: 4px;
+			}
+			.li_nasted {
+				@include flex-col;
+				align-items: flex-start;
+				gap: 2rem;
+				ul li {
+					font-size: 0.8rem;
+				}
+
+				.li_dropdown {
+					@include flex-row-space-between;
+					width: 100%;
+					.rotate {
+						svg {
+							transform: rotate(0deg);
+							animation: rotate 0.1s linear;
+						}
+					}
+					span {
+						@include flex-row-center;
+						gap: 0.5rem;
+					}
+				}
+			}
+		}
+	}
+}
+
+@keyframes rotate {
+	0% {
+		transform: rotate(-90deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
