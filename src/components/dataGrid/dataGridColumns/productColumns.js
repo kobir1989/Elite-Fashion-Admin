@@ -2,7 +2,7 @@ import Typography from "../../common/Typography/Typography";
 
 export const productColumns = [
    {
-      field: "_id", headerName: "Product Overview", width: 290, renderCell: (params) => {
+      field: "_id", headerName: "Product Overview", flex: 1, width: 290, renderCell: (params) => {
          return (
             <div className="product_details">
                <img src={params?.row?.image} alt="product.png" />
@@ -19,7 +19,7 @@ export const productColumns = [
       }
    },
    {
-      field: "subCategory", headerName: "Category / Sub Category", width: 250, align: "center", headerAlign: "center",
+      field: "subCategory", headerName: "Category / Sub Category", flex: 1, width: 250, align: "center", headerAlign: "center",
       renderCell: (params) => {
          return <Typography variant={"dataGridSubTitle"}>
             {params?.row?.category?.name} / {params?.row?.subCategory?.name}
@@ -27,7 +27,7 @@ export const productColumns = [
       }
    },
    {
-      field: "Stock", headerName: "Availability", align: "center", headerAlign: "center", width: 140, renderCell: (params) => {
+      field: "Stock", headerName: "Availability", align: "center", flex: 1, headerAlign: "center", width: 140, renderCell: (params) => {
          return <div
             className={params?.row?.stock <= 0 ? "with__bg red_bg" : "with__bg gray_bg"}>
             <Typography
@@ -39,7 +39,7 @@ export const productColumns = [
       }
    },
    {
-      field: "sold", headerName: "Sales", align: "center", headerAlign: "center", width: 140, renderCell: (params) => {
+      field: "sold", headerName: "Sales", align: "center", flex: 1, headerAlign: "center", width: 140, renderCell: (params) => {
          return (
             <div className="with__bg blue_bg">
                <Typography variant={"small"} color={"blue"}>
@@ -50,7 +50,7 @@ export const productColumns = [
       }
    },
    {
-      field: "price", headerName: "Product Cost", headerAlign: "center", align: "center", width: 150, renderCell: (params) => {
+      field: "price", headerName: "Product Cost", flex: 1, headerAlign: "center", align: "center", width: 150, renderCell: (params) => {
          return (
             <Typography variant={"body"}>
                &#2547; {params?.row?.price?.toFixed(2)}

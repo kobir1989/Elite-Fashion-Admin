@@ -1,24 +1,20 @@
 @import "../../../scss/scss-utils/color";
 @import "../../../scss/scss-utils/mixins";
 
-nav {
+.navbar {
 	@include flex-row-space-between;
 	align-items: center;
-	padding: 0 3rem;
+	padding: 0.5rem 2rem;
 	background-color: $white;
+	width: 100%;
+	@include box-shadow-sm;
 	.website_link {
 		display: none;
 		@include screens-md {
 			@include flex-row-center;
 			gap: 0.5rem;
-			background-color: $body;
 			padding: 0.5rem 0.7rem;
 			border-radius: 4px;
-		}
-	}
-	.menue_btn {
-		@include screens-md {
-			display: none;
 		}
 	}
 	.nav_buttons_wrapper {
@@ -43,7 +39,7 @@ nav {
 			gap: 0.8rem;
 			transform: scale(1);
 			animation: popup 0.1s linear;
-			z-index: 40;
+			z-index: 20;
 			button {
 				padding: 0;
 				font-size: 0.9rem;
@@ -74,7 +70,7 @@ nav {
 		}
 		.notification_wrapper {
 			position: relative;
-			z-index: 40;
+			z-index: 20;
 			&::before {
 				content: "";
 				position: absolute;

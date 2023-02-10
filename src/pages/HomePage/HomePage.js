@@ -17,7 +17,7 @@ const HomePage = () => {
       <PageLayout>
          <Widgets />
          <AreaCharts />
-         <div className={styles.recent_update_section}>
+         <div className={styles.stockout_section}>
             <BacsicCard title={"Stock Out Products"}>
                <MuiDataGrid
                   shadow={"disable"}

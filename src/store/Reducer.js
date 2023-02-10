@@ -62,6 +62,11 @@ export const reducer = (state, action) => {
             ...state,
             error: action.payload
          }
+      case "TOGGLE_SIDE_BAR":
+         return {
+            ...state,
+            toggleSidebar: action.payload
+         }
       default:
          return state;
    }

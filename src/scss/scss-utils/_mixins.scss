@@ -5,6 +5,7 @@ $bp-md: 768px;
 $bp-lg: 1022px;
 $bp-xl: 1280px;
 $bp-2xl: 1536px;
+$bp-3xl: 1620px;
 
 /* Mixins for media query */
 @mixin screens-xs {
@@ -34,6 +35,11 @@ $bp-2xl: 1536px;
 }
 @mixin screens-2xl {
 	@media (min-width: $bp-2xl) {
+		@content;
+	}
+}
+@mixin screens-3xl {
+	@media (min-width: $bp-3xl) {
 		@content;
 	}
 }

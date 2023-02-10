@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 
 export const orderColumns = [
    {
-      field: "id", headerName: "Order Id", width: 250, renderCell: (params) => {
+      field: "id", headerName: "Order Id", flex: 1, width: 250, renderCell: (params) => {
          return (
             <Typography variant={"small"} color={"paragraph"}>
                ID: {params?.row?._id}
@@ -12,7 +12,7 @@ export const orderColumns = [
       }
    },
    {
-      field: "phone", headerName: "Customer Phone", headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
+      field: "phone", headerName: "Customer Phone", flex: 1, headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
          return (
             <div className="with__bg gray_bg">
                <Typography variant={"dataGridTitle"}>
@@ -23,7 +23,7 @@ export const orderColumns = [
       }
    },
    {
-      field: "address", headerName: "Shipping Address", headerAlign: "left", align: "left", width: 350, renderCell: (params) => {
+      field: "address", headerName: "Shipping Address", flex: 1, headerAlign: "left", align: "left", width: 350, renderCell: (params) => {
          console.log(params?.row?.row)
          return (
             <div className="row_address__wrapper">
@@ -41,7 +41,7 @@ export const orderColumns = [
       }
    },
    {
-      field: "date", headerName: "Order Date", headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
+      field: "date", headerName: "Order Date", flex: 1, headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
          return (
             <Typography variant={"small"} color={"paragraph"}>
                {dayjs(params?.row?.updatedAt).format("MMM D, YYYY h:mm A")}
@@ -50,7 +50,7 @@ export const orderColumns = [
       }
    },
    {
-      field: "status", headerName: "Order Status", headerAlign: "left", align: "left", width: 150, renderCell: (params) => {
+      field: "status", headerName: "Order Status", flex: 1, headerAlign: "left", align: "left", width: 150, renderCell: (params) => {
          return (
             <div className={`with__bg ${params?.row?.orderStatus === "PENDING" ? "yellow_bg" :
                params?.row?.orderStatus === "SHIPPED" ? "blue_bg" :

@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
-import Pagination from '@mui/material/Pagination';
-import LinearProgress from '@mui/material/LinearProgress';
+import { Pagination, LinearProgress } from '@mui/material';
 import Button from '../common/Button/Button';
 import Icons from '../common/Icons/Icons';
 import { useNavigate } from "react-router-dom";
@@ -97,7 +96,7 @@ const MuiDataGrid = (
 
    const actionColumn = [
       {
-         field: "action", headerName: "Actions", headerAlign: "center", sortable: false, filterable: false, align: "center", width: isOrder ? 100 : 220, renderCell: (row) => {
+         field: "action", headerName: "Actions", headerAlign: "center", sortable: false, filterable: false, align: "center", flex: 1, width: isOrder ? 100 : 220, renderCell: (row) => {
             return (
                <div className={"data-grid-flex-col"}>
                   {isOrder ?
@@ -161,7 +160,16 @@ const MuiDataGrid = (
             columns={columns.concat(actionColumn)}
             error={error}
             loading={loading}
+            style={{
+               container: {
+                  display: 'flex',
+                  justifyContent: 'center',
+               },
+            }}
             sx={{
+               '& .MuiDataGrid-renderingZone, .MuiDataGrid-root .MuiDataGrid-row': {
+                  width: "100 % !important"
+               },
                '.MuiDataGrid-columnSeparator': {
                   display: 'none',
 
