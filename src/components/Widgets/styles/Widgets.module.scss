@@ -2,7 +2,7 @@
 @import "../../../scss/scss-utils/mixins";
 
 .Widgets_grid_wrapper {
-	width: 80%;
+	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(2, 1fr);

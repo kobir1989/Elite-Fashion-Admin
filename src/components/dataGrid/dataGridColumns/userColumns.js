@@ -3,7 +3,7 @@ import Avatar from '@mui/material/Avatar';
 
 export const userColumns = [
    {
-      field: "name", headerName: "Name", headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
+      field: "name", headerName: "Name", flex: 1, headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
          console.log(params?.row, "PARAMS")
          return (
             <div className="data-grid-flex-col">
@@ -20,7 +20,7 @@ export const userColumns = [
       }
    },
    {
-      field: "email", headerName: "Email", headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
+      field: "email", headerName: "Email", flex: 1, headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
          return (
             <Typography variant={"dataGridTitle"}>
                {params?.row?.email}
@@ -29,7 +29,7 @@ export const userColumns = [
       }
    },
    {
-      field: "phone", headerName: "Phone Number", headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
+      field: "phone", headerName: "Phone Number", flex: 1, headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
          return (
             <div className="with__bg gray_bg">
                <Typography variant={"dataGridTitle"}>
@@ -40,7 +40,7 @@ export const userColumns = [
       }
    },
    {
-      field: "address", headerName: "Address", headerAlign: "left", align: "left", width: 350, renderCell: (params) => {
+      field: "address", headerName: "Address", flex: 1, headerAlign: "left", align: "left", width: 350, renderCell: (params) => {
          console.log(params?.row?.row)
          return (
             <div className="row_address__wrapper">
@@ -55,7 +55,7 @@ export const userColumns = [
       }
    },
    {
-      field: "order", headerName: "Number of Order", headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
+      field: "order", headerName: "Number of Order", flex: 1, headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
          return (
             <div className="with__bg gray_bg">
                <Typography variant={"dataGridTitle"}>

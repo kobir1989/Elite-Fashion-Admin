@@ -1,4 +1,4 @@
-//All The Actions will be here any component has access to it. 
+//All The Actions  
 export const toggleShowProduct = payload => ({
    type: "TOGGLE_SHOW_PRODUCT",
    payload
@@ -59,3 +59,9 @@ export const getSelectedOrder = payload => ({
    type: "SELECTED_ORDER",
    payload
 });
+
+export const setToggleSidebar = payload => ({
+   type: "TOGGLE_SIDE_BAR",
+   payload
+});
+

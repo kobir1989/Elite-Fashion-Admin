@@ -6,25 +6,27 @@ import styles from "./styles/Navbar.module.scss";
 import { Link } from "react-router-dom";
 import Button from '../common/Button/Button';
 import { Context } from "../../store/Context";
-import { logout } from "../../store/Action"
+import { logout, setToggleSidebar } from "../../store/Action"
 
 const Navbar = () => {
    const [showDropdown, setShowDropdown] = useState(false)
    const [showNotification, setShowNotification] = useState(false);
-   const { dispatch } = useContext(Context)
+   const { state, dispatch } = useContext(Context)
+   console.log(state.toggleSidebar)
    return (
-      <nav>
+      <nav className={styles.navbar}>
+         <div className={styles.menue_btn}>
+            <Button variant={"icon-btn-bg"} onClick={() => { dispatch(setToggleSidebar(true)) }}>
+               <Icons name={"menue"} size={"2.1rem"} color={"#7d879c"} />
+            </Button>
+         </div>
          <Link to={"#"}>
             <div className={styles.website_link}>
                <Icons name={"earth"} color={"#7d879c"} />
                <Typography variant={"h5"}>Browse Elite Fashion</Typography>
             </div>
-            <div className={styles.menue_btn}>
-               <Button variant={"icon-btn-bg"}>
-                  <Icons name={"menue"} size={"2.1rem"} color={"#7d879c"} />
-               </Button>
-            </div>
          </Link>
+
          <div className={styles.nav_buttons_wrapper}>
             <Button variant={"icon-btn-bg"}>
                <Icons name={"search"} color={"#7d879c"} />
