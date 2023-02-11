@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
    return (
-      <footer>
+      <footer onClick={(e) => { e.stopPropagation() }}>
          <div className={styles.footer_content_wrapper}>
             <Typography variant={"small"}>&copy; 2023 Kabir Hossain | All Rights Reserved. </Typography>
             <div className={styles.footer_icons_wrapper}>
