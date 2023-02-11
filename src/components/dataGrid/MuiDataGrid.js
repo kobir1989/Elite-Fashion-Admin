@@ -96,7 +96,7 @@ const MuiDataGrid = (
 
    const actionColumn = [
       {
-         field: "action", headerName: "Actions", headerAlign: "center", sortable: false, filterable: false, align: "center", flex: 1, width: isOrder ? 100 : 220, renderCell: (row) => {
+         field: "action", headerName: "Actions", headerAlign: "center", sortable: false, filterable: false, align: "center", width: isOrder ? 100 : 220, renderCell: (row) => {
             return (
                <div className={"data-grid-flex-col"}>
                   {isOrder ?
@@ -160,15 +160,9 @@ const MuiDataGrid = (
             columns={columns.concat(actionColumn)}
             error={error}
             loading={loading}
-            style={{
-               container: {
-                  display: 'flex',
-                  justifyContent: 'center',
-               },
-            }}
             sx={{
-               '& .MuiDataGrid-renderingZone, .MuiDataGrid-root .MuiDataGrid-row': {
-                  width: "100 % !important"
+               "MuiDataGrid-row": {
+                  maxWidth: 1020
                },
                '.MuiDataGrid-columnSeparator': {
                   display: 'none',
@@ -200,6 +194,8 @@ const MuiDataGrid = (
             // hideFooter={true}
             hideFooterSelectedRowCount
             autoHeight
+            scrollbarSize={50}
+
          />
       </div>
 

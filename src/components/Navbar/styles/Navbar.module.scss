@@ -4,10 +4,15 @@
 .navbar {
 	@include flex-row-space-between;
 	align-items: center;
-	padding: 0.5rem 2rem;
+	padding: 0.5rem 1rem;
 	background-color: $white;
 	width: 100%;
 	@include box-shadow-sm;
+	.menue_btn {
+		@include screens-xl {
+			display: none;
+		}
+	}
 	.website_link {
 		display: none;
 		@include screens-md {

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from "../styles/OrderDetailsView.module.scss";
 import Typography from '../../../components/common/Typography/Typography';
 import dayjs from 'dayjs';
-import OrderStatus from "./OrderStatus";
+import OrderStatusOptions from "./OrderStatusOptions";
 import LinearProgress from '@mui/material/LinearProgress';
 
 //TODO: ERROR STATE
@@ -28,6 +28,11 @@ const OrderDetailsView = ({ error, loading, singleOrder, totalAmount, setStateUp
                   color={"paragraph"}>
                   Order Id: {singleOrder?._id}
                </Typography>
+               <Typography
+                  variant={"small"}
+                  color={"paragraph"}>
+                  Placed on: {dayjs(singleOrder?.updatedAt).format("MMM D, YYYY h:mm A")}
+               </Typography>
                <div className={`with__bg ${singleOrder?.orderStatus === "PENDING" ? "yellow_bg" :
                   singleOrder?.orderStatus === "SHIPPED" ? "blue_bg" :
                      singleOrder?.orderStatus === "DELIVERED" ? "green_bg" :
@@ -36,29 +41,26 @@ const OrderDetailsView = ({ error, loading, singleOrder, totalAmount, setStateUp
                      {singleOrder?.orderStatus}
                   </Typography>
                </div>
-               <Typography
-                  variant={"small"}
-                  color={"paragraph"}>
-                  Placed on: {dayjs(singleOrder?.updatedAt).format("MMM D, YYYY h:mm A")}
-               </Typography>
             </div>
-            <OrderStatus setStateUpdated={setStateUpdated} />
+            <OrderStatusOptions setStateUpdated={setStateUpdated} />
             <div className={styles.product_row_wrapper}>
                {singleOrder?.product && singleOrder?.product.length ? singleOrder?.product.map((item) => (
                   <div className={styles.product_row} key={item?._id?._id}>
                      <img src={item?._id?.image} alt="" />
-                     <Typography
-                        variant={"widgetTitle"}>
-                        {item?._id?.title}
-                     </Typography>
-                     <Typography
-                        variant={"dataGridTitle"}>
-                        Quantity: {item?.quantity}
-                     </Typography>
-                     <Typography
-                        variant={"dataGridTitle"}>
-                        Price: TK.{item?._id?.price}.00
-                     </Typography>
+                     <div className={styles.product_description}>
+                        <Typography
+                           variant={"widgetTitle"}>
+                           {item?._id?.title}
+                        </Typography>
+                        <Typography
+                           variant={"dataGridTitle"}>
+                           Quantity: {item?.quantity}
+                        </Typography>
+                        <Typography
+                           variant={"dataGridTitle"}>
+                           Price: TK.{item?._id?.price}.00
+                        </Typography>
+                     </div>
                   </div>
                )) : null}
             </div>

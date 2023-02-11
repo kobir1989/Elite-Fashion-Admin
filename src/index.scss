@@ -32,14 +32,17 @@ ul {
 }
 ::-webkit-scrollbar {
 	width: 6px;
-	// background-color: $navy_main;
+	height: 6px;
 	border: unset;
 }
+
 ::-moz-scrollbar {
 	width: 6px;
-	// background-color: $navy_main;
+	height: 6px;
+	opacity: 0;
 	border: unset;
 }
+
 ::-webkit-scrollbar-thumb {
 	background-color: $light_gray;
 	border-radius: 10px;

@@ -14,10 +14,9 @@ const Navbar = ({ setToggleSidebar }) => {
    const { dispatch } = useContext(Context);
    const menuToggleHandler = () => {
       setToggleSidebar(true);
-      console.log("DD")
    };
    return (
-      <nav className={styles.navbar} onClick={(e) => { e.stopPropagation() }}>
+      <nav className={styles.navbar}>
          <div className={styles.menue_btn} onClick={menuToggleHandler}>
             <Button variant={"icon-btn-bg"}>
                <Icons name={"menue"} size={"2.1rem"} color={"#7d879c"} />

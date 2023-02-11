@@ -16,19 +16,19 @@ const Widgets = () => {
                count={"1520"}
                percentage={-15} />
          </div>
-         <div className={styles.col_4}>
+         <div className={styles.col_3}>
             <WidgetCardSm
                title={"Earnings"}
                count={"TK. 12520"}
                percentage={63} />
          </div>
-         <div className={styles.col_5}>
+         <div className={styles.col_4}>
             <WidgetCardSm
                title={"Total Users"}
                count={"520"}
                percentage={15} />
          </div>
-         <div className={styles.col_6}>
+         <div className={styles.col_5}>
             <WidgetCardSm
                title={"Weekly Sales"}
                count={"TK. 101520"}

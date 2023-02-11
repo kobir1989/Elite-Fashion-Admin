@@ -14,7 +14,7 @@ const WidgetCardSm = ({ title, count, percentage }) => {
                {title}
             </Typography>
             <div className={styles.percentage_number}>
-               <Typography variant={"widgetAmount"}>
+               <Typography variant={"smBold700"}>
                   {count}
                </Typography>
                <Typography variant={"widgetCount"} color={percentage > 0 ? "blue" : "red"}>
