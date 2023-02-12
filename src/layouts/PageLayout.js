@@ -38,7 +38,7 @@ const PageLayout = ({ children }) => {
       };
    }, []);
 
-   console.log(pageLoaing, "Page Loading")
+   // console.log(pageLoaing, "Page Loading")
    return (
       <div className={styles.page_layout_wrapper}>
          <AnimatePresence>

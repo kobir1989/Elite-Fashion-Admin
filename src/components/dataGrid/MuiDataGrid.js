@@ -17,6 +17,14 @@ import {
 } from '@mui/x-data-grid';
 import styles from "./styles/DataGrid.module.scss";
 
+export function SortedDescendingIcon() {
+   return <Icons name={"downArrow"} />;
+}
+
+export function SortedAscendingIcon() {
+   return <Icons name={"upArrow"} />;
+}
+
 function CustomPagination() {
    const apiRef = useGridApiContext();
    const page = useGridSelector(apiRef, gridPageSelector);
@@ -44,6 +52,8 @@ const MuiDataGrid = (
       editUrl,
       deleteUrl,
       isOrder = false,
+      hideAction = false,
+      viewUrl
    }
 ) => {
    const [selectedProduct, setSelectedProduct] = useState(null)
@@ -55,7 +65,7 @@ const MuiDataGrid = (
    const viewHandler = (rowData) => {
       dispatch(getSelectedOrder(rowData?.row))
       console.log(rowData?.row, "ROW");
-      navigate(`/order-details/${rowData?.id}`)
+      navigate(`${viewUrl}/${rowData?.id}`)
 
    }
 
@@ -106,7 +116,8 @@ const MuiDataGrid = (
                      </Button>
                      :
                      <>
-                        <Button variant={"icon-btn-normal"}>
+                        <Button variant={"icon-btn-normal"}
+                           onClick={() => { viewHandler(row) }}>
                            <Icons name={"viewOn"} color={"#7d879c"} />
                         </Button>
                         <Button
@@ -157,19 +168,17 @@ const MuiDataGrid = (
             rowHeight={rowHeight}
             rows={rows}
             getRowId={(row) => row._id || row.id}
-            columns={columns.concat(actionColumn)}
+            columns={!hideAction ? columns.concat(actionColumn) : columns}
             error={error}
             loading={loading}
             sx={{
-               "MuiDataGrid-row": {
-                  maxWidth: 1020
-               },
-               '.MuiDataGrid-columnSeparator': {
+               '& .MuiDataGrid-columnSeparator': {
                   display: 'none',
-
                },
                '&.MuiDataGrid-root': {
                   border: 'none',
+                  width: "100%"
+
                },
                "& .MuiDataGrid-columnHeaders": {
                   backgroundColor: "#F3F5F9",
@@ -179,26 +188,28 @@ const MuiDataGrid = (
                '&.MuiDataGrid-footerContainer': {
                   width: "2rem"
                },
-               '.MuiDataGrid-iconButtonContainer': {
+               '& .MuiDataGrid-iconButtonContainer': {
                   visibility: 'visible',
                },
-               '.MuiDataGrid-sortIcon': {
+               '& .MuiDataGrid-sortIcon': {
                   opacity: 'inherit !important',
                },
+               "& .MuiDataGrid-virtualScroller": {
+                  justifyContent: "space-between",
+               }
             }}
             pageSize={page}
             rowsPerPageOptions={[page]}
             components={{
                Pagination: CustomPagination,
+               ColumnSortedDescendingIcon: SortedDescendingIcon,
+               ColumnSortedAscendingIcon: SortedAscendingIcon,
             }}
             // hideFooter={true}
             hideFooterSelectedRowCount
             autoHeight
-            scrollbarSize={50}
-
          />
       </div>
-
    )
 }
 

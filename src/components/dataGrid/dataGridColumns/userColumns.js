@@ -5,7 +5,6 @@ export const userColumns = [
    {
       field: "name",
       headerName: "Name",
-      flex: 1,
       headerAlign: "left",
       align: "left",
       width: 200,
@@ -21,7 +20,6 @@ export const userColumns = [
    {
       field: "email",
       headerName: "Email",
-      flex: 1,
       headerAlign: "left",
       align: "left",
       width: 200,
@@ -32,7 +30,6 @@ export const userColumns = [
    {
       field: "phone",
       headerName: "Phone Number",
-      flex: 1,
       headerAlign: "left",
       align: "left",
       width: 200,
@@ -47,7 +44,6 @@ export const userColumns = [
    {
       field: "address",
       headerName: "Address",
-      flex: 1,
       headerAlign: "left",
       align: "left",
       width: 350,
@@ -67,14 +63,29 @@ export const userColumns = [
    {
       field: "order",
       headerName: "Number of Order",
-      flex: 1,
       headerAlign: "left",
       align: "left",
-      width: 200,
+      width: 160,
       renderCell: (params) => {
          return (
             <div className="with__bg gray_bg">
                <Typography variant={"dataGridTitle"}>{params?.row?.purchases.length}</Typography>
+            </div>
+         );
+      },
+   },
+   {
+      field: "status",
+      headerName: "Status",
+      headerAlign: "center",
+      align: "center",
+      width: 150,
+      renderCell: (params) => {
+         return (
+            <div className={params?.row?.purchases.length ? `${"with__bg green_bg"}` : `${"with__bg yellow_bg"}`}>
+               <Typography variant={"dataGridTitle"}>
+                  {params?.row?.purchases.length ? "ACTIVE" : "IN-ACTIVE"}
+               </Typography>
             </div>
          );
       },

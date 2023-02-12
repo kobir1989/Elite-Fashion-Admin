@@ -2,7 +2,7 @@ import Typography from "../../common/Typography/Typography";
 
 export const subCategoryColumns = [
    {
-      field: "id", headerName: "Sub-Category Id", flex: 1, width: 260, renderCell: (params) => {
+      field: "id", headerName: "Sub-Category Id", width: 260, renderCell: (params) => {
          return (
             <Typography variant={"small"} color={"paragraph"}>
                ID: {params?.row?._id}
@@ -11,7 +11,7 @@ export const subCategoryColumns = [
       }
    },
    {
-      field: "_id", headerName: "Sub-Category Image", flex: 1, headerAlign: "center", align: "center", width: 250, renderCell: (params) => {
+      field: "_id", headerName: "Sub-Category Image", headerAlign: "center", align: "center", width: 250, renderCell: (params) => {
          return (
             <div className="category_img">
                <img src={params?.row?.image} alt="product.png" />
@@ -20,7 +20,7 @@ export const subCategoryColumns = [
       }
    },
    {
-      field: "name", headerName: "Sub-Category Name", flex: 1, headerAlign: "center", align: "center", width: 250, renderCell: (params) => {
+      field: "name", headerName: "Sub-Category Name", headerAlign: "center", align: "center", width: 250, renderCell: (params) => {
          return (
             <div className="with__bg blue_bg">
                <Typography variant={"dataGridTitle"}>

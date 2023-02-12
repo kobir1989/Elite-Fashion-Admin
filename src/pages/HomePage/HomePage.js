@@ -25,6 +25,7 @@ const HomePage = () => {
                   rows={stockoutProducts}
                   loading={isLoading}
                   error={error}
+                  viewUrl={"/product/single"}
                   editUrl={"/product/edit"}
                   deleteUrl={"/product/delete"}
                   rowHeight={70} />

@@ -30,6 +30,7 @@ const OrderListPage = () => {
                   page={5}
                   error={hasError}
                   loading={loading}
+                  viewUrl={"/order-details"}
                />
             </div>
          </div>

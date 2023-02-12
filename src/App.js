@@ -18,6 +18,7 @@ import EditSubCategoryPage from "./pages/subCategory/EditSubCategoryPage";
 import OrderListPage from "./pages/Order/OrderListPage";
 import OrderDetailsPage from "./pages/Order/OrderDetailsPage";
 import UserListPage from "./pages/UserList/UserListPage";
+import SingleProductPage from "./pages/Product/SingleProductPage";
 const App = () => {
   const { state, dispatch } = useContext(Context);
   const { isUpdated } = state;
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="/product/list" element={<ProductsListPage />} />
         <Route path="/product/create-new" element={<CreateProductPage />} />
         <Route path="/product/edit/:id" element={<ProductEditPage />} />
+        <Route path="/product/single/:id" element={<SingleProductPage />} />
         <Route path="/category/list" element={<CategoryListPage />} />
         <Route path="/category/create-new" element={<CreateCategoryPage />} />
         <Route path="/category/edit/:id" element={<EditCategoryPage />} />
