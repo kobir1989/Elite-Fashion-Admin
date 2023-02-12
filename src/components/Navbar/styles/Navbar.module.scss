@@ -42,8 +42,6 @@
 			padding: 1.5rem;
 			border-radius: 4px;
 			gap: 0.8rem;
-			transform: scale(1);
-			animation: popup 0.1s linear;
 			z-index: 20;
 			button {
 				padding: 0;
@@ -121,15 +119,5 @@
 				}
 			}
 		}
-	}
-}
-
-@keyframes popup {
-	0% {
-		transform: scale(0);
-		opacity: 0;
-	}
-	100% {
-		transform: scale(1);
 	}
 }

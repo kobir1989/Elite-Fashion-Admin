@@ -7,7 +7,7 @@ const PageTitle = ({ title, btnTitle, linkTo, showBtn = true }) => {
 
    return (
       <div className={styles.page_title_wrapper}>
-         <Typography variant={"subtitle"} color={"primary"}>
+         <Typography variant={"subtitle"} color={"paragraph"}>
             {title}
          </Typography>
          {showBtn &&

@@ -24,7 +24,6 @@
 			color: $white;
 			.active_li {
 				color: $blue;
-				background-color: $active_sidebar_background;
 			}
 			.active_li_parent {
 				color: #4d85b6;
@@ -50,16 +49,16 @@
 				ul li {
 					font-size: 0.8rem;
 				}
+				ul {
+					background-color: $active_sidebar_background;
+					max-height: 7rem;
+					padding: 0.4rem 0;
+					border-radius: 4px;
+				}
 
 				.li_dropdown {
 					@include flex-row-space-between;
 					width: 100%;
-					.rotate {
-						svg {
-							transform: rotate(0deg);
-							animation: rotate 0.1s linear;
-						}
-					}
 					span {
 						@include flex-row-center;
 						gap: 0.5rem;
@@ -67,14 +66,5 @@
 				}
 			}
 		}
-	}
-}
-
-@keyframes rotate {
-	0% {
-		transform: rotate(-90deg);
-	}
-	100% {
-		transform: rotate(0deg);
 	}
 }

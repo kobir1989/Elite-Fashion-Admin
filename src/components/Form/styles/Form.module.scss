@@ -4,8 +4,9 @@
 .form_container {
 	width: 100%;
 	min-height: 75vh;
+	margin-bottom: 4rem;
 	.form_title_wrapper {
-		margin-bottom: 2rem;
+		margin: 2rem 0;
 		position: relative;
 		.loading_progress {
 			position: absolute;
