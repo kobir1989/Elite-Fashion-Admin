@@ -13,4 +13,5 @@ export const initialState = {
    error: null,
    isUpdated: null,
    toggleSidebar: false,
+   showSearchModal: false
 }

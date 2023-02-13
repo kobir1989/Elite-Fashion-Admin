@@ -65,3 +65,7 @@ export const setToggleSidebar = payload => ({
    payload
 });
 
+export const setShowSearchModal = payload => ({
+   type: "SEARCH_MODAL",
+   payload
+});

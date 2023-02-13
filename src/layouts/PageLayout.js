@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./styles/PageLayout.module.scss";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import Sidebar from "../components/Sidebar/Sidebar";
 import LinearProgress from '@mui/material/LinearProgress';
+import { Context } from "../store/Context";
+import SearchModal from "../components/searchModal/SearchModal";
 
 const PageLayout = ({ children }) => {
    const [toggleSidebar, setToggleSidebar] = useState(window.innerWidth >= 1280 ? true : false);
    const [pageLoaing, setPageLoading] = useState(true);
+   const { state } = useContext(Context);
+   const { showSearchModal } = state;
 
    const handleBackdropClick = () => {
       if (toggleSidebar) {
@@ -41,6 +45,10 @@ const PageLayout = ({ children }) => {
    // console.log(pageLoaing, "Page Loading")
    return (
       <div className={styles.page_layout_wrapper}>
+         <AnimatePresence>
+            {showSearchModal && <SearchModal />}
+         </AnimatePresence>
+
          <AnimatePresence>
             {toggleSidebar &&
                <>

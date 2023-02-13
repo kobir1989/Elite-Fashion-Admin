@@ -67,6 +67,11 @@ export const reducer = (state, action) => {
             ...state,
             toggleSidebar: action.payload
          }
+      case "SEARCH_MODAL":
+         return {
+            ...state,
+            showSearchModal: action.payload
+         }
       default:
          return state;
    }

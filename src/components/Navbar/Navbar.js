@@ -8,6 +8,7 @@ import Button from "../common/Button/Button";
 import { Context } from "../../store/Context";
 import { logout } from "../../store/Action";
 import { motion, AnimatePresence } from "framer-motion";
+import { setShowSearchModal } from "../../store/Action";
 
 const Navbar = ({ setToggleSidebar }) => {
    const [showDropdown, setShowDropdown] = useState(false);
@@ -30,7 +31,8 @@ const Navbar = ({ setToggleSidebar }) => {
             </div>
          </Link>
          <div className={styles.nav_buttons_wrapper}>
-            <Button variant={"icon-btn-bg"}>
+            <Button variant={"icon-btn-bg"}
+               onClick={() => { dispatch(setShowSearchModal(true)) }}>
                <Icons name={"search"} color={"#7d879c"} />
             </Button>
             <div className={styles.notification_wrapper}>
