@@ -2,13 +2,32 @@
 @import "../../../scss//scss-utils/mixins";
 
 .single_page_wrapper {
+	position: relative;
 	min-height: 60vh;
 	margin: 4rem 0 4rem 0;
+	padding: 3.5rem 1.5rem;
+	border-radius: 8px;
+	@include box-shadow-sm;
 	@include flex-col-center;
 	gap: 2rem;
 	@include screens-lg {
 		@include flex-row-space-between;
 		gap: 4;
+	}
+	.edit_link_btn {
+		position: absolute;
+		top: -1.5rem;
+		left: 50%;
+		width: 3rem;
+		height: 3rem;
+		border-radius: 50%;
+		@include flex-col-center;
+		justify-content: center;
+		transition: all 0.2s linear;
+		&:hover {
+			@include box-shadow-sm;
+			transition: all 0.2s linear;
+		}
 	}
 	.product_img {
 		min-width: 22rem;
@@ -17,7 +36,7 @@
 		border-radius: 8px;
 		@include screens-md {
 			min-width: 22rem;
-			height: 35rem;
+			height: 38rem;
 		}
 		img {
 			width: 100%;

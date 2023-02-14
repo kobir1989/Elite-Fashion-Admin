@@ -17,29 +17,6 @@ import {
 } from '@mui/x-data-grid';
 import styles from "./styles/DataGrid.module.scss";
 
-export function SortedDescendingIcon() {
-   return <Icons name={"downArrow"} />;
-}
-
-export function SortedAscendingIcon() {
-   return <Icons name={"upArrow"} />;
-}
-
-function CustomPagination() {
-   const apiRef = useGridApiContext();
-   const page = useGridSelector(apiRef, gridPageSelector);
-   const pageCount = useGridSelector(apiRef, gridPageCountSelector);
-
-   return (
-      <Pagination
-         color="primary"
-         count={pageCount}
-         page={page + 1}
-         sx={{ marginTop: "1.5rem" }}
-         onChange={(event, value) => apiRef.current.setPage(value - 1)}
-      />
-   );
-}
 const MuiDataGrid = (
    {
       rowHeight = 49,
@@ -59,14 +36,51 @@ const MuiDataGrid = (
    const [selectedProduct, setSelectedProduct] = useState(null)
    const navigate = useNavigate()
    const { sendRequest, loading: isLoading } = useHttpHook();
-   const { dispatch } = useContext(Context);
+   const { state, dispatch } = useContext(Context);
+   const { darkMood } = state;
 
+   function CustomPagination() {
+      const apiRef = useGridApiContext();
+      const page = useGridSelector(apiRef, gridPageSelector);
+      const pageCount = useGridSelector(apiRef, gridPageCountSelector);
+
+      return (
+         <Pagination
+            color="primary"
+            count={pageCount}
+            page={page + 1}
+            sx={
+               {
+                  marginTop: "1.5rem",
+                  "& .Mui-disabled": {
+                     color: darkMood ? "#7d879c" : "#b5b5b5"
+                  },
+                  "& .MuiButtonBase-root": {
+                     color: darkMood ? "#e5e5e5" : "#3b3841"
+                  },
+                  "& .Mui-selected": {
+                     color: "#FFF",
+                     fontWeight: 700,
+                     fontSize: "1rem"
+                  }
+               }
+            }
+            onChange={(event, value) => apiRef.current.setPage(value - 1)}
+         />
+      );
+   }
+   function SortedDescendingIcon() {
+      return <Icons name={"downArrow"} color={darkMood ? "#FFF" : "#7d879c"} />;
+   }
+
+   function SortedAscendingIcon() {
+      return <Icons name={"upArrow"} color={darkMood ? "#FFF" : "#7d879c"} />;
+   }
    //View Handler 
    const viewHandler = (rowData) => {
       dispatch(getSelectedOrder(rowData?.row))
       console.log(rowData?.row, "ROW");
       navigate(`${viewUrl}/${rowData?.id}`)
-
    }
 
    //Edit Handler
@@ -138,7 +152,7 @@ const MuiDataGrid = (
       },
    ]
    return (
-      <div className={`${styles.data_grid_wrapper} ${styles[`shadow-${shadow}`]}`}>
+      <div className={darkMood ? `${styles.data_grid_wrapper} ${styles[`shadow-${shadow}`]} ${"dark_mood_children"}` : `${styles.data_grid_wrapper} ${styles[`shadow-${shadow}`]} ${"light_mood_secondary"}`}>
          {selectedProduct &&
             <div className={styles.confirm_popup_wrapper}>
                <div className={styles.confirm_inner_wrapper}>
@@ -177,12 +191,11 @@ const MuiDataGrid = (
                },
                '&.MuiDataGrid-root': {
                   border: 'none',
-                  width: "100%"
-
+                  width: "100%",
                },
                "& .MuiDataGrid-columnHeaders": {
-                  backgroundColor: "#F3F5F9",
-                  color: "#2b3445",
+                  backgroundColor: darkMood ? "#144272" : "#F3F5F9",
+                  color: darkMood ? "#FFF" : "#2b3445",
                   fontSize: 16
                },
                '&.MuiDataGrid-footerContainer': {

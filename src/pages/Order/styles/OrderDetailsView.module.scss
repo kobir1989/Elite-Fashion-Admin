@@ -11,7 +11,6 @@
 	.product_details_wrapper {
 		position: relative;
 		width: 100%;
-		background-color: $white;
 		padding: 2rem;
 		border-radius: 8px;
 		@include box-shadow-sm;
@@ -75,7 +74,6 @@
 		.shipping_wrapper,
 		.amount_wrapper {
 			width: 100%;
-			background-color: $white;
 			border-radius: 6px;
 			padding: 2rem;
 			@include box-shadow-sm;

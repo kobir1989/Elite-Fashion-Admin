@@ -15,7 +15,7 @@ export const orderColumns = [
       field: "phone", headerName: "Customer Phone", headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
          return (
             <div className="with__bg gray_bg">
-               <Typography variant={"dataGridTitle"}>
+               <Typography variant={"dataGridTitle"} color={"paragraph"}>
                   {params?.row?.phoneNumber}
                </Typography>
             </div>

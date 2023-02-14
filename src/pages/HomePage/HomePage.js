@@ -28,7 +28,7 @@ const HomePage = () => {
                   viewUrl={"/product/single"}
                   editUrl={"/product/edit"}
                   deleteUrl={"/product/delete"}
-                  rowHeight={70} />
+                  rowHeight={90} />
             </BacsicCard>
          </div>
       </PageLayout>

@@ -12,7 +12,6 @@
 	width: 100%;
 	@include flex-col-center;
 	overflow-y: scroll;
-	background-color: $body;
 	.main_layout_wrapper {
 		width: 95%;
 		margin-top: 2rem;
@@ -28,7 +27,6 @@
 	left: 0;
 	width: 15rem;
 	height: 100vh;
-	background-color: $navy_main;
 	padding: 2rem 0;
 	overflow-y: scroll;
 	z-index: 50;
@@ -67,4 +65,7 @@
 	top: 0;
 	width: 100%;
 	z-index: 10;
+}
+.navy_background {
+	background-color: $navy_main;
 }

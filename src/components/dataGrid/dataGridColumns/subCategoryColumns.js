@@ -23,7 +23,7 @@ export const subCategoryColumns = [
       field: "name", headerName: "Sub-Category Name", headerAlign: "center", align: "center", width: 250, renderCell: (params) => {
          return (
             <div className="with__bg blue_bg">
-               <Typography variant={"dataGridTitle"}>
+               <Typography variant={"dataGridTitle"} color={"paragraph"}>
                   {params?.row?.name}
                </Typography>
             </div>

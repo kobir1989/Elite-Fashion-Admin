@@ -144,3 +144,19 @@ ul {
 		object-fit: cover;
 	}
 }
+
+.dark_mood_main {
+	background-color: $dark_mood_main;
+}
+.dark_mood_secondary {
+	background-color: $dark_mood_secondary;
+}
+.dark_mood_children {
+	background-color: $dark_mood_children;
+}
+.light_mood_main {
+	background-color: $body;
+}
+.light_mood_secondary {
+	background-color: $white;
+}

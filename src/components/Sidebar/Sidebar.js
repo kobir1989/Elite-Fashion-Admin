@@ -9,7 +9,6 @@ import { motion, AnimatePresence } from "framer-motion";
 
 //TODO: add all path conditons
 
-
 const Sidebar = () => {
    const { state, dispatch } = useContext(Context)
    const { showProduct, showCategory, showSubCategory } = state;

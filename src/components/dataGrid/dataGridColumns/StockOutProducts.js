@@ -7,7 +7,7 @@ export const stockOutColumns = [
             <div className="product_details">
                <img src={params?.row?.image} alt="product.png" />
                <div className="price_and_id">
-                  <Typography variant={"dataGridTitle"}>
+                  <Typography variant={"dataGridTitle"} color={"paragraph"}>
                      {params?.row?.title}
                   </Typography>
                   <Typography variant={"dataGridSmall"} color={"paragraph"}>
@@ -21,7 +21,7 @@ export const stockOutColumns = [
    {
       field: "subCategory", headerName: "Category", width: 250,
       renderCell: (params) => {
-         return <Typography variant={"dataGridSubTitle"}>
+         return <Typography variant={"dataGridSubTitle"} color={"paragraph"}>
             {params?.row?.category?.name} / {params?.row?.subCategory?.name}
          </Typography>
       }
@@ -41,7 +41,7 @@ export const stockOutColumns = [
    {
       field: "price", headerName: "Product Cost", headerAlign: "center", align: "center", width: 300, renderCell: (params) => {
          return (
-            <Typography variant={"body"}>
+            <Typography variant={"body"} color={"paragraph"}>
                &#2547; {params?.row?.price.toFixed(2)}
             </Typography>
          )

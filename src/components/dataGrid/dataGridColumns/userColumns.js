@@ -11,8 +11,11 @@ export const userColumns = [
       renderCell: (params) => {
          return (
             <div className="data-grid-flex-col">
-               <Avatar alt="Remy Sharp" src="/assets/user.png" sx={{ width: 56, height: 56 }} />
-               <Typography variant={"dataGridTitle"}>{params?.row?.name}</Typography>
+               <Avatar alt="Remy Sharp" src="/assets/user.png"
+                  sx={{ width: 56, height: 56 }} />
+               <Typography variant={"dataGridTitle"} color={"paragraph"}>
+                  {params?.row?.name}
+               </Typography>
             </div>
          );
       },
@@ -24,7 +27,9 @@ export const userColumns = [
       align: "left",
       width: 200,
       renderCell: (params) => {
-         return <Typography variant={"dataGridTitle"}>{params?.row?.email}</Typography>;
+         return <Typography variant={"dataGridTitle"} color={"paragraph"}>
+            {params?.row?.email}
+         </Typography>;
       },
    },
    {
@@ -36,7 +41,9 @@ export const userColumns = [
       renderCell: (params) => {
          return (
             <div className="with__bg gray_bg">
-               <Typography variant={"dataGridTitle"}>{params?.row?.phoneNumber || "None"}</Typography>
+               <Typography variant={"dataGridTitle"} color={"paragraph"}>
+                  {params?.row?.phoneNumber || "None"}
+               </Typography>
             </div>
          );
       },
@@ -69,7 +76,9 @@ export const userColumns = [
       renderCell: (params) => {
          return (
             <div className="with__bg gray_bg">
-               <Typography variant={"dataGridTitle"}>{params?.row?.purchases.length}</Typography>
+               <Typography variant={"dataGridTitle"} color={"paragraph"}>
+                  {params?.row?.purchases.length}
+               </Typography>
             </div>
          );
       },

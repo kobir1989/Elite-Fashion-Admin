@@ -8,11 +8,12 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { Context } from "../store/Context";
 import SearchModal from "../components/searchModal/SearchModal";
 
+
 const PageLayout = ({ children }) => {
    const [toggleSidebar, setToggleSidebar] = useState(window.innerWidth >= 1280 ? true : false);
    const [pageLoaing, setPageLoading] = useState(true);
    const { state } = useContext(Context);
-   const { showSearchModal } = state;
+   const { showSearchModal, darkMood } = state;
 
    const handleBackdropClick = () => {
       if (toggleSidebar) {
@@ -44,11 +45,10 @@ const PageLayout = ({ children }) => {
 
    // console.log(pageLoaing, "Page Loading")
    return (
-      <div className={styles.page_layout_wrapper}>
+      <div className={darkMood ? `${styles.page_layout_wrapper} ${"dark_mood_main"}` : `${styles.page_layout_wrapper} ${"light_mood_main"}`}>
          <AnimatePresence>
             {showSearchModal && <SearchModal />}
          </AnimatePresence>
-
          <AnimatePresence>
             {toggleSidebar &&
                <>
@@ -64,7 +64,7 @@ const PageLayout = ({ children }) => {
                      animate={{ x: 0 }}
                      exit={{ x: window.innerWidth > 1280 ? "0%" : "-100%", transition: { duration: 0.2 } }}
                      transition={{ default: { ease: "linear" } }}
-                     className={styles.sidebar_wrapper}>
+                     className={darkMood ? `${styles.sidebar_wrapper} ${"dark_mood_secondary"}` : `${styles.sidebar_wrapper} ${styles.navy_background}`}>
                      <Sidebar />
                   </motion.div>
                </>

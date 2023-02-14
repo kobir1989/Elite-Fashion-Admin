@@ -6,19 +6,20 @@ import styles from "./styles/Navbar.module.scss";
 import { Link } from "react-router-dom";
 import Button from "../common/Button/Button";
 import { Context } from "../../store/Context";
-import { logout } from "../../store/Action";
+import { logout, setDarkMood, setShowSearchModal } from "../../store/Action";
 import { motion, AnimatePresence } from "framer-motion";
-import { setShowSearchModal } from "../../store/Action";
 
 const Navbar = ({ setToggleSidebar }) => {
    const [showDropdown, setShowDropdown] = useState(false);
    const [showNotification, setShowNotification] = useState(false);
-   const { dispatch } = useContext(Context);
+   const { state, dispatch } = useContext(Context);
+   const { darkMood } = state;
+   console.log(darkMood, "DARK")
    const menuToggleHandler = () => {
       setToggleSidebar(true);
    };
    return (
-      <nav className={styles.navbar}>
+      <nav className={darkMood ? `${styles.navbar} ${"dark_mood_secondary"}` : `${styles.navbar} ${"light_mood_secondary"}`}>
          <div className={styles.menue_btn} onClick={menuToggleHandler}>
             <Button variant={"icon-btn-bg"}>
                <Icons name={"menue"} size={"2.1rem"} color={"#7d879c"} />
@@ -27,7 +28,9 @@ const Navbar = ({ setToggleSidebar }) => {
          <Link to={"#"}>
             <div className={styles.website_link}>
                <Icons name={"earth"} color={"#7d879c"} />
-               <Typography variant={"h5"}>Browse Elite Fashion</Typography>
+               <Typography variant={"h5"} color={"paragraph"}>
+                  Browse Elite Fashion
+               </Typography>
             </div>
          </Link>
          <div className={styles.nav_buttons_wrapper}>
@@ -76,7 +79,8 @@ const Navbar = ({ setToggleSidebar }) => {
                </AnimatePresence>
                {/*NOTIFICATIONS END*/}
             </div>
-            <Button variant={"icon-btn-bg"}>
+            <Button variant={"icon-btn-bg"}
+               onClick={() => { dispatch(setDarkMood(!darkMood)) }}>
                <Icons name={"darkMood"} color={"#7d879c"} />
             </Button>
             {/* <Icons name={ } /> */}

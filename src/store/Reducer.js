@@ -72,6 +72,11 @@ export const reducer = (state, action) => {
             ...state,
             showSearchModal: action.payload
          }
+      case "DARK_MOOD":
+         return {
+            ...state,
+            darkMood: action.payload
+         }
       default:
          return state;
    }

@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Typography from "../Typography/Typography";
 import Icons from "../Icons/Icons";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import "react-circular-progressbar/dist/styles.css"
 import styles from "./styles/WidgetCardSm.module.scss";
+import { Context } from "../../../store/Context";
 
 const WidgetCardSm = ({ title, count, percentage }) => {
-
+   const { state } = useContext(Context);
+   const { darkMood } = state;
    return (
-      <div className={styles.widget_card_sm_wrapper}>
+      <div className={darkMood ? `${styles.widget_card_sm_wrapper} ${"dark_mood_secondary"}` : `${styles.widget_card_sm_wrapper} ${"light_mood_secondary"}`}>
          <div className={styles.data_wrapper}>
             <Typography variant={"widgetTitle"} color={"paragraph"}>
                {title}
             </Typography>
             <div className={styles.percentage_number}>
-               <Typography variant={"smBold700"}>
+               <Typography variant={"smBold700"} color={darkMood ? "light-gray" : "primary"}>
                   {count}
                </Typography>
                <Typography variant={"widgetCount"} color={percentage > 0 ? "blue" : "red"}>

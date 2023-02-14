@@ -69,3 +69,7 @@ export const setShowSearchModal = payload => ({
    type: "SEARCH_MODAL",
    payload
 });
+export const setDarkMood = payload => ({
+   type: "DARK_MOOD",
+   payload
+});
