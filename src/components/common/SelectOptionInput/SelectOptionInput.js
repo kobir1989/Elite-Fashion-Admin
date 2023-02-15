@@ -21,7 +21,7 @@ const SelectOptions = (
          required
          sx={{
             "& .MuiFormLabel-root": {
-               color: darkMood ? "#e5e5e5" : "#727272"
+               color: darkMood ? "#e5e5e5" : "#727272",
             },
             "& .MuiSvgIcon-root ": {
                color: darkMood ? "#e5e5e5" : "#727272"
@@ -39,18 +39,14 @@ const SelectOptions = (
             },
          }}
          error={value === "" && error}>
-         <InputLabel sx={
-            {
-               color: darkMood ? "#e5e5e5" : "#727272"
-            }
-         }>
+         <InputLabel>
             {label}
          </InputLabel>
          <Select
             value={options.find(opt => opt._id === value) ? value : ""}
             label={label}
             sx={{
-               color: darkMood ? "#FFF" : "#212529",
+               color: darkMood ? "#FFF" : "#727272",
             }}
             {...otherProps}>
 

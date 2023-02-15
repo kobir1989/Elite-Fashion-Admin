@@ -44,6 +44,11 @@ const CreateCategoryPage = ({ id, updateCategory, updateImage }) => {
       setImageUrl(URL.createObjectURL(acceptedFiles[0]))
    }, []);
 
+   //Remove File handler 
+   const removeFileHandler = () => {
+      setImageUrl("")
+      setImage("")
+   }
    //Form Submit Handler
    const categorySubmitHandler = (e) => {
       e.preventDefault()
@@ -77,6 +82,7 @@ const CreateCategoryPage = ({ id, updateCategory, updateImage }) => {
             changeHandler={changeHandler}
             imageUrl={imageUrl}
             submitHandler={categorySubmitHandler}
+            removeFileHandler={removeFileHandler}
          />
       </PageLayout>
    )

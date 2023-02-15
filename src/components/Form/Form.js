@@ -132,7 +132,6 @@ const Form = (
                   }
                </div>
                {/* Options End*/}
-
                {isProduct &&
                   <>
                      {/* Description section start*/}

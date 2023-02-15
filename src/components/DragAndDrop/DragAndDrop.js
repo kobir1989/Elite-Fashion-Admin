@@ -65,7 +65,8 @@ const DragAndDrop = ({ onDrop, hasError }) => {
                color={"light-gray"}>
                Image Size (480 * 620) image Type *JPEG, *PNG and *JPG
             </Typography>
-            <input type={"file"} {...getInputProps()} style={{ display: "none" }} />
+            <input type={"file"} {...getInputProps()}
+               style={{ display: "none" }} />
          </div>
       </div>
    )

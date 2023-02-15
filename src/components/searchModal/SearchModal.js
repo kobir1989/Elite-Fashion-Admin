@@ -14,7 +14,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 const SearchModal = () => {
    const [searchValue, setSearchValue] = useState("")
    const [searchResult, setSearchResult] = useState([])
-   const { dispatch } = useContext(Context);
+   const { state, dispatch } = useContext(Context);
+   const { darkMood } = state;
 
    const getSearchResult = (data) => {
       console.log(data)
@@ -30,7 +31,7 @@ const SearchModal = () => {
    }
    return (
       <Modal onClose={() => dispatch(setShowSearchModal(false))}>
-         <div className={styles.search_popup_wrapper}>
+         <div className={darkMood ? `${styles.search_popup_wrapper} ${"dark_mood_popup"}` : `${styles.search_popup_wrapper} ${"light_mood_secondary"}`}>
             <div className={styles.search_input}>
                <Input
                   full={true}
@@ -41,16 +42,18 @@ const SearchModal = () => {
                   onChange={searchHandler}
                   value={searchValue}
                />
-               <Icons name={"search"} color={"#727272"} />
+               <Icons name={"search"} color={darkMood ? "#3f7fb8" : "#9fa7b6"} />
             </div>
             <div className={styles.search_result_wrapper}>
                {searchResult && searchResult.length ? searchResult.map((result) => (
                   <Link to={`/product/single/${result?._id}`}
                      key={result?._id}
                      onClick={() => dispatch(setShowSearchModal(false))}>
-                     <div className={styles.search_result_row}>
+                     <div className={darkMood ? `${styles.search_result_row} ${"dark_mood_popup"}` : `${styles.search_result_row} ${"light_mood_main"}`}>
                         <img src={result?.image} alt="result.png" />
-                        <Typography variant={"body"}>{result?.title}</Typography>
+                        <Typography variant={"body"}>
+                           {result?.title}
+                        </Typography>
                         <Typography variant={"body"}>
                            TK. {result?.price}.00
                         </Typography>

@@ -155,7 +155,7 @@ const MuiDataGrid = (
       <div className={darkMood ? `${styles.data_grid_wrapper} ${styles[`shadow-${shadow}`]} ${"dark_mood_children"}` : `${styles.data_grid_wrapper} ${styles[`shadow-${shadow}`]} ${"light_mood_secondary"}`}>
          {selectedProduct &&
             <div className={styles.confirm_popup_wrapper}>
-               <div className={styles.confirm_inner_wrapper}>
+               <div className={darkMood ? `${styles.confirm_inner_wrapper} ${styles[`shadow-${shadow}`]} ${"dark_mood_popup"}` : `${styles.confirm_inner_wrapper} ${styles[`shadow-${shadow}`]} ${"light_mood_secondary"}`}>
                   <Typography variant={"small"} color={"red"}>
                      <Icons size={"2rem"} name={"warning"} />
                      Are you sure you want to delete this Product?

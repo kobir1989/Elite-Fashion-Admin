@@ -54,13 +54,23 @@ const Navbar = ({ setToggleSidebar }) => {
                         initial={{ opacity: 0, transition: { duration: 0.2 } }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0, transition: { duration: 0.2 } }}
-                        className={styles.notification_dropdown_wrapper}>
-                        <Typography variant={"h6"}>New (2)</Typography>
+                        className={darkMood ? `${styles.notification_dropdown_wrapper} ${"dark_mood_popup"}` : `${styles.notification_dropdown_wrapper} ${"light_mood_secondary"}`}>
+                        <Typography
+                           variant={"h6"}
+                           color={darkMood ? "white" : "primary"}>
+                           New (2)
+                        </Typography>
                         <div className={styles.notifications}>
                            <Icons name={"addOrder"} color={"#2c74b3"} />
                            <div className={styles.notifications_title}>
-                              <Typography variant={"body"}>New Order Received</Typography>
-                              <Typography variant={"small"} color={"light-gray"}>
+                              <Typography
+                                 variant={"body"}
+                                 color={darkMood ? "white" : "primary"}>
+                                 New Order Received
+                              </Typography>
+                              <Typography
+                                 variant={"small"}
+                                 color={"light-gray"}>
                                  Just Now
                               </Typography>
                            </div>
@@ -68,8 +78,14 @@ const Navbar = ({ setToggleSidebar }) => {
                         <div className={styles.notifications}>
                            <Icons name={"addOrder"} color={"#2c74b3"} />
                            <div className={styles.notifications_title}>
-                              <Typography variant={"body"}>New Order Received</Typography>
-                              <Typography variant={"small"} color={"light-gray"}>
+                              <Typography
+                                 variant={"body"}
+                                 color={darkMood ? "white" : "primary"}>
+                                 New Order Received
+                              </Typography>
+                              <Typography
+                                 variant={"small"}
+                                 color={"light-gray"}>
                                  Just Now
                               </Typography>
                            </div>
@@ -101,21 +117,37 @@ const Navbar = ({ setToggleSidebar }) => {
                         initial={{ opacity: 0, transition: { duration: 0.2 } }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0, transition: { duration: 0.2 } }}
-                        className={styles.dropdown_Wrapper}>
+                        className={darkMood ? `${styles.dropdown_wrapper} ${"dark_mood_popup"}` : `${styles.dropdown_wrapper} ${"light_mood_secondary"}`}>
                         <div className={styles.admin_details}>
-                           <Typography variant={"body"} color={"primary"}>
+                           <Typography
+                              variant={"body"}
+                              color={darkMood ? "white" : "primary"}>
                               Kabir Hossain
                            </Typography>
-                           <Typography variant={"small"} color={"light-gray"}>
+                           <Typography
+                              variant={"small"}
+                              color={darkMood ? "paragraph" : "primary"}>
                               Admin
                            </Typography>
                         </div>
                         <ul>
                            <li>
-                              <Link to={"#"}>Profile</Link>
+                              <Link to={"#"}>
+                                 <Typography
+                                    variant={"small"}
+                                    color={darkMood ? "white" : "primary"}>
+                                    Profile
+                                 </Typography>
+                              </Link>
                            </li>
                            <li>
-                              <Link to={"#"}>Settings</Link>
+                              <Link to={"#"}>
+                                 <Typography
+                                    variant={"small"}
+                                    color={darkMood ? "white" : "primary"}>
+                                    Settings
+                                 </Typography>
+                              </Link>
                            </li>
                            <li>
                               <Button
@@ -124,7 +156,11 @@ const Navbar = ({ setToggleSidebar }) => {
                                     dispatch(logout());
                                  }}
                               >
-                                 Logout
+                                 <Typography
+                                    variant={"small"}
+                                    color={darkMood ? "white" : "primary"}>
+                                    Logout
+                                 </Typography>
                               </Button>
                            </li>
                         </ul>

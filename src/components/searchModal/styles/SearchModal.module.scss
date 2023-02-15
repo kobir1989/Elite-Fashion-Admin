@@ -2,6 +2,7 @@
 @import "../../../scss/scss-utils/mixins";
 
 .search_popup_wrapper {
+	border-radius: 8px;
 	height: 25rem;
 	width: 18rem;
 	padding: 1.5rem;
@@ -27,7 +28,6 @@
 		.search_result_row {
 			@include flex-row-space-between;
 			align-items: center;
-			background-color: $body;
 			border-radius: 4px;
 			cursor: pointer;
 			&:hover {

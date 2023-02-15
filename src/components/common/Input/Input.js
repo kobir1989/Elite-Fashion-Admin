@@ -21,14 +21,12 @@ const Input = ({
       <TextField
          color={color || "primary"}
          error={error || false}
+         InputLabelProps={{
+            style: { color: darkMood ? "#FFF" : "#727272" },
+         }}
          sx={{
-            "& .MuiFormLabel-root": {
-               color: darkMood ? "#e5e5e5" : "#727272"
-            },
-            "& .MuiInputBase-input": {
-               color: darkMood ? "#FFF" : "#3b3841"
-            },
             "& .MuiOutlinedInput-root": {
+               color: darkMood ? "#e5e5e5" : "#727272",
                "& fieldset": {
                   borderColor: darkMood ? "#205295" : "#e5e5e5",
                },

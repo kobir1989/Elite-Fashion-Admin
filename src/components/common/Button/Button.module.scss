@@ -26,7 +26,6 @@
 	&:hover {
 		background-color: $navy_3;
 		transition: all 0.2s linear;
-		@include box-shadow-blue;
 		color: $white;
 	}
 }
@@ -39,7 +38,6 @@
 	&:hover {
 		background-color: $navy_2;
 		transition: all 0.2s linear;
-		@include box-shadow-blue;
 		color: $white;
 	}
 }
@@ -100,7 +98,6 @@
 		background-color: $red_main;
 		color: $white;
 		transition: all 0.2s linear;
-		@include box-shadow-blue;
 		color: $white;
 	}
 	@include screens-md {
