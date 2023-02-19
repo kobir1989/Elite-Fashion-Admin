@@ -9,13 +9,13 @@ import { Skeleton } from '@mui/material';
 import Icons from '../../components/common/Icons/Icons';
 import { Link } from 'react-router-dom';
 import { Context } from "../../store/Context";
+
 const SingleProductPage = () => {
    const [product, setProduct] = useState([]);
    const { state } = useContext(Context);
    const { darkMood } = state;
    const { id } = useParams()
    const getSingleProductData = (data) => {
-      console.log(data)
       setProduct(data?.products)
    }
    const { loading, hasError, sendRequest } = useHttpHook()
@@ -101,18 +101,21 @@ const SingleProductPage = () => {
                   <Typography
                      variant={"body"}
                      color={darkMood ? "paragraph" : "primary"}>
-                     Stock : <span>{product?.stock}</span>
+                     Stock : <span className={product?.stock < 1 ? styles.color_red : ""}>
+                        {product?.stock}
+                     </span>
                   </Typography>
                   <Typography
                      variant={"body"}
                      color={darkMood ? "paragraph" : "primary"}>
-                     Sold: <span>{product?.sold}</span>
+                     Sold: <span>
+                        {product?.sold}
+                     </span>
                   </Typography>
                </div>
             </div>
          </div>
       </PageLayout>
-
    )
 }
 

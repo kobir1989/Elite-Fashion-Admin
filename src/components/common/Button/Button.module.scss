@@ -88,6 +88,18 @@
 		transition: all 0.2s ease-in-out;
 	}
 }
+
+.variant-icon-btn-bg-dark {
+	background-color: unset;
+	border: unset;
+	border-radius: 50%;
+	padding: 0.5rem 0.5rem;
+	transition: all 0.2s ease-in-out;
+	&:hover {
+		background-color: $dark_mood_main;
+		transition: all 0.2s ease-in-out;
+	}
+}
 .variant-red-border {
 	background-color: unset;
 	border: 1px solid rgba(247, 126, 150, 0.315);

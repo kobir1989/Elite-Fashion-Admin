@@ -1,9 +1,28 @@
+/********************************************************
+@useHttpHook
+@Description A custom hook for making HTTP requests using Axios.
+@Returns An object with three properties: sendRequest, loading, and hasError.
+The sendRequest function takes two arguments: reqConfig and getResponseData.
+reqConfig: An object with properties for the HTTP request such as url, method, and data that will post to server,( if it's POST method).
+getResponseData: A callback function that handles the response data from the request.
+The loading property is a boolean that indicates whether a request is currently in progress.
+The hasError property is the error message if a request fails.
+@Implementation
+const { hasError, sendRequest, loading } = useHttpHook();
+const [data, setData] = useState(null);
+const handleResponse = (response) => {
+setData(response.data);
+}
+useEffect(() => {
+sendRequest({ method: 'GET', url: '/api/data' }, handleResponse);
+}, []);
+*********************************************************/
+
 import { useCallback, useContext, useState } from 'react';
 import { axiosInstance } from "../utils/axios";
 import { Context } from "../store/Context";
 import { logout, setIsLoading, setError } from "../store/Action";
 
-// const BASE_URL = process.env.REACT_APP_BASE_URL;
 export const useHttpHook = () => {
    const { state, dispatch } = useContext(Context)
    const [hasError, setHasError] = useState(null)
@@ -22,7 +41,6 @@ export const useHttpHook = () => {
                Authorization: `Bearer ${authToken?.token}`
             }
          });
-         // console.log(response.data, "FROM USEHTTP HOOK")
          getResponseData(response?.data);
          dispatch(setIsLoading(false))
          setLoading(false)
@@ -42,5 +60,4 @@ export const useHttpHook = () => {
    return {
       sendRequest, loading, hasError
    }
-
-}
+};

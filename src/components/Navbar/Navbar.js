@@ -14,7 +14,7 @@ const Navbar = ({ setToggleSidebar }) => {
    const [showNotification, setShowNotification] = useState(false);
    const { state, dispatch } = useContext(Context);
    const { darkMood } = state;
-   console.log(darkMood, "DARK")
+   // console.log(darkMood, "DARK")
    const menuToggleHandler = () => {
       setToggleSidebar(true);
    };
@@ -34,13 +34,13 @@ const Navbar = ({ setToggleSidebar }) => {
             </div>
          </Link>
          <div className={styles.nav_buttons_wrapper}>
-            <Button variant={"icon-btn-bg"}
+            <Button variant={darkMood ? "icon-btn-bg-dark" : "icon-btn-bg"}
                onClick={() => { dispatch(setShowSearchModal(true)) }}>
                <Icons name={"search"} color={"#7d879c"} />
             </Button>
             <div className={styles.notification_wrapper}>
                <Button
-                  variant={"icon-btn-bg"}
+                  variant={darkMood ? "icon-btn-bg-dark" : "icon-btn-bg"}
                   onClick={() => {
                      setShowNotification(!showNotification);
                   }}
@@ -95,14 +95,14 @@ const Navbar = ({ setToggleSidebar }) => {
                </AnimatePresence>
                {/*NOTIFICATIONS END*/}
             </div>
-            <Button variant={"icon-btn-bg"}
+            <Button variant={darkMood ? "icon-btn-bg-dark" : "icon-btn-bg"}
                onClick={() => { dispatch(setDarkMood(!darkMood)) }}>
-               <Icons name={"darkMood"} color={"#7d879c"} />
+               <Icons name={darkMood ? "lightMood" : "darkMood"} color={"#7d879c"} />
             </Button>
             {/* <Icons name={ } /> */}
             <div className={styles.avater_wrapper}>
                <Button
-                  variant={"icon-btn-bg"}
+                  variant={darkMood ? "icon-btn-bg-dark" : "icon-btn-bg"}
                   onClick={() => {
                      setShowDropdown(!showDropdown);
                   }}

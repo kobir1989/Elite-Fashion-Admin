@@ -33,7 +33,7 @@ const App = () => {
     sendRequest({ url: "/products/all" }, getProductData);
     sendRequest({ url: "/categories/all" }, getCategoryData)
   }, [isUpdated])
-  console.log(state?.isUpdated, "IS UPDATED")
+  // console.log(state?.isUpdated, "IS UPDATED")
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />

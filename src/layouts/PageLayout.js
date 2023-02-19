@@ -64,7 +64,7 @@ const PageLayout = ({ children }) => {
                      animate={{ x: 0 }}
                      exit={{ x: window.innerWidth > 1280 ? "0%" : "-100%", transition: { duration: 0.2 } }}
                      transition={{ default: { ease: "linear" } }}
-                     className={darkMood ? `${styles.sidebar_wrapper} ${"dark_mood_secondary"}` : `${styles.sidebar_wrapper} ${styles.navy_background}`}>
+                     className={darkMood ? `${styles.sidebar_wrapper} ${"dark_mood_main"}` : `${styles.sidebar_wrapper} ${styles.navy_background}`}>
                      <Sidebar />
                   </motion.div>
                </>

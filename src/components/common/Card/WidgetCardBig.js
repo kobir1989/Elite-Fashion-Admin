@@ -9,7 +9,6 @@ const WidgetCardBig = ({ imgUrl, ...otherProps }) => {
    const currentTime = dayjs().format("HH:mm:ss");
    const { state } = useContext(Context);
    const { darkMood } = state;
-   console.log(darkMood, "CDARD")
    useEffect(() => {
       if (currentTime >= '00:00:00' && currentTime < '12:00:00') {
          setTimeOfDay('Good morning');
