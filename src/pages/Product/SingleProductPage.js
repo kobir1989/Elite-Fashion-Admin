@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import PageLayout from "../../layouts/PageLayout";
 import Typography from '../../components/common/Typography/Typography';
 import dayjs from 'dayjs';
-import { Skeleton } from '@mui/material';
 import Icons from '../../components/common/Icons/Icons';
 import { Link } from 'react-router-dom';
 import { Context } from "../../store/Context";
@@ -18,7 +17,7 @@ const SingleProductPage = () => {
    const getSingleProductData = (data) => {
       setProduct(data?.products)
    }
-   const { loading, hasError, sendRequest } = useHttpHook()
+   const { sendRequest } = useHttpHook()
 
    useEffect(() => {
       sendRequest({ url: `/product/single/${id}` }, getSingleProductData)
@@ -33,13 +32,6 @@ const SingleProductPage = () => {
             </div>
             <div className={styles.product_img}>
                <img src={product?.image} alt="" />
-               {loading &&
-                  <Skeleton
-                     sx={{ bgcolor: 'grey.900' }}
-                     variant="rectangular"
-                     width={210}
-                     height={118}
-                  />}
             </div>
             <div className={styles.product_details}>
                <div className={styles.date_with_id}>

@@ -9,16 +9,17 @@ import { useHttpHook } from "./hooks/useHttpHook";
 import { Context } from "./store/Context";
 import { getAllProductData, getAllCategoryData } from "./store/Action";
 import ProductEditPage from "./pages/Product/ProductEditPage";
-import CategoryListPage from "./pages/category/CategoryListPage";
-import CreateCategoryPage from "./pages/category/CreateCategoryPage";
-import EditCategoryPage from "./pages/category/EditCategoryPage";
-import SubCategoryListPage from "./pages/subCategory/SubCategoryListPage";
-import AddSubCategoryPage from "./pages/subCategory/AddSubCategoryPage";
-import EditSubCategoryPage from "./pages/subCategory/EditSubCategoryPage";
+import CategoryListPage from "./pages/Category/CategoryListPage";
+import CreateCategoryPage from "./pages/Category/CreateCategoryPage";
+import EditCategoryPage from "./pages/Category/EditCategoryPage";
+import SubCategoryListPage from "./pages/SubCategory/SubCategoryListPage";
+import AddSubCategoryPage from "./pages/SubCategory/AddSubCategoryPage";
+import EditSubCategoryPage from "./pages/SubCategory/EditSubCategoryPage";
 import OrderListPage from "./pages/Order/OrderListPage";
 import OrderDetailsPage from "./pages/Order/OrderDetailsPage";
 import UserListPage from "./pages/UserList/UserListPage";
 import SingleProductPage from "./pages/Product/SingleProductPage";
+import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 const App = () => {
   const { state, dispatch } = useContext(Context);
   const { isUpdated } = state;
@@ -31,7 +32,8 @@ const App = () => {
   const { sendRequest } = useHttpHook();
   useEffect(() => {
     sendRequest({ url: "/products/all" }, getProductData);
-    sendRequest({ url: "/categories/all" }, getCategoryData)
+    sendRequest({ url: "/categories/all" }, getCategoryData);
+
   }, [isUpdated])
   // console.log(state?.isUpdated, "IS UPDATED")
   return (
@@ -56,6 +58,7 @@ const App = () => {
         <Route path="/order-details/:id" element={<OrderDetailsPage />} />
         <Route path="/user/list" element={<UserListPage />} />
       </Route>
+      <Route path="/forget-password" element={<ForgetPassword />} />
       <Route path='*' element={<Navigate to='/' replace />} />
     </Routes>
   );

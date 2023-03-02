@@ -1,23 +1,36 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import Typography from "../common/Typography/Typography";
 import Icons from "../common/Icons/Icons";
 import Avatar from "@mui/material/Avatar";
-import styles from "./styles/Navbar.module.scss";
-import { Link } from "react-router-dom";
 import Button from "../common/Button/Button";
+import styles from "./styles/Navbar.module.scss";
 import { Context } from "../../store/Context";
 import { logout, setDarkMood, setShowSearchModal } from "../../store/Action";
-import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = ({ setToggleSidebar }) => {
    const [showDropdown, setShowDropdown] = useState(false);
    const [showNotification, setShowNotification] = useState(false);
    const { state, dispatch } = useContext(Context);
    const { darkMood } = state;
-   // console.log(darkMood, "DARK")
+
+   //Menu Toggle handler for small screens
    const menuToggleHandler = () => {
       setToggleSidebar(true);
    };
+
+   //Toggle notification dropdown
+   const toggleNotifications = () => {
+      setShowNotification(!showNotification);
+      setShowDropdown(false)
+   }
+
+   //Toggle Admin profile info dropdown
+   const toggleAdminInfo = () => {
+      setShowDropdown(!showDropdown)
+      setShowNotification(false)
+   }
    return (
       <nav className={darkMood ? `${styles.navbar} ${"dark_mood_secondary"}` : `${styles.navbar} ${"light_mood_secondary"}`}>
          <div className={styles.menue_btn} onClick={menuToggleHandler}>
@@ -25,7 +38,7 @@ const Navbar = ({ setToggleSidebar }) => {
                <Icons name={"menue"} size={"2.1rem"} color={"#7d879c"} />
             </Button>
          </div>
-         <Link to={"#"}>
+         <Link to={"https://elite-fashion.vercel.app/"}>
             <div className={styles.website_link}>
                <Icons name={"earth"} color={"#7d879c"} />
                <Typography variant={"h5"} color={"paragraph"}>
@@ -41,9 +54,7 @@ const Navbar = ({ setToggleSidebar }) => {
             <div className={styles.notification_wrapper}>
                <Button
                   variant={darkMood ? "icon-btn-bg-dark" : "icon-btn-bg"}
-                  onClick={() => {
-                     setShowNotification(!showNotification);
-                  }}
+                  onClick={toggleNotifications}
                >
                   <Icons name={"notification"} color={"#7d879c"} />
                </Button>
@@ -54,7 +65,8 @@ const Navbar = ({ setToggleSidebar }) => {
                         initial={{ opacity: 0, transition: { duration: 0.2 } }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0, transition: { duration: 0.2 } }}
-                        className={darkMood ? `${styles.notification_dropdown_wrapper} ${"dark_mood_popup"}` : `${styles.notification_dropdown_wrapper} ${"light_mood_secondary"}`}>
+                        className={darkMood ? `${styles.notification_dropdown_wrapper} ${"dark_mood_popup"}` : `${styles.notification_dropdown_wrapper} ${"light_mood_secondary"}`}
+                     >
                         <Typography
                            variant={"h6"}
                            color={darkMood ? "white" : "primary"}>
@@ -103,9 +115,7 @@ const Navbar = ({ setToggleSidebar }) => {
             <div className={styles.avater_wrapper}>
                <Button
                   variant={darkMood ? "icon-btn-bg-dark" : "icon-btn-bg"}
-                  onClick={() => {
-                     setShowDropdown(!showDropdown);
-                  }}
+                  onClick={toggleAdminInfo}
                >
                   <Avatar alt="avatar.jpg" src="/assets/avatar.jpg" />
                </Button>
@@ -117,7 +127,9 @@ const Navbar = ({ setToggleSidebar }) => {
                         initial={{ opacity: 0, transition: { duration: 0.2 } }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0, transition: { duration: 0.2 } }}
-                        className={darkMood ? `${styles.dropdown_wrapper} ${"dark_mood_popup"}` : `${styles.dropdown_wrapper} ${"light_mood_secondary"}`}>
+                        className={darkMood ? `${styles.dropdown_wrapper} ${"dark_mood_popup"}` : `${styles.dropdown_wrapper} ${"light_mood_secondary"}`}
+
+                     >
                         <div className={styles.admin_details}>
                            <Typography
                               variant={"body"}
