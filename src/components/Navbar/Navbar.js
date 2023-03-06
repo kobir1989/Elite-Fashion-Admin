@@ -13,7 +13,7 @@ const Navbar = ({ setToggleSidebar }) => {
    const [showDropdown, setShowDropdown] = useState(false);
    const [showNotification, setShowNotification] = useState(false);
    const { state, dispatch } = useContext(Context);
-   const { darkMood } = state;
+   const { darkMood, authToken } = state;
 
    //Menu Toggle handler for small screens
    const menuToggleHandler = () => {
@@ -117,7 +117,9 @@ const Navbar = ({ setToggleSidebar }) => {
                   variant={darkMood ? "icon-btn-bg-dark" : "icon-btn-bg"}
                   onClick={toggleAdminInfo}
                >
-                  <Avatar alt="avatar.jpg" src="/assets/avatar.jpg" />
+                  <Avatar
+                     alt="avatar.jpg"
+                     src={authToken?.userPayload?.imageUrl || "/assets/avatar.jpg"} />
                </Button>
 
                {/* DROPDOWN START*/}
@@ -144,7 +146,7 @@ const Navbar = ({ setToggleSidebar }) => {
                         </div>
                         <ul>
                            <li>
-                              <Link to={"#"}>
+                              <Link to={"/admin/profile"}>
                                  <Typography
                                     variant={"small"}
                                     color={darkMood ? "white" : "primary"}>
@@ -153,7 +155,7 @@ const Navbar = ({ setToggleSidebar }) => {
                               </Link>
                            </li>
                            <li>
-                              <Link to={"#"}>
+                              <Link to={"/admin/profile/update"}>
                                  <Typography
                                     variant={"small"}
                                     color={darkMood ? "white" : "primary"}>

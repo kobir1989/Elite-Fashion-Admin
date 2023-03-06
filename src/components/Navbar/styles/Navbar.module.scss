@@ -25,9 +25,6 @@
 	.nav_buttons_wrapper {
 		@include flex-row-center;
 		gap: 1.3rem;
-		img {
-			filter: brightness(90%);
-		}
 		.avater_wrapper {
 			position: relative;
 		}

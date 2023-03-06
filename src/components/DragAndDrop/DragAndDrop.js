@@ -6,7 +6,7 @@ import styles from "./styles/DragAndDrop.module.scss";
 import { useDropzone } from 'react-dropzone';
 import { Context } from "../../store/Context";
 
-const DragAndDrop = ({ onDrop, hasError }) => {
+const DragAndDrop = ({ onDrop, hasError, type = "Product" }) => {
    //Drag nad Drop 
    const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone(
       {
@@ -46,7 +46,7 @@ const DragAndDrop = ({ onDrop, hasError }) => {
                <Typography
                   variant={"widgetTitle"}
                   color={"paragraph"}>
-                  Drag & drop product image here
+                  Drag & drop {type} image here
                </Typography>
                <div className={styles.with_border}>
                   <Typography
