@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
-import LoginPage from "./pages/LoginPage/LoginPage";
+import LoginPage from "./pages/Auth/LoginPage/LoginPage";
 import ProductsListPage from "./pages/Product/ProductsListPage";
 import CreateProductPage from "./pages/Product/CrateProductPage";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
@@ -19,7 +19,7 @@ import OrderListPage from "./pages/Order/OrderListPage";
 import OrderDetailsPage from "./pages/Order/OrderDetailsPage";
 import UserListPage from "./pages/UserList/UserListPage";
 import SingleProductPage from "./pages/Product/SingleProductPage";
-import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
+import ForgetPassword from "./pages/Auth/ForgetPassword/ForgetPassword";
 const App = () => {
   const { state, dispatch } = useContext(Context);
   const { isUpdated } = state;

@@ -58,6 +58,6 @@ export const useHttpHook = () => {
    }, [authToken, dispatch]);
 
    return {
-      sendRequest, loading, hasError
+      sendRequest, loading, hasError, setHasError
    }
 };

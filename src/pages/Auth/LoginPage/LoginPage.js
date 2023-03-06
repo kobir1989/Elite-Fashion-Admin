@@ -1,17 +1,17 @@
 import React, { useState, useContext } from 'react';
 import styles from "./styles/Login.module.scss";
-import Input from "../../components/common/Input/Input";
-import Icons from '../../components/common/Icons/Icons';
-import Typography from '../../components/common/Typography/Typography';
-import Button from '../../components/common/Button/Button';
+import Input from "../../../components/common/Input/Input";
+import Icons from '../../../components/common/Icons/Icons';
+import Typography from '../../../components/common/Typography/Typography';
+import Button from '../../../components/common/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import Footer from '../../components/Footer/Footer';
-import { useHttpHook } from "../../hooks/useHttpHook";
+import Footer from '../../../components/Footer/Footer';
+import { useHttpHook } from "../../../hooks/useHttpHook";
 import LinearProgress from '@mui/material/LinearProgress';
 import { toast } from 'react-hot-toast';
-import { getAuthToken } from "../../store/Action";
-import { Context } from "../../store/Context";
-import AuthPageLayout from '../../layouts/AuthPageLayout';
+import { getAuthToken } from "../../../store/Action";
+import { Context } from "../../../store/Context";
+import AuthPageLayout from '../../../layouts/AuthPageLayout';
 
 const LoginPage = () => {
    const [showPassword, setShowPassword] = useState(false)
