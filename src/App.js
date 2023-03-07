@@ -23,6 +23,7 @@ import ForgetPassword from "./pages/Auth/ForgetPassword/ForgetPassword";
 import AdminProfile from "./pages/AdminProfile/AdminProfile";
 import UpdateAdminProfile from "./pages/AdminProfile/UpdateAdminProfile";
 import { updateState } from "./store/Action";
+import Earnings from "./pages/Earnings/Earnings";
 const App = () => {
   const { state, dispatch } = useContext(Context);
   const { isUpdated } = state;
@@ -63,6 +64,7 @@ const App = () => {
         <Route path="/user/list" element={<UserListPage />} />
         <Route path="/admin/profile" element={<AdminProfile />} />
         <Route path="/admin/profile/update" element={<UpdateAdminProfile />} />
+        <Route path="/analytics/earning" element={<Earnings />} />
       </Route>
       <Route path="/forget-password" element={<ForgetPassword />} />
       <Route path='*' element={<Navigate to='/' replace />} />

@@ -201,10 +201,13 @@ const Sidebar = () => {
                      ANALYTICS
                   </Typography>
                </li>
-               <li>
-                  <Icons name={"roundPie"} />
-                  Earnings
-               </li>
+               <NavLink to={"/analytics/earning"} className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
+                  <li>
+                     <Icons name={"roundPie"} />
+                     Earnings
+                  </li>
+               </NavLink>
+
                <li>
                   <Icons name={"review"} />
                   Reviews
@@ -218,12 +221,14 @@ const Sidebar = () => {
                   <Icons name={"siteSettings"} />
                   Site Settings
                </li>
+               <NavLink to={"/admin/profile/update"} className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
+                  <li>
+                     <Icons name={"account"} />
+                     Account Settings
+                  </li>
+               </NavLink>
                <li>
-                  <Icons name={"account"} />
-                  Account Settings
-               </li>
-               <li>
-                  <Icons name={"systemSettings"} />
+                  <Icons name={"systemSettings"} />Nav
                   System Health
                </li>
             </ul>
