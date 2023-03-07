@@ -8,6 +8,8 @@ import dayjs from 'dayjs';
 import Icons from '../../components/common/Icons/Icons';
 import { Link } from 'react-router-dom';
 import { Context } from "../../store/Context";
+import TextSkeleton from "../../components/common/Skeleton/TextSkeleton";
+import CardSkeleton from "../../components/common/Skeleton/CardSkeleton";
 
 const SingleProductPage = () => {
    const [product, setProduct] = useState([]);
@@ -31,80 +33,96 @@ const SingleProductPage = () => {
                </Link>
             </div>
             <div className={styles.product_img}>
-               <img src={product?.image} alt="" />
+               {product.image ?
+                  <img src={product?.image} alt="product" />
+                  :
+                  <CardSkeleton
+                     height={window.innerWidth > 700 ? "37rem" : "22rem"}
+                     col={1}
+                     width={"100%"}
+                  />
+               }
             </div>
             <div className={styles.product_details}>
-               <div className={styles.date_with_id}>
+               {product._id ?
+                  <div className={styles.date_with_id}>
+                     <Typography
+                        variant={"small"}
+                        color={"paragraph"}>
+                        Launch  Date:  {dayjs(product?.createdAt).format("MMM D, YYYY h:mm A")}
+                     </Typography>
+                     <Typography
+                        variant={"small"}
+                        color={"paragraph"}>
+                        Id:  {product?._id}
+                     </Typography>
+                  </div>
+                  :
+                  <TextSkeleton row={1} height={30} />
+               }
+               {product.title ?
                   <Typography
-                     variant={"small"}
-                     color={"paragraph"}>
-                     Launch  Date:  {dayjs(product?.createdAt).format("MMM D, YYYY h:mm A")}
+                     variant={"h4"}
+                     color={darkMood ? "paragraph" : "primary"}>
+                     {product?.title}
                   </Typography>
-                  <Typography
-                     variant={"small"}
-                     color={"paragraph"}>
-                     Id:  {product?._id}
-                  </Typography>
-               </div>
-               <div className={styles.category_sub_category}>
-                  <Typography
-                     variant={"widgetTitle"}
-                     color={"paragraph"}>
-                     Category: <span>{product?.category?.name}</span>
-                  </Typography>
-                  <Typography
-                     variant={"widgetTitle"}
-                     color={"paragraph"}>
-                     Sub-Category: <span>{product?.subCategory?.name}</span>
-                  </Typography>
-               </div>
-               <Typography
-                  variant={"h4"}
-                  color={darkMood ? "paragraph" : "primary"}>
-                  {product?.title}
-               </Typography>
-               <Typography
-                  variant={"body"}
-                  color={darkMood ? "paragraph" : "primary"}>
-                  {product?.description}
-               </Typography>
-               <div className={styles.product_pricing_details}>
+                  : <TextSkeleton
+                     height={15}
+                     row={2} />
+               }
+               {product.description ?
                   <Typography
                      variant={"body"}
                      color={darkMood ? "paragraph" : "primary"}>
-                     Regular Price: <span>&#2547; {product?.price}.00</span>
-                  </Typography>
-                  <Typography
-                     variant={"body"}
-                     color={darkMood ? "paragraph" : "primary"}>
-                     Sell Price:
-                     <span>
-                        &#2547; {product?.sellPrice}.00
-                     </span>
-                  </Typography>
-                  <Typography
-                     variant={"body"}
-                     color={darkMood ? "paragraph" : "primary"}>
-                     Product Cost:
-                     <span>
-                        &#2547; {product?.productCost}.00
-                     </span>
-                  </Typography>
-                  <Typography
-                     variant={"body"}
-                     color={darkMood ? "paragraph" : "primary"}>
-                     Stock : <span className={product?.stock < 1 ? styles.color_red : ""}>
-                        {product?.stock}
-                     </span>
-                  </Typography>
-                  <Typography
-                     variant={"body"}
-                     color={darkMood ? "paragraph" : "primary"}>
-                     Sold: <span>
-                        {product?.sold}
-                     </span>
-                  </Typography>
-               </div>
+                     {product?.description}
+                  </Typography> :
+                  <TextSkeleton
+                     height={15}
+                     row={2}
+                  />
+               }
+
+               {product.price ?
+                  <div className={styles.product_pricing_details}>
+                     <Typography
+                        variant={"body"}
+                        color={darkMood ? "paragraph" : "primary"}>
+                        Regular Price: <span>&#2547; {product?.price}.00</span>
+                     </Typography>
+                     <Typography
+                        variant={"body"}
+                        color={darkMood ? "paragraph" : "primary"}>
+                        Sell Price:
+                        <span>
+                           &#2547; {product?.sellPrice}.00
+                        </span>
+                     </Typography>
+                     <Typography
+                        variant={"body"}
+                        color={darkMood ? "paragraph" : "primary"}>
+                        Product Cost:
+                        <span>
+                           &#2547; {product?.productCost}.00
+                        </span>
+                     </Typography>
+                     <Typography
+                        variant={"body"}
+                        color={darkMood ? "paragraph" : "primary"}>
+                        Stock : <span className={product?.stock < 1 ? styles.color_red : ""}>
+                           {product?.stock}
+                        </span>
+                     </Typography>
+                     <Typography
+                        variant={"body"}
+                        color={darkMood ? "paragraph" : "primary"}>
+                        Sold: <span>
+                           {product?.sold}
+                        </span>
+                     </Typography>
+                  </div>
+                  :
+                  <TextSkeleton row={2} height={30} />
+               }
             </div>
          </div>
       </PageLayout>

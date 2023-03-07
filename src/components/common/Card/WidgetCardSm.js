@@ -5,7 +5,8 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import "react-circular-progressbar/dist/styles.css"
 import styles from "./styles/WidgetCardSm.module.scss";
 import { Context } from "../../../store/Context";
-import Skeleton from '@mui/material/Skeleton';
+import TextSkeleton from "../Skeleton/TextSkeleton";
+import CardSkeleton from "../../common/Skeleton/CardSkeleton";
 
 const WidgetCardSm = ({ title, count, percentage, loading }) => {
    const { state } = useContext(Context);
@@ -14,20 +15,10 @@ const WidgetCardSm = ({ title, count, percentage, loading }) => {
       <div className={darkMood ? `${styles.widget_card_sm_wrapper} ${"dark_mood_secondary"}` : `${styles.widget_card_sm_wrapper} ${"light_mood_secondary"}`}>
          {loading ?
             <div className={styles.loading_skeleton}>
-               <Skeleton
+               <TextSkeleton
                   animation="wave"
-                  height={40}
-                  width="60%"
-               />
-               <Skeleton
-                  animation="pulse"
-                  height={25}
-                  width="35%"
-               />
-               <Skeleton
-                  animation="wave"
-                  height={25}
-                  width="30%"
+                  height={12}
+                  row={2}
                />
             </div> :
             <div className={styles.data_wrapper}>
@@ -47,17 +38,20 @@ const WidgetCardSm = ({ title, count, percentage, loading }) => {
                </div>
             </div>
          }
-
          <div className={styles.process_bar_wrapper}>
-            <CircularProgressbar
-               styles={buildStyles({
-                  textColor: percentage > 0 ? "#2c74b3" : "#cc2121",
-                  pathColor: percentage > 0 ? "#2c74b3" : "#cc2121",
-                  trailColor: percentage > 0 ? "#e5e5e5" : "#cc2121",
-                  transitionDuration: "1",
-               })}
-               value={percentage || 0}
-               text={`${percentage || 0}%`} />
+            {loading ?
+               <CardSkeleton variant={"circular"} width={80} height={80} />
+               :
+               <CircularProgressbar
+                  styles={buildStyles({
+                     textColor: percentage > 0 ? "#2c74b3" : "#cc2121",
+                     pathColor: percentage > 0 ? "#2c74b3" : "#cc2121",
+                     trailColor: percentage > 0 ? "#e5e5e5" : "#cc2121",
+                     transitionDuration: "1",
+                  })}
+                  value={percentage || 0}
+                  text={`${percentage || 0}%`} />
+            }
          </div>
       </div>
    )
