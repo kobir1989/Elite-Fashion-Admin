@@ -22,6 +22,7 @@ import SingleProductPage from "./pages/Product/SingleProductPage";
 import ForgetPassword from "./pages/Auth/ForgetPassword/ForgetPassword";
 import AdminProfile from "./pages/AdminProfile/AdminProfile";
 import UpdateAdminProfile from "./pages/AdminProfile/UpdateAdminProfile";
+import { updateState } from "./store/Action";
 const App = () => {
   const { state, dispatch } = useContext(Context);
   const { isUpdated } = state;
@@ -35,9 +36,10 @@ const App = () => {
   useEffect(() => {
     sendRequest({ url: "/products/all" }, getProductData);
     sendRequest({ url: "/categories/all" }, getCategoryData);
-
+    return () => {
+      dispatch(updateState(false))
+    }
   }, [isUpdated])
-  // console.log(state?.isUpdated, "IS UPDATED")
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />

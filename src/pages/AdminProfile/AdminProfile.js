@@ -8,7 +8,6 @@ import { Context } from '../../store/Context';
 const AdminProfile = () => {
    const { state } = useContext(Context);
    const { authToken, darkMood } = state;
-   console.log(authToken)
    return (
       <PageLayout>
          <section className={styles.profile_wrapper}>

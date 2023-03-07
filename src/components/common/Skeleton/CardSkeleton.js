@@ -26,7 +26,7 @@ const CardSkeleton = (
                   width={width || 210}
                   height={height || 60}
                   animation={animation || "pulse"}
-                  sx={{ backgroundColor: darkMood ? "#182747" : "#EBECF1" }}
+                  sx={{ backgroundColor: darkMood ? "#1B3C59" : "#EBECF1" }}
                />
                {text &&
                   <>
@@ -37,7 +37,7 @@ const CardSkeleton = (
                         animation={"wave"}
                         sx={{
                            mt: "0.8rem",
-                           backgroundColor: darkMood ? "#182747" : "#EBECF1"
+                           backgroundColor: darkMood ? "#1B3C59" : "#EBECF1"
                         }}
 
                      />
@@ -49,7 +49,7 @@ const CardSkeleton = (
                         animation={"wave"}
                         sx={{
                            mt: "0.8rem",
-                           backgroundColor: darkMood ? "#182747" : "#EBECF1"
+                           backgroundColor: darkMood ? "#1B3C59" : "#EBECF1"
                         }}
 
                      />

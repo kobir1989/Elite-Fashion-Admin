@@ -41,7 +41,6 @@ const UpdateAdminProfile = () => {
 
    //Get response data form server
    const getResponseData = (data) => {
-      console.log(data)
       if (data.success) {
          toast.dismiss()
          toast.success("Profile Updated");
@@ -54,7 +53,6 @@ const UpdateAdminProfile = () => {
 
    //onChange Handler 
    const onChangeHandler = (e) => {
-      console.log(e.target.value)
       const { name, value } = e.target;
       setProfileValue({ ...profileValue, [name]: value });
    }

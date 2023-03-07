@@ -12,7 +12,6 @@ const SelectOptions = (
       options = [],
       ...otherProps
    }) => {
-   console.log(value, "VALUE")
    const { state } = useContext(Context);
    const { darkMood } = state;
    return (

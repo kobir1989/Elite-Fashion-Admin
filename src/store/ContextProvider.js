@@ -5,12 +5,14 @@ import { Context } from "./Context";
 
 const ContextProvider = ({ children }) => {
    const [state, dispatch] = useReducer(reducer, initialState);
-   const { authToken } = state
+   const { authToken, darkMood } = state;
+   console.log(darkMood, "DARK")
    // console.log(authToken)
    useEffect(() => {
       localStorage.setItem("admin", JSON.stringify(authToken))
+      localStorage.setItem("darkMood", JSON.stringify(darkMood))
       // console.log("USE_EFFECT_RUNS")
-   }, [authToken]);
+   }, [authToken, darkMood]);
 
    const value = { state, dispatch };
    return <Context.Provider value={value}>{children}</Context.Provider>;

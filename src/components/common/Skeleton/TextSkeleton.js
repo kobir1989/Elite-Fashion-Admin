@@ -24,7 +24,7 @@ const TextSkeleton = (
                   animation={animation || "wave"}
                   sx={{
                      mb: "0.8rem",
-                     backgroundColor: darkMood ? "#182747" : "#EBECF1"
+                     backgroundColor: darkMood ? "#1B3C59" : "#EBECF1"
                   }}
 
                />
@@ -33,7 +33,7 @@ const TextSkeleton = (
                   width={"90%"}
                   height={height || 18}
                   animation={animation || "wave"}
-                  sx={{ backgroundColor: darkMood ? "#182747" : "#EBECF1" }}
+                  sx={{ backgroundColor: darkMood ? "#1B3C59" : "#EBECF1" }}
                />
             </div>
          ))}

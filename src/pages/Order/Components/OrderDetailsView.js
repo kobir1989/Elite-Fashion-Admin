@@ -6,8 +6,7 @@ import OrderStatusOptions from "./OrderStatusOptions";
 import LinearProgress from '@mui/material/LinearProgress';
 import { Context } from "../../../store/Context";
 
-//TODO: ERROR STATE
-const OrderDetailsView = ({ error, loading, singleOrder, totalAmount, setStateUpdated }) => {
+const OrderDetailsView = ({ loading, singleOrder, totalAmount, setStateUpdated }) => {
    const { state } = useContext(Context);
    const { darkMood } = state;
    return (

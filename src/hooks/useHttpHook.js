@@ -21,7 +21,7 @@ sendRequest({ method: 'GET', url: '/api/data' }, handleResponse);
 import { useCallback, useContext, useState } from 'react';
 import { axiosInstance } from "../utils/axios";
 import { Context } from "../store/Context";
-import { logout, setIsLoading, setError } from "../store/Action";
+import { logout, setIsLoading, setError, updateState } from "../store/Action";
 
 export const useHttpHook = () => {
    const { state, dispatch } = useContext(Context)
@@ -43,6 +43,7 @@ export const useHttpHook = () => {
          });
          getResponseData(response?.data);
          dispatch(setIsLoading(false))
+
          setLoading(false)
 
       } catch (err) {
@@ -52,8 +53,8 @@ export const useHttpHook = () => {
             dispatch(logout())
          }
          console.log(err?.response?.data || err?.message, "ERROR FROM USEHTTP HOOK");
-         setIsLoading(false);
          setLoading(false)
+         dispatch(updateState(false))
       }
    }, [authToken, dispatch]);
 

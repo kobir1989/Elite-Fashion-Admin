@@ -96,7 +96,7 @@ const MuiDataGrid = (
    //Get delete response data 
    const getResponseData = (data) => {
       if (data?.success) {
-         dispatch(updateState(0))
+         dispatch(updateState(true))
          toast.success(deleteUrl === "/product/delete" ? "Product Deleted" : "Collection Deleted");
 
       };

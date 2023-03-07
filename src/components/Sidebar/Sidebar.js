@@ -206,10 +206,6 @@ const Sidebar = () => {
                   Earnings
                </li>
                <li>
-                  <Icons name={"barChart"} />
-                  Statistics
-               </li>
-               <li>
                   <Icons name={"review"} />
                   Reviews
                </li>
