@@ -77,6 +77,11 @@ export const reducer = (state, action) => {
             ...state,
             darkMood: action.payload
          }
+      case "GET_ANALYTICS_DATA":
+         return {
+            ...state,
+            analyticsData: action.payload
+         }
       default:
          return state;
    }

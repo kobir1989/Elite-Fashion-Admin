@@ -14,5 +14,6 @@ export const initialState = {
    isUpdated: null,
    toggleSidebar: false,
    showSearchModal: false,
-   darkMood: false
+   darkMood: false,
+   analyticsData: {}
 }

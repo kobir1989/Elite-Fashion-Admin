@@ -3,8 +3,9 @@ import styles from "./styles/WidgetsCardBig.module.scss";
 import Typography from '../Typography/Typography';
 import dayjs from 'dayjs';
 import { Context } from "../../../store/Context";
+import Skeleton from '@mui/material/Skeleton';
 
-const WidgetCardBig = ({ imgUrl, ...otherProps }) => {
+const WidgetCardBig = ({ imgUrl, todaySales, loading }) => {
    const [timeOfDay, setTimeOfDay] = useState("")
    const currentTime = dayjs().format("HH:mm:ss");
    const { state } = useContext(Context);
@@ -20,7 +21,7 @@ const WidgetCardBig = ({ imgUrl, ...otherProps }) => {
    }, [])
 
    return (
-      <div className={darkMood ? `${styles.widget_card_wrapper} ${"dark_mood_secondary"}` : `${styles.widget_card_wrapper} ${"light_mood_secondary"}`} {...otherProps}>
+      <div className={darkMood ? `${styles.widget_card_wrapper} ${"dark_mood_secondary"}` : `${styles.widget_card_wrapper} ${"light_mood_secondary"}`}>
          <div className={styles.widget_contents}>
             <div>
                <Typography color={"blue"} variant={"h4"}>
@@ -41,11 +42,19 @@ const WidgetCardBig = ({ imgUrl, ...otherProps }) => {
                </Typography>
             </div>
             <div>
-               <Typography
-                  variant={"widgetAmount"}
-                  color={darkMood ? "light-gray" : "primary"}>
-                  &#2547; 10,360.66
-               </Typography>
+               {loading ?
+                  <Skeleton
+                     animation="wave"
+                     height={40}
+                     width="50%"
+                  />
+                  :
+                  <Typography
+                     variant={"widgetAmount"}
+                     color={darkMood ? "light-gray" : "primary"}>
+                     &#2547; {todaySales}
+                  </Typography>
+               }
                <Typography color={"paragraph"} variant={"small"}>
                   Today’s total sales
                </Typography>

@@ -4,49 +4,11 @@ import Typography from '../common/Typography/Typography';
 import styles from "./styles/AreaChart.module.scss";
 import { Context } from "../../store/Context";
 
-//TODO: MAKE A NEW API FOR SALES DATA AND REMOVE THIS.
-const data = [
-   {
-      name: "January", sales: 12000
-   },
-   {
-      name: "February", sales: 14000
-   },
-   {
-      name: "March", sales: 22000
-   },
-   {
-      name: "April", sales: 31000
-   },
-   {
-      name: "May", sales: 25000
-   },
-   {
-      name: "June", sales: 26000
-   },
-   {
-      name: "July", sales: 15800
-   },
-   {
-      name: "August", sales: 11000
-   },
-   {
-      name: "September", sales: 10000
-   },
-   {
-      name: "October", sales: 10000
-   },
-   {
-      name: "November", sales: 25000
-   },
-   {
-      name: "December", sales: 25000
-   }
-];
-
 const AreaCharts = () => {
    const { state } = useContext(Context);
-   const { darkMood } = state;
+   const { darkMood, analyticsData } = state;
+   const { monthlyRevenueArray } = analyticsData
+   console.log(monthlyRevenueArray, "RE")
    return (
       <div className={darkMood ? `${styles.area_chart_wrapper} ${"dark_mood_secondary"}` : `${styles.area_chart_wrapper} ${"light_mood_secondary"}`}>
          <Typography variant={"widgetTitle"} color={"paragraph "}>
@@ -55,7 +17,7 @@ const AreaCharts = () => {
          <div className={styles.area_chart}>
             <ResponsiveContainer>
                <AreaChart
-                  data={data}
+                  data={monthlyRevenueArray}
                   margin={{
                      top: 10,
                      right: 30,
@@ -66,7 +28,7 @@ const AreaCharts = () => {
                >
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis
-                     dataKey="name"
+                     dataKey="month"
                      tick={{ fill: darkMood ? "#aeb4be" : "#7d879c" }}
                      tickLine={{ stroke: "#7d879c" }} />
                   <YAxis
@@ -75,7 +37,7 @@ const AreaCharts = () => {
                   <Tooltip />
                   <Area
                      type="monotone"
-                     dataKey="sales"
+                     dataKey="revenue"
                      stroke="#205295"
                      fill="#2c74b3" />
                </AreaChart>
