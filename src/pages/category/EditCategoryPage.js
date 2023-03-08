@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Context } from "../../store/Context";
 const EditCategoryPage = () => {
    const { id } = useParams();
-   const { state, dispatch } = useContext(Context);
+   const { state } = useContext(Context);
    const { category } = state;
 
    const selectedCategory = category.filter(item => item?._id === id)
