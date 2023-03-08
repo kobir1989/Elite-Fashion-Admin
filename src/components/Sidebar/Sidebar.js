@@ -7,8 +7,6 @@ import { Context } from "../../store/Context";
 import { toggleShowProduct, toggleShowCategory, toggleShowSubCategory } from "../../store/Action"
 import { motion, AnimatePresence } from "framer-motion";
 
-//TODO: add all path conditons
-
 const Sidebar = () => {
    const { state, dispatch } = useContext(Context)
    const { showProduct, showCategory, showSubCategory } = state;
@@ -81,8 +79,8 @@ const Sidebar = () => {
                   <AnimatePresence>
                      {state.showProduct &&
                         <motion.ul
-                           exit={{ y: "-10%", opacity: 0, transition: { duration: 0.2 } }}
-                           transition={{ default: { ease: "linear", duration: 0.2 } }}
+                           exit={{ y: "-10%", opacity: 0, transition: { duration: 0.1 } }}
+                           transition={{ default: { ease: "linear", duration: 0.1 } }}
                            onClick={(e) => { e.stopPropagation() }}>
                            <NavLink to="/product/list"
                               className={({ isActive }) => isActive ? `${styles.active_li}` : ""} >
@@ -120,7 +118,7 @@ const Sidebar = () => {
                   <AnimatePresence>
                      {state.showCategory &&
                         <motion.ul
-                           exit={{ y: "-10%", opacity: 0, transition: { duration: 0.2 } }}
+                           exit={{ y: "-10%", opacity: 0, transition: { duration: 0.1 } }}
                            transition={{ default: { ease: "linear", duration: 0.2 } }}
                            onClick={(e) => { e.stopPropagation() }}>
                            <NavLink to="/category/list"
@@ -159,8 +157,8 @@ const Sidebar = () => {
                   <AnimatePresence>
                      {state.showSubCategory &&
                         <motion.ul
-                           exit={{ y: "-10%", opacity: 0, transition: { duration: 0.2 } }}
-                           transition={{ default: { ease: "linear", duration: 0.2 } }}
+                           exit={{ y: "-10%", opacity: 0, transition: { duration: 0.1 } }}
+                           transition={{ default: { ease: "linear", duration: 0.1 } }}
                            onClick={(e) => { e.stopPropagation() }}>
                            <NavLink to="/sub-category/list"
                               className={({ isActive }) => isActive ? `${styles.active_li}` : ""} >
