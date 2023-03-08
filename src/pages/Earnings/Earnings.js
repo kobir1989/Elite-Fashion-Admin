@@ -1,23 +1,43 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PageLayout from '../../layouts/PageLayout';
 import styles from "./styles/Earnings.module.scss";
 import EarningsPieChart from "./Components/EarningsPieChart";
 import { Context } from '../../store/Context';
 import RevenueTable from './Components/RevenueTable';
 import PageTitle from "../../components/common/PageTitle/PageTitle";
+import { useHttpHook } from '../../hooks/useHttpHook';
 const Earnings = () => {
-   const { state } = useContext(Context);
-   const { analyticsData } = state;
-   console.log(analyticsData)
+   const [analyticsData, setAnalyticsData] = useState([])
+   const { sendRequest, loading } = useHttpHook();
+
+   //Get response data from server
+   const getAnalyticsData = (data) => {
+      console.log(data)
+      setAnalyticsData(data)
+   }
+
+   //Fetch analytics data
+   useEffect(() => {
+      sendRequest(
+         {
+            url: "/admin/analytics"
+         },
+         getAnalyticsData
+      )
+   }, []);
    return (
       <PageLayout>
          <section className={styles.earnings_page_content_wrapper}>
             <PageTitle title={"Revenue Summary"} showBtn={false} />
             <EarningsPieChart
+               loading={loading}
                earningsData={analyticsData?.monthlyRevenueArray}
             />
             <div className={styles.revenue_table_wrapper}>
-               <RevenueTable revenue={analyticsData?.monthlyRevenueArray} />
+               <RevenueTable
+                  loading={loading}
+                  revenue={analyticsData?.monthlyRevenueArray}
+               />
             </div>
          </section>
       </PageLayout>

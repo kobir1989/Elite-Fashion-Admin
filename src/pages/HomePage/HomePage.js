@@ -8,10 +8,10 @@ import { stockOutColumns } from "../../components/dataGrid/dataGridColumns/Stock
 import BacsicCard from "../../components/common/Card/BasicCard";
 import { Context } from "../../store/Context";
 import { useHttpHook } from '../../hooks/useHttpHook';
-import { getAnalyticsData } from "../../store/Action"
 
 const HomePage = () => {
-   const { state, dispatch } = useContext(Context);
+   const [analyticsData, setAnalyticsData] = useState([])
+   const { state } = useContext(Context);
    const { products, isLoading, error } = state;
 
    //Get stock out products
@@ -19,11 +19,11 @@ const HomePage = () => {
 
    //Get response data from server
    const getResponseData = (data) => {
-      dispatch(getAnalyticsData(data))
+      setAnalyticsData(data)
    }
 
    //useHttpHook
-   const { sendRequest, hasError, loading } = useHttpHook()
+   const { sendRequest, loading } = useHttpHook()
 
    //Fetch analytics data
    useEffect(() => {
@@ -37,8 +37,14 @@ const HomePage = () => {
 
    return (
       <PageLayout>
-         <Widgets loading={loading} />
-         <AreaCharts loading={loading} />
+         <Widgets
+            loading={loading}
+            analyticsData={analyticsData}
+         />
+         <AreaCharts
+            loading={loading}
+            revenue={analyticsData?.monthlyRevenueArray}
+         />
          <div className={styles.stockout_section}>
             <BacsicCard title={"Stock Out Products"}>
                <MuiDataGrid

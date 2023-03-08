@@ -1,12 +1,8 @@
-import React, { useContext } from 'react';
-import { Context } from "../../store/Context";
 import styles from "./styles/Widgets.module.scss";
 import WidgetCardBig from '../common/Card/WidgetCardBig';
 import WidgetCardSm from '../common/Card/WidgetCardSm';
 
-const Widgets = ({ loading }) => {
-   const { state } = useContext(Context);
-   const { analyticsData } = state;
+const Widgets = ({ loading, analyticsData }) => {
    return (
       <div className={loading ? `${styles.Widgets_grid_wrapper} ${styles.opacity}` : `${styles.Widgets_grid_wrapper}`}>
          <div className={styles.col_1}>

@@ -1,14 +1,16 @@
 import React, { useContext } from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { Context } from '../../../store/Context';
+import { LinearProgress } from "@mui/material"
 
-const RevenueTable = ({ revenue }) => {
+const RevenueTable = ({ revenue, loading }) => {
    const { state } = useContext(Context);
    const { darkMood } = state;
    return (
       <TableContainer
          component={Paper}
-         sx={{ backgroundColor: darkMood ? "#0a2647" : "#fff" }}>
+         sx={{ backgroundColor: darkMood ? "#0a2647" : "#fff", minHeight: "60vh" }}>
+         {loading && <LinearProgress />}
          <Table
             sx={{ minWidth: 650 }}
             aria-label="simple table">
@@ -35,7 +37,7 @@ const RevenueTable = ({ revenue }) => {
             <TableBody>
                {revenue && revenue.length ? revenue.map((row) => (
                   <TableRow
-                     key={row.name}
+                     key={row.month}
                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                      <TableCell

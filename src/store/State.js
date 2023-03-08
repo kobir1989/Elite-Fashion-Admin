@@ -15,5 +15,4 @@ export const initialState = {
    toggleSidebar: false,
    showSearchModal: false,
    darkMood: JSON.parse(localStorage.getItem("darkMood")) || false,
-   analyticsData: {}
 }

@@ -74,8 +74,3 @@ export const setDarkMood = payload => ({
    type: "DARK_MOOD",
    payload
 });
-
-export const getAnalyticsData = payload => ({
-   type: "GET_ANALYTICS_DATA",
-   payload
-})

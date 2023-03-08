@@ -1,6 +1,8 @@
 import React from 'react';
 import { ResponsiveContainer, PieChart, Pie, Legend, Cell } from 'recharts';
-
+import BasicCard from '../../../components/common/Card/BasicCard';
+import CardSkeleton from "../../../components/common/Skeleton/CardSkeleton";
+import styles from "../styles/EarningPieChart.module.scss";
 const COLORS = [
    '#0088FE',
    '#00C49F',
@@ -16,26 +18,32 @@ const COLORS = [
    '#205E61',
 ];
 
-const PieChartComponent = ({ earningsData }) => {
+const PieChartComponent = ({ earningsData, loading }) => {
    return (
-      <div style={{ width: '100%', height: 400 }}>
-         <ResponsiveContainer>
-            <PieChart>
-               <Pie
-                  dataKey="revenue"
-                  nameKey="month"
-                  data={earningsData}
-                  label
-                  fill="#8884d8"
-                  colors={COLORS}
-               >
-                  {earningsData && earningsData.length ? earningsData.map((entry, index) => (
-                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  )) : null}
-               </Pie>
-               <Legend />
-            </PieChart>
-         </ResponsiveContainer>
+      <div className={styles.pie_chart_wrapper}>
+         {loading &&
+            <div className={styles.loading_skeleton}>
+               <CardSkeleton variant={"circular"} width={320} height={320} />
+            </div>}
+         <BasicCard showTitle={false}>
+            <ResponsiveContainer>
+               <PieChart>
+                  <Pie
+                     dataKey="revenue"
+                     nameKey="month"
+                     data={earningsData}
+                     label
+                     fill="#8884d8"
+                     colors={COLORS}
+                  >
+                     {earningsData && earningsData.length ? earningsData.map((_entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                     )) : null}
+                  </Pie>
+                  <Legend />
+               </PieChart>
+            </ResponsiveContainer>
+         </BasicCard>
       </div>
    )
 }

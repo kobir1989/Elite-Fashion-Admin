@@ -5,10 +5,9 @@ import styles from "./styles/AreaChart.module.scss";
 import { Context } from "../../store/Context";
 import CardSkeleton from '../common/Skeleton/CardSkeleton';
 
-const AreaCharts = ({ loading }) => {
+const AreaCharts = ({ loading, revenue }) => {
    const { state } = useContext(Context);
-   const { darkMood, analyticsData } = state;
-   const { monthlyRevenueArray } = analyticsData
+   const { darkMood } = state;
 
    return (
       <div className={darkMood ? `${styles.area_chart_wrapper} ${"dark_mood_secondary"}` : `${styles.area_chart_wrapper} ${"light_mood_secondary"}`}>
@@ -21,7 +20,7 @@ const AreaCharts = ({ loading }) => {
                :
                <ResponsiveContainer>
                   <AreaChart
-                     data={monthlyRevenueArray}
+                     data={revenue}
                      margin={{
                         top: 10,
                         right: 30,
