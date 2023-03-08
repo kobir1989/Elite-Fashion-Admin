@@ -5,13 +5,28 @@ import Typography from '../common/Typography/Typography';
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { Context } from "../../store/Context";
 import { toggleShowProduct, toggleShowCategory, toggleShowSubCategory } from "../../store/Action"
-// import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion";
 
-//TODO: add all path conditons
 const Sidebar = () => {
    const { state, dispatch } = useContext(Context)
+   const { showProduct, showCategory, showSubCategory } = state;
    const location = useLocation()
-   // console.log(location)
+
+   const productHandler = () => {
+      dispatch(toggleShowProduct(!showProduct))
+      dispatch(toggleShowCategory(false))
+      dispatch(toggleShowSubCategory(false))
+   }
+   const categoryHandler = () => {
+      dispatch(toggleShowProduct(false))
+      dispatch(toggleShowCategory(!showCategory))
+      dispatch(toggleShowSubCategory(false))
+   }
+   const subCategoryHandler = () => {
+      dispatch(toggleShowProduct(false))
+      dispatch(toggleShowCategory(false))
+      dispatch(toggleShowSubCategory(!showSubCategory))
+   }
    return (
       <div className={styles.dashboard_sidebar}>
          <div className={styles.dashboard_sidebar_logo}>
@@ -45,95 +60,124 @@ const Sidebar = () => {
                   </Typography>
                </li>
                <li className={location.pathname === "/product/list" || location.pathname === "/product/create-new" ? `${styles.active_li} ${styles.li_nasted}` : ` ${styles.li_nasted}`}
-                  onClick={() => { dispatch(toggleShowProduct(!state.showProduct)) }}>
+                  onClick={productHandler}>
                   <div className={styles.li_dropdown}>
                      <span>
                         <Icons name={"store"} />
                         Products
                      </span>
-                     <span className={styles.rotate}>
+                     <motion.span
+                        animate={{
+                           rotate: state?.showProduct ? 90 : 0
+                        }}
+                        className={styles.rotate}>
                         <Icons
-                           name={state.showProduct ? "downArrowOutlined" : "arrowForward"} />
-                     </span>
+                           name={"arrowForward"} />
+                     </motion.span>
 
                   </div>
-                  {state.showProduct &&
-                     <ul onClick={(e) => { e.stopPropagation() }}>
-                        <NavLink to="/product/list"
-                           className={({ isActive }) => isActive ? `${styles.active_li}` : ""} >
-                           <li>
-                              <Icons size={"1rem"} name={"list"} />
-                              Products List
-                           </li>
-                        </NavLink>
-                        <NavLink to="/product/create-new"
-                           className={({ isActive }) => isActive ? `${styles.active_li}` : ""} >
-                           <li>
-                              <Icons size={"1rem"} name={"addList"} />
-                              Create New Product
-                           </li>
-                        </NavLink>
-                     </ul>
-                  }
+                  <AnimatePresence>
+                     {state.showProduct &&
+                        <motion.ul
+                           exit={{ y: "-10%", opacity: 0, transition: { duration: 0.1 } }}
+                           transition={{ default: { ease: "linear", duration: 0.1 } }}
+                           onClick={(e) => { e.stopPropagation() }}>
+                           <NavLink to="/product/list"
+                              className={({ isActive }) => isActive ? `${styles.active_li}` : ""} >
+                              <li>
+                                 <Icons size={"1rem"} name={"list"} />
+                                 Products List
+                              </li>
+                           </NavLink>
+                           <NavLink to="/product/create-new"
+                              className={({ isActive }) => isActive ? `${styles.active_li}` : ""} >
+                              <li>
+                                 <Icons size={"1rem"} name={"addList"} />
+                                 Create New Product
+                              </li>
+                           </NavLink>
+                        </motion.ul>
+                     }
+                  </AnimatePresence>
                </li>
                <li className={location.pathname === "/category/list" || location.pathname === "/category/create-new" ? `${styles.active_li} ${styles.li_nasted}` : ` ${styles.li_nasted}`}
-                  onClick={() => { dispatch(toggleShowCategory(!state.showCategory)) }}>
+                  onClick={categoryHandler}>
                   <div className={styles.li_dropdown}>
                      <span>
                         <Icons name={"category"} />
                         Categories
                      </span>
-                     <span className={styles.rotate}>
-                        <Icons name={state.showCategory ? "downArrowOutlined" : "arrowForward"} />
-                     </span>
+                     <motion.span
+                        animate={{
+                           rotate: state?.showCategory ? 90 : 0
+                        }}>
+                        <Icons
+                           name={"arrowForward"} />
+                     </motion.span>
                   </div>
-                  {state.showCategory &&
-                     <ul onClick={(e) => { e.stopPropagation() }}>
-                        <NavLink to="/category/list"
-                           className={({ isActive }) => isActive ? `${styles.active_li}` : ""} >
-                           <li>
-                              <Icons size={"1rem"} name={"categoryList"} />
-                              Category List
-                           </li>
-                        </NavLink>
-                        <NavLink to="/category/create-new"
-                           className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
-                           <li>
-                              <Icons size={"1rem"} name={"addList"} />
-                              Create New Category
-                           </li>
-                        </NavLink>
-                     </ul>}
+                  <AnimatePresence>
+                     {state.showCategory &&
+                        <motion.ul
+                           exit={{ y: "-10%", opacity: 0, transition: { duration: 0.1 } }}
+                           transition={{ default: { ease: "linear", duration: 0.2 } }}
+                           onClick={(e) => { e.stopPropagation() }}>
+                           <NavLink to="/category/list"
+                              className={({ isActive }) => isActive ? `${styles.active_li}` : ""} >
+                              <li>
+                                 <Icons size={"1rem"} name={"categoryList"} />
+                                 Category List
+                              </li>
+                           </NavLink>
+                           <NavLink to="/category/create-new"
+                              className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
+                              <li>
+                                 <Icons size={"1rem"} name={"addList"} />
+                                 Create New Category
+                              </li>
+                           </NavLink>
+                        </motion.ul>}
+                  </AnimatePresence>
                </li>
                <li
                   className={location.pathname === "/sub-category/list" || location.pathname === "/sub-category/create-new" ? `${styles.active_li} ${styles.li_nasted}` : ` ${styles.li_nasted}`}
-                  onClick={() => { dispatch(toggleShowSubCategory(!state.showSubCategory)) }}>
+                  onClick={subCategoryHandler}>
                   <div className={styles.li_dropdown}>
                      <span>
                         <Icons name={"subCategory"} />
                         Sub-Categories
                      </span>
-                     <span className={styles.rotate}>
-                        <Icons name={state.showSubCategory ? "downArrowOutlined" : "arrowForward"} />
-                     </span>
+                     <motion.span
+                        animate={{
+                           rotate: state?.showSubCategory ? 90 : 0
+                        }}>
+                        <Icons
+                           name={"arrowForward"} />
+                     </motion.span>
                   </div>
-                  {state.showSubCategory &&
-                     <ul onClick={(e) => { e.stopPropagation() }}>
-                        <NavLink to="/sub-category/list"
-                           className={({ isActive }) => isActive ? `${styles.active_li}` : ""} >
-                           <li>
-                              <Icons size={"1rem"} name={"categoryList"} />
-                              Sub-Category List
-                           </li>
-                        </NavLink>
-                        <NavLink to="/sub-category/create-new"
-                           className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
-                           <li>
-                              <Icons size={"1rem"} name={"addList"} />
-                              Add Sub-Category
-                           </li>
-                        </NavLink>
-                     </ul>}
+                  <AnimatePresence>
+                     {state.showSubCategory &&
+                        <motion.ul
+                           exit={{ y: "-10%", opacity: 0, transition: { duration: 0.1 } }}
+                           transition={{ default: { ease: "linear", duration: 0.1 } }}
+                           onClick={(e) => { e.stopPropagation() }}>
+                           <NavLink to="/sub-category/list"
+                              className={({ isActive }) => isActive ? `${styles.active_li}` : ""} >
+                              <li>
+                                 <Icons size={"1rem"} name={"categoryList"} />
+                                 Sub-Category List
+                              </li>
+                           </NavLink>
+                           <NavLink to="/sub-category/create-new"
+                              className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
+                              <li>
+                                 <Icons size={"1rem"} name={"addList"} />
+                                 Add Sub-Category
+                              </li>
+                           </NavLink>
+                        </motion.ul>
+                     }
+                  </AnimatePresence>
+
                </li>
                <NavLink to="/order/list"
                   className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
@@ -155,14 +199,13 @@ const Sidebar = () => {
                      ANALYTICS
                   </Typography>
                </li>
-               <li>
-                  <Icons name={"roundPie"} />
-                  Earnings
-               </li>
-               <li>
-                  <Icons name={"barChart"} />
-                  Statistics
-               </li>
+               <NavLink to={"/analytics/earning"} className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
+                  <li>
+                     <Icons name={"roundPie"} />
+                     Earnings
+                  </li>
+               </NavLink>
+
                <li>
                   <Icons name={"review"} />
                   Reviews
@@ -176,12 +219,14 @@ const Sidebar = () => {
                   <Icons name={"siteSettings"} />
                   Site Settings
                </li>
+               <NavLink to={"/admin/profile/update"} className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
+                  <li>
+                     <Icons name={"account"} />
+                     Account Settings
+                  </li>
+               </NavLink>
                <li>
-                  <Icons name={"account"} />
-                  Account Settings
-               </li>
-               <li>
-                  <Icons name={"systemSettings"} />
+                  <Icons name={"systemSettings"} />Nav
                   System Health
                </li>
             </ul>

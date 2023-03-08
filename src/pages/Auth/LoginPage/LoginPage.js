@@ -1,16 +1,17 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from "./styles/Login.module.scss";
-import Input from "../../components/common/Input/Input";
-import Icons from '../../components/common/Icons/Icons';
-import Typography from '../../components/common/Typography/Typography';
-import Button from '../../components/common/Button/Button';
+import Input from "../../../components/common/Input/Input";
+import Icons from '../../../components/common/Icons/Icons';
+import Typography from '../../../components/common/Typography/Typography';
+import Button from '../../../components/common/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import Footer from '../../components/Footer/Footer';
-import { useHttpHook } from "../../hooks/useHttpHook";
+import Footer from '../../../components/Footer/Footer';
+import { useHttpHook } from "../../../hooks/useHttpHook";
 import LinearProgress from '@mui/material/LinearProgress';
 import { toast } from 'react-hot-toast';
-import { getAuthToken } from "../../store/Action";
-import { Context } from "../../store/Context";
+import { getAuthToken } from "../../../store/Action";
+import { Context } from "../../../store/Context";
+import AuthPageLayout from '../../../layouts/AuthPageLayout';
 
 const LoginPage = () => {
    const [showPassword, setShowPassword] = useState(false)
@@ -18,13 +19,7 @@ const LoginPage = () => {
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
    const navigate = useNavigate()
-   const { dispatch, state } = useContext(Context)
-
-   // useEffect(() => {
-   //    if (state.authToken.token) {
-   //       return navigate("/")
-   //    }
-   // }, [])
+   const { dispatch } = useContext(Context)
    const getResponseData = (payload) => {
       const { userPayload, token } = payload;
       dispatch(getAuthToken({ userPayload, token }));
@@ -67,11 +62,8 @@ const LoginPage = () => {
          getResponseData)
    }
    return (
-      <>
-         <header className={styles.header_section}>
-            <Typography variant={"subtitle"}>Elite Fashion Admin Dashboard</Typography>
-         </header>
-         <main className={styles.main_section}>
+      <AuthPageLayout>
+         <section className={styles.main_section}>
             <div className={styles.login_from_wrapper}>
                <div className={styles.loading}>
                   {loading && <LinearProgress />}
@@ -130,14 +122,14 @@ const LoginPage = () => {
                   </Button>
                </form>
                <Typography variant={"body"}>
-                  <Link to="#"> Forget Password?</Link>
+                  <Link to="/forget-password"> Forget Password?</Link>
                </Typography>
             </div>
-         </main>
+         </section>
          <section className={styles.footer}>
             <Footer />
          </section>
-      </>
+      </AuthPageLayout>
    )
 }
 

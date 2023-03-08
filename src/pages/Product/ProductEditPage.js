@@ -23,7 +23,6 @@ const ProductEditPage = () => {
          imageId: product?.imageId
       }
    });
-   console.log(updateProduct, "UPDATEW ")
    return (
       <CrateProductPage
          id={id}

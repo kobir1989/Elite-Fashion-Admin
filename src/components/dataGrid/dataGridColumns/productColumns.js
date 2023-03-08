@@ -2,12 +2,12 @@ import Typography from "../../common/Typography/Typography";
 
 export const productColumns = [
    {
-      field: "_id", headerName: "Product Overview", flex: 1, width: 290, renderCell: (params) => {
+      field: "_id", headerName: "Product Overview", minWidth: 300, renderCell: (params) => {
          return (
             <div className="product_details">
                <img src={params?.row?.image} alt="product.png" />
                <div className="price_and_id">
-                  <Typography variant={"dataGridTitle"}>
+                  <Typography variant={"dataGridTitle"} color={"paragraph"}>
                      {params?.row?.title}
                   </Typography>
                   <Typography variant={"dataGridSmall"} color={"paragraph"}>
@@ -19,15 +19,15 @@ export const productColumns = [
       }
    },
    {
-      field: "subCategory", headerName: "Category / Sub Category", flex: 1, width: 250, align: "center", headerAlign: "center",
+      field: "subCategory", headerName: "Category / Sub Category", minWidth: 200, align: "center", headerAlign: "center",
       renderCell: (params) => {
-         return <Typography variant={"dataGridSubTitle"}>
+         return <Typography variant={"dataGridSubTitle"} color={"paragraph"}>
             {params?.row?.category?.name} / {params?.row?.subCategory?.name}
          </Typography>
       }
    },
    {
-      field: "Stock", headerName: "Availability", align: "center", flex: 1, headerAlign: "center", width: 140, renderCell: (params) => {
+      field: "Stock", headerName: "Availability", align: "center", minWidth: 150, headerAlign: "center", renderCell: (params) => {
          return <div
             className={params?.row?.stock <= 0 ? "with__bg red_bg" : "with__bg gray_bg"}>
             <Typography
@@ -39,7 +39,7 @@ export const productColumns = [
       }
    },
    {
-      field: "sold", headerName: "Sales", align: "center", flex: 1, headerAlign: "center", width: 140, renderCell: (params) => {
+      field: "sold", headerName: "Sales", align: "center", minWidth: 150, headerAlign: "center", renderCell: (params) => {
          return (
             <div className="with__bg blue_bg">
                <Typography variant={"small"} color={"blue"}>
@@ -50,9 +50,9 @@ export const productColumns = [
       }
    },
    {
-      field: "price", headerName: "Product Cost", flex: 1, headerAlign: "center", align: "center", width: 150, renderCell: (params) => {
+      field: "price", headerName: "Product Cost", minWidth: 200, headerAlign: "center", align: "center", renderCell: (params) => {
          return (
-            <Typography variant={"body"}>
+            <Typography variant={"body"} color={"paragraph"}>
                &#2547; {params?.row?.price?.toFixed(2)}
             </Typography>
          )

@@ -12,6 +12,7 @@ const variantMap = {
    body: "p",
    small: "p",
    widgetAmount: "h2",
+   smBold700: "h2",
    widgetCount: "p",
    widgetTitle: "p",
    dataGridTitle: "h2",

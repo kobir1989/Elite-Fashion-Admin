@@ -11,6 +11,8 @@ export const initialState = {
    subCategory: null,
    isLoading: false,
    error: null,
-   isUpdated: null,
+   isUpdated: false,
    toggleSidebar: false,
+   showSearchModal: false,
+   darkMood: JSON.parse(localStorage.getItem("darkMood")) || false,
 }

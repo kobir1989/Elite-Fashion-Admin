@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Typography from '../common/Typography/Typography';
 import Button from '../common/Button/Button';
 import Icons from '../common/Icons/Icons';
 import styles from "./styles/DragAndDrop.module.scss";
 import { useDropzone } from 'react-dropzone';
+import { Context } from "../../store/Context";
 
-const DragAndDrop = ({ onDrop, hasError }) => {
+const DragAndDrop = ({ onDrop, hasError, type = "Product" }) => {
    //Drag nad Drop 
    const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone(
       {
@@ -16,8 +17,10 @@ const DragAndDrop = ({ onDrop, hasError }) => {
             "image/jpg": [".jpg"]
          }
       });
+   const { state } = useContext(Context);
+   const { darkMood } = state;
    return (
-      <div>
+      <div className={darkMood ? `${styles.upload_container} ${"dark_mood_main"}` : `${styles.upload_container} ${"light_mood_main"}`}>
          {/* Upload section Start*/}
          <div className={hasError?.file ? `${styles.upload_wrapper} ${styles.imageError}` : `${styles.upload_wrapper}`}  {...getRootProps()}>
             {hasError?.file
@@ -43,7 +46,7 @@ const DragAndDrop = ({ onDrop, hasError }) => {
                <Typography
                   variant={"widgetTitle"}
                   color={"paragraph"}>
-                  Drag & drop product image here
+                  Drag & drop {type} image here
                </Typography>
                <div className={styles.with_border}>
                   <Typography
@@ -62,7 +65,8 @@ const DragAndDrop = ({ onDrop, hasError }) => {
                color={"light-gray"}>
                Image Size (480 * 620) image Type *JPEG, *PNG and *JPG
             </Typography>
-            <input type={"file"} {...getInputProps()} style={{ display: "none" }} />
+            <input type={"file"} {...getInputProps()}
+               style={{ display: "none" }} />
          </div>
       </div>
    )

@@ -9,7 +9,6 @@ import PageTitle from "../../components/common/PageTitle/PageTitle";
 const SubCategoryListPage = () => {
    const [subCategory, setSubCategory] = useState([])
    const getSubCategoryData = (data) => {
-      console.log(data)
       setSubCategory(data?.subCategories)
    }
    const { sendRequest, hasError, loading } = useHttpHook()

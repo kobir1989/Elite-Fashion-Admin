@@ -32,14 +32,17 @@ ul {
 }
 ::-webkit-scrollbar {
 	width: 6px;
-	// background-color: $navy_main;
+	height: 6px;
 	border: unset;
 }
+
 ::-moz-scrollbar {
 	width: 6px;
-	// background-color: $navy_main;
+	height: 6px;
+	opacity: 0;
 	border: unset;
 }
+
 ::-webkit-scrollbar-thumb {
 	background-color: $light_gray;
 	border-radius: 10px;
@@ -140,4 +143,30 @@ ul {
 		border-radius: 6px;
 		object-fit: cover;
 	}
+}
+
+.dark_mood_main {
+	background-color: $dark_mood_main;
+	transition: all 0.2s linear;
+}
+.dark_mood_secondary {
+	background-color: $dark_mood_secondary;
+	transition: all 0.2s linear;
+}
+.dark_mood_children {
+	background-color: $dark_mood_children;
+	transition: all 0.2s linear;
+}
+.dark_mood_popup {
+	background-color: #0a2647dc;
+	border: 1px solid $navy_3;
+	transition: all 0.2s linear;
+}
+.light_mood_main {
+	background-color: $body;
+	transition: all 0.2s linear;
+}
+.light_mood_secondary {
+	background-color: $white;
+	transition: all 0.2s linear;
 }

@@ -64,19 +64,20 @@
 	}
 }
 
-// .typography__variant_widgetTitle {
-// 	font-size: 0.9rem;
-// 	font-weight: 600;
-// 	letter-spacing: 0.5px;
-// 	@include screens-lg {
-// 		font-size: 1.2rem;
-// 	}
-// }
-.typography__variant_widgetTitle {
+.typography__variant_smBold700 {
 	font-size: 1rem;
+	font-weight: 700;
+	letter-spacing: 0.5px;
+	color: $navy_main;
+}
+.typography__variant_widgetTitle {
+	font-size: 0.9rem;
 	font-weight: 600;
 	letter-spacing: 0.5px;
 	@include flex-row-center;
+	@include screens-2xl {
+		font-size: 1rem;
+	}
 }
 
 .typography__variant_widgetCount {
@@ -142,4 +143,7 @@
 }
 .typography__color_green {
 	color: $green;
+}
+.typography__color_dark_gray {
+	color: $dark_gray;
 }

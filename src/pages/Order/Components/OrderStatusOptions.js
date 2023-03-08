@@ -5,6 +5,7 @@ import { v4 } from 'uuid';
 import { useParams } from "react-router-dom";
 import Button from '../../../components/common/Button/Button';
 import toast from 'react-hot-toast';
+import styles from "../styles/OrderStatusOptions.module.scss";
 
 const status = [
    { name: "PENDING", _id: v4() },
@@ -12,7 +13,7 @@ const status = [
    { name: "DELIVERED", _id: v4() },
    { name: "CANCELED", _id: v4() }
 ]
-const OrderStatus = ({ setStateUpdated }) => {
+const OrderStatusOptions = ({ setStateUpdated }) => {
    const [selectedStatus, setSelectedStatus] = useState("");
    const [error, setError] = useState(null);
    const { id } = useParams();
@@ -21,15 +22,15 @@ const OrderStatus = ({ setStateUpdated }) => {
    }
    const getResponseData = (data) => {
       if (data?.success) {
-         //If Status update successfull then setStateUpdated() will run and state value will be changed from null to random number so that useEffect hook run angin with every click and send request to server and get latest data.  
-         setStateUpdated(Math.random() * 10)
+         //If Status update successfull then setStateUpdated() will run and state value will be changed from false to true so that useEffect hook run angin with every click and send request to server and get latest data.  
+         setStateUpdated(true)
          setError(null)
          toast.success("Order Status Updated");
          setSelectedStatus("")
       }
    }
    const [getStatusFromId] = status.filter(sts => sts._id === selectedStatus);
-   console.log(getStatusFromId)
+
    const { sendRequest } = useHttpHook()
 
    const postStatusData = () => {
@@ -48,10 +49,9 @@ const OrderStatus = ({ setStateUpdated }) => {
 
    }
    return (
-      <div style={{ width: "25%" }}>
+      <div className={styles.options_wrapper}>
          <SelectOptions
             value={selectedStatus}
-            error={error}
             options={status}
             errorMessage={error}
             onChange={optionChangeHandler}
@@ -66,4 +66,4 @@ const OrderStatus = ({ setStateUpdated }) => {
    )
 }
 
-export default OrderStatus;
+export default OrderStatusOptions;

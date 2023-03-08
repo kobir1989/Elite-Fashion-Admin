@@ -18,7 +18,6 @@ const CreateCategoryPage = ({ id, updateCategory, updateImage }) => {
    const { dispatch } = useContext(Context)
 
    const getResponseData = (data) => {
-      console.log(data)
       if (data?.success) {
          toast.success(id ? "Category Updated" : "New Category added");
          setCategoryValue({
@@ -26,7 +25,7 @@ const CreateCategoryPage = ({ id, updateCategory, updateImage }) => {
          });
          setImage("")
          setImageUrl("")
-         dispatch(updateState(4));
+         dispatch(updateState(true));
       }
    }
    const { sendRequest, error, loading } = useHttpHook()
@@ -44,6 +43,11 @@ const CreateCategoryPage = ({ id, updateCategory, updateImage }) => {
       setImageUrl(URL.createObjectURL(acceptedFiles[0]))
    }, []);
 
+   //Remove File handler 
+   const removeFileHandler = () => {
+      setImageUrl("")
+      setImage("")
+   }
    //Form Submit Handler
    const categorySubmitHandler = (e) => {
       e.preventDefault()
@@ -77,6 +81,7 @@ const CreateCategoryPage = ({ id, updateCategory, updateImage }) => {
             changeHandler={changeHandler}
             imageUrl={imageUrl}
             submitHandler={categorySubmitHandler}
+            removeFileHandler={removeFileHandler}
          />
       </PageLayout>
    )

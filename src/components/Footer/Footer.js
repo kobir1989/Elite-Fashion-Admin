@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from "./styles/Footer.module.scss";
 import Typography from '../common/Typography/Typography';
 import Icons from '../common/Icons/Icons';
 import { Link } from "react-router-dom";
+import { Context } from "../../store/Context";
 
 const Footer = () => {
+   const { state } = useContext(Context);
+   const { darkMood } = state;
    return (
-      <footer>
+      <footer className={darkMood ? "dark_mood_secondary" : "light_mood_secondary"}>
          <div className={styles.footer_content_wrapper}>
             <Typography variant={"small"}>&copy; 2023 Kabir Hossain | All Rights Reserved. </Typography>
             <div className={styles.footer_icons_wrapper}>

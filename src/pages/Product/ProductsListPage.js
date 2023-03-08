@@ -28,6 +28,7 @@ const ProductsListPage = () => {
                   columns={productColumns}
                   rowHeight={70}
                   page={7}
+                  viewUrl={"/product/single"}
                   editUrl={"/product/edit"}
                   deleteUrl={"/product/delete"}
                />

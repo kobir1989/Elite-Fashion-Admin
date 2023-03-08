@@ -4,10 +4,15 @@
 .navbar {
 	@include flex-row-space-between;
 	align-items: center;
-	padding: 0.5rem 2rem;
-	background-color: $white;
+	padding: 0.5rem 1rem;
+	// background-color: $white;
 	width: 100%;
 	@include box-shadow-sm;
+	.menue_btn {
+		@include screens-xl {
+			display: none;
+		}
+	}
 	.website_link {
 		display: none;
 		@include screens-md {
@@ -20,25 +25,20 @@
 	.nav_buttons_wrapper {
 		@include flex-row-center;
 		gap: 1.3rem;
-		img {
-			filter: brightness(90%);
-		}
 		.avater_wrapper {
 			position: relative;
 		}
-		.dropdown_Wrapper {
+		.dropdown_wrapper {
 			@include flex-col;
+			backdrop-filter: blur(5px);
 			position: absolute;
 			right: 3%;
-			top: 3.4rem;
+			top: 3.9rem;
 			width: 12rem;
-			background-color: $white;
 			@include box-shadow-lg;
 			padding: 1.5rem;
 			border-radius: 4px;
 			gap: 0.8rem;
-			transform: scale(1);
-			animation: popup 0.1s linear;
 			z-index: 20;
 			button {
 				padding: 0;
@@ -60,10 +60,15 @@
 					letter-spacing: 0.5px;
 					font-weight: 500;
 					padding: 0.4rem 0.8rem;
+					p {
+						transition: all 0.2s linear;
+					}
 					&:hover {
-						background-color: $body;
-						border-radius: 4px;
-						// color: $blue;
+						p {
+							color: $blue;
+							transition: all 0.2s linear;
+							transform: translateX(2px);
+						}
 					}
 				}
 			}
@@ -83,16 +88,15 @@
 			}
 			.notification_dropdown_wrapper {
 				@include box-shadow-lg;
+				backdrop-filter: blur(5px);
 				position: absolute;
 				right: 0.5rem;
-				top: 2.8rem;
+				top: 3.5rem;
 				width: 16rem;
-				background-color: $white;
 				padding-bottom: 1.2rem;
 				border-radius: 4px;
 
 				h6 {
-					color: $navy_3;
 					border-bottom: 2px solid $navy_3;
 					padding: 0.3rem 0.5rem;
 				}
@@ -116,15 +120,5 @@
 				}
 			}
 		}
-	}
-}
-
-@keyframes popup {
-	0% {
-		transform: scale(0);
-		opacity: 0;
-	}
-	100% {
-		transform: scale(1);
 	}
 }

@@ -1,14 +1,9 @@
-@import "../../../scss/scss-utils/color";
-@import "../../../scss/scss-utils/mixins";
+@import "../../../../scss/scss-utils/color";
+@import "../../../../scss/scss-utils/mixins";
 
-.header_section {
-	text-align: center;
-	padding: 1rem 0;
-	background-color: $white;
-}
 .main_section {
 	@include flex-col-center;
-	margin-top: 5rem;
+	width: 100%;
 	.login_from_wrapper {
 		width: 95%;
 		position: relative;
@@ -21,7 +16,7 @@
 		background-color: $white;
 		gap: 1rem;
 		@include screens-md {
-			width: 35%;
+			width: 28rem;
 		}
 		.loading {
 			position: absolute;
@@ -31,7 +26,6 @@
 		}
 		.logo_wrapper {
 			width: 14rem;
-			// height: 2.5rem;
 			margin: 1rem 0 2rem 0;
 			@include flex-col-center;
 			gap: 1rem;

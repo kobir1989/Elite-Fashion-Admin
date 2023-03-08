@@ -21,11 +21,11 @@ const UserListPage = () => {
             <PageTitle title={"User List"} showBtn={false} />
             <div>
                <MuiDataGrid
-                  isOrder={true}
                   loading={loading}
                   error={hasError}
                   rows={users}
                   rowHeight={100}
+                  hideAction={true}
                   columns={userColumns} />
             </div>
          </div>

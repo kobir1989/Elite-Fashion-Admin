@@ -3,9 +3,6 @@ import PageLayout from "../../layouts/PageLayout";
 import MuiDateGrid from "../../components/dataGrid/MuiDataGrid";
 import { categoryColumns } from "../../components/dataGrid/dataGridColumns/categoryColumns";
 import styles from "./styles/CategoryListPage.module.scss";
-import Typography from '../../components/common/Typography/Typography';
-import Button from '../../components/common/Button/Button';
-import { Link } from 'react-router-dom';
 import { Context } from "../../store/Context";
 import PageTitle from '../../components/common/PageTitle/PageTitle';
 const CategoryListPage = () => {

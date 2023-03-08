@@ -31,7 +31,7 @@ const Form = (
 ) => {
    const [subCategories, setSubCategories] = useState([])
    const { state } = useContext(Context);
-   const { category } = state;
+   const { category, darkMood } = state;
 
    //Fetching sub-category data based on Category id, exmp: if user select Men category all the sub-category related to Men category will be fetched. 
    const getRelatedSubCtg = (data) => {
@@ -132,11 +132,10 @@ const Form = (
                   }
                </div>
                {/* Options End*/}
-
                {isProduct &&
                   <>
                      {/* Description section start*/}
-                     <div className={styles.description_wrapper}>
+                     <div className={darkMood ? `${styles.description_wrapper} ${styles.dark_mood}` : `${styles.description_wrapper} ${styles.light_mood}`}>
                         <textarea
                            className={hasError?.description || hasError?.all ? `${styles.errorTextarea}` : ""}
                            rows={6}

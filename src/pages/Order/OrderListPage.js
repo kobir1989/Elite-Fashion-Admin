@@ -9,7 +9,6 @@ import PageTitle from "../../components/common/PageTitle/PageTitle";
 const OrderListPage = () => {
    const [orderData, setOrderData] = useState([]);
    const getOrderData = (data) => {
-      console.log(data)
       setOrderData(data?.order)
    }
    const { sendRequest, hasError, loading } = useHttpHook()
@@ -30,6 +29,7 @@ const OrderListPage = () => {
                   page={5}
                   error={hasError}
                   loading={loading}
+                  viewUrl={"/order-details"}
                />
             </div>
          </div>

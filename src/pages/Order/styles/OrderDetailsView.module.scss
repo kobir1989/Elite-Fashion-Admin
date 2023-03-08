@@ -11,7 +11,6 @@
 	.product_details_wrapper {
 		position: relative;
 		width: 100%;
-		background-color: $white;
 		padding: 2rem;
 		border-radius: 8px;
 		@include box-shadow-sm;
@@ -24,36 +23,57 @@
 			width: 100%;
 		}
 		.id_date {
-			@include flex-row-space-between;
+			@include flex-col;
+			gap: 1rem;
+			@include screens-sm {
+				@include flex-row-space-between;
+			}
 		}
 		.product_row_wrapper {
 			width: 100%;
 			@include flex-col;
 			gap: 1.8rem;
 			.product_row {
-				@include flex-row-space-between;
+				@include flex-row;
+				gap: 2rem;
 				align-items: center;
 				border: 1px solid $off_white;
 				padding: 0.5rem 1rem;
 				border-radius: 6px;
+				// @include screens-sm {
+				// 	@include flex-row-space-between;
+				// }
 				img {
 					width: 6rem;
 					height: 6rem;
 					border-radius: 6px;
 					border: 1px solid $body;
 				}
+				.product_description {
+					@include flex-col;
+					width: 100%;
+					gap: 1rem;
+					@include screens-md {
+						@include flex-row-space-between;
+					}
+					h2 {
+						min-width: 8rem;
+					}
+				}
 			}
 		}
 	}
 	.shipping_and_amount_wrapper {
 		width: 100%;
-		@include flex-row-space-between;
+		@include flex-col;
 		margin-top: 2rem;
 		gap: 2rem;
+		@include screens-md {
+			@include flex-row-space-between;
+		}
 		.shipping_wrapper,
 		.amount_wrapper {
 			width: 100%;
-			background-color: $white;
 			border-radius: 6px;
 			padding: 2rem;
 			@include box-shadow-sm;

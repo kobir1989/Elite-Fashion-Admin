@@ -8,13 +8,14 @@
 	height: 100%;
 	padding: 1.5rem;
 	border-radius: 8px;
-	background-color: $white;
 	@include flex-row-space-between;
 	align-items: center;
 	gap: 2rem;
 	.widget_contents {
 		@include flex-col;
 		gap: 1rem;
+		z-index: 1;
+		width: 60%;
 	}
 	.widget_img {
 		position: absolute;
@@ -24,6 +25,7 @@
 		img {
 			width: 100%;
 			height: 100%;
+			opacity: 0.8;
 		}
 	}
 	p {

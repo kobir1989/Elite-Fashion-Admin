@@ -17,21 +17,6 @@ import {
 } from '@mui/x-data-grid';
 import styles from "./styles/DataGrid.module.scss";
 
-function CustomPagination() {
-   const apiRef = useGridApiContext();
-   const page = useGridSelector(apiRef, gridPageSelector);
-   const pageCount = useGridSelector(apiRef, gridPageCountSelector);
-
-   return (
-      <Pagination
-         color="primary"
-         count={pageCount}
-         page={page + 1}
-         sx={{ marginTop: "1.5rem" }}
-         onChange={(event, value) => apiRef.current.setPage(value - 1)}
-      />
-   );
-}
 const MuiDataGrid = (
    {
       rowHeight = 49,
@@ -44,19 +29,58 @@ const MuiDataGrid = (
       editUrl,
       deleteUrl,
       isOrder = false,
+      hideAction = false,
+      viewUrl
    }
 ) => {
    const [selectedProduct, setSelectedProduct] = useState(null)
    const navigate = useNavigate()
    const { sendRequest, loading: isLoading } = useHttpHook();
-   const { dispatch } = useContext(Context);
+   const { state, dispatch } = useContext(Context);
+   const { darkMood } = state;
 
+   function CustomPagination() {
+      const apiRef = useGridApiContext();
+      const page = useGridSelector(apiRef, gridPageSelector);
+      const pageCount = useGridSelector(apiRef, gridPageCountSelector);
+
+      return (
+         <Pagination
+            color="primary"
+            count={pageCount}
+            page={page + 1}
+            sx={
+               {
+                  marginTop: "1.5rem",
+                  "& .Mui-disabled": {
+                     color: darkMood ? "#7d879c" : "#b5b5b5"
+                  },
+                  "& .MuiButtonBase-root": {
+                     color: darkMood ? "#e5e5e5" : "#3b3841"
+                  },
+                  "& .Mui-selected": {
+                     color: "#FFF",
+                     fontWeight: 700,
+                     fontSize: "1rem"
+                  }
+               }
+            }
+            onChange={(event, value) => apiRef.current.setPage(value - 1)}
+         />
+      );
+   }
+   function SortedDescendingIcon() {
+      return <Icons name={"downArrow"} color={darkMood ? "#FFF" : "#7d879c"} />;
+   }
+
+   function SortedAscendingIcon() {
+      return <Icons name={"upArrow"} color={darkMood ? "#FFF" : "#7d879c"} />;
+   }
    //View Handler 
    const viewHandler = (rowData) => {
       dispatch(getSelectedOrder(rowData?.row))
       console.log(rowData?.row, "ROW");
-      navigate(`/order-details/${rowData?.id}`)
-
+      navigate(`${viewUrl}/${rowData?.id}`)
    }
 
    //Edit Handler
@@ -72,7 +96,7 @@ const MuiDataGrid = (
    //Get delete response data 
    const getResponseData = (data) => {
       if (data?.success) {
-         dispatch(updateState(0))
+         dispatch(updateState(true))
          toast.success(deleteUrl === "/product/delete" ? "Product Deleted" : "Collection Deleted");
 
       };
@@ -96,7 +120,7 @@ const MuiDataGrid = (
 
    const actionColumn = [
       {
-         field: "action", headerName: "Actions", headerAlign: "center", sortable: false, filterable: false, align: "center", flex: 1, width: isOrder ? 100 : 220, renderCell: (row) => {
+         field: "action", headerName: "Actions", headerAlign: "center", sortable: false, filterable: false, align: "center", width: isOrder ? 100 : 220, renderCell: (row) => {
             return (
                <div className={"data-grid-flex-col"}>
                   {isOrder ?
@@ -106,7 +130,8 @@ const MuiDataGrid = (
                      </Button>
                      :
                      <>
-                        <Button variant={"icon-btn-normal"}>
+                        <Button variant={"icon-btn-normal"}
+                           onClick={() => { viewHandler(row) }}>
                            <Icons name={"viewOn"} color={"#7d879c"} />
                         </Button>
                         <Button
@@ -127,10 +152,10 @@ const MuiDataGrid = (
       },
    ]
    return (
-      <div className={`${styles.data_grid_wrapper} ${styles[`shadow-${shadow}`]}`}>
+      <div className={darkMood ? `${styles.data_grid_wrapper} ${styles[`shadow-${shadow}`]} ${"dark_mood_children"}` : `${styles.data_grid_wrapper} ${styles[`shadow-${shadow}`]} ${"light_mood_secondary"}`}>
          {selectedProduct &&
             <div className={styles.confirm_popup_wrapper}>
-               <div className={styles.confirm_inner_wrapper}>
+               <div className={darkMood ? `${styles.confirm_inner_wrapper} ${styles[`shadow-${shadow}`]} ${"dark_mood_popup"}` : `${styles.confirm_inner_wrapper} ${styles[`shadow-${shadow}`]} ${"light_mood_secondary"}`}>
                   <Typography variant={"small"} color={"red"}>
                      <Icons size={"2rem"} name={"warning"} />
                      Are you sure you want to delete this Product?
@@ -157,52 +182,47 @@ const MuiDataGrid = (
             rowHeight={rowHeight}
             rows={rows}
             getRowId={(row) => row._id || row.id}
-            columns={columns.concat(actionColumn)}
+            columns={!hideAction ? columns.concat(actionColumn) : columns}
             error={error}
             loading={loading}
-            style={{
-               container: {
-                  display: 'flex',
-                  justifyContent: 'center',
-               },
-            }}
             sx={{
-               '& .MuiDataGrid-renderingZone, .MuiDataGrid-root .MuiDataGrid-row': {
-                  width: "100 % !important"
-               },
-               '.MuiDataGrid-columnSeparator': {
+               '& .MuiDataGrid-columnSeparator': {
                   display: 'none',
-
                },
                '&.MuiDataGrid-root': {
                   border: 'none',
+                  width: "100%",
                },
                "& .MuiDataGrid-columnHeaders": {
-                  backgroundColor: "#F3F5F9",
-                  color: "#2b3445",
+                  backgroundColor: darkMood ? "#144272" : "#F3F5F9",
+                  color: darkMood ? "#FFF" : "#2b3445",
                   fontSize: 16
                },
                '&.MuiDataGrid-footerContainer': {
                   width: "2rem"
                },
-               '.MuiDataGrid-iconButtonContainer': {
+               '& .MuiDataGrid-iconButtonContainer': {
                   visibility: 'visible',
                },
-               '.MuiDataGrid-sortIcon': {
+               '& .MuiDataGrid-sortIcon': {
                   opacity: 'inherit !important',
                },
+               "& .MuiDataGrid-virtualScroller": {
+                  justifyContent: "space-between",
+               }
             }}
             pageSize={page}
             rowsPerPageOptions={[page]}
             components={{
                Pagination: CustomPagination,
+               ColumnSortedDescendingIcon: SortedDescendingIcon,
+               ColumnSortedAscendingIcon: SortedAscendingIcon,
             }}
             // hideFooter={true}
             hideFooterSelectedRowCount
             autoHeight
          />
       </div>
-
    )
 }
 
