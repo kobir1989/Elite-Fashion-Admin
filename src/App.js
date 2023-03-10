@@ -24,6 +24,8 @@ import AdminProfile from "./pages/AdminProfile/AdminProfile";
 import UpdateAdminProfile from "./pages/AdminProfile/UpdateAdminProfile";
 import { updateState } from "./store/Action";
 import Earnings from "./pages/Earnings/Earnings";
+import ReviewsListPage from "./pages/Reviews/ReviewsListPage";
+import ReviewDetailsPage from "./pages/Reviews/ReviewDetailsPage";
 const App = () => {
   const { state, dispatch } = useContext(Context);
   const { isUpdated } = state;
@@ -65,6 +67,8 @@ const App = () => {
         <Route path="/admin/profile" element={<AdminProfile />} />
         <Route path="/admin/profile/update" element={<UpdateAdminProfile />} />
         <Route path="/analytics/earning" element={<Earnings />} />
+        <Route path="/reviews/list" element={<ReviewsListPage />} />
+        <Route path="/review/details/:reviewId" element={<ReviewDetailsPage />} />
       </Route>
       <Route path="/forget-password" element={<ForgetPassword />} />
       <Route path='*' element={<Navigate to='/' replace />} />

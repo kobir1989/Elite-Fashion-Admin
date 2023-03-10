@@ -205,11 +205,13 @@ const Sidebar = () => {
                      Earnings
                   </li>
                </NavLink>
+               <NavLink to={"/reviews/list"} className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
+                  <li>
+                     <Icons name={"review"} />
+                     Reviews
+                  </li>
+               </NavLink>
 
-               <li>
-                  <Icons name={"review"} />
-                  Reviews
-               </li>
                <li>
                   <Typography variant={"small"} color={"light-gray"}>
                      ADMINISTRATION

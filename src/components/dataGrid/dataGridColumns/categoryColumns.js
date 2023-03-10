@@ -4,7 +4,7 @@ export const categoryColumns = [
    {
       field: "id", headerName: "Category Id", minWidth: 300, renderCell: (params) => {
          return (
-            <Typography variant={"body"} color={"primary"}>
+            <Typography variant={"body"} color={"paragraph"}>
                ID: {params?.row?._id}
             </Typography>
          )
