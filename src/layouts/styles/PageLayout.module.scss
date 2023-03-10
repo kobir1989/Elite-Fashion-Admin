@@ -10,11 +10,12 @@
 }
 .page_content_wrapper {
 	width: 100%;
+	position: relative;
 	@include flex-col-center;
 	overflow-y: scroll;
 	.main_layout_wrapper {
 		width: 95%;
-		margin-top: 2rem;
+		margin: 2rem 0 4rem 0;
 		@include flex-col-center;
 		@include screens-3xl {
 			width: 80%;

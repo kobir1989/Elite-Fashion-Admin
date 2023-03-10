@@ -13,7 +13,7 @@ export const userColumns = [
             <div className="data-grid-flex-col">
                <Avatar alt="Remy Sharp" src="/assets/user.png"
                   sx={{ width: 56, height: 56 }} />
-               <Typography variant={"dataGridTitle"} color={"paragraph"}>
+               <Typography variant={"dataGridTitle"} color={"blue"}>
                   {params?.row?.name}
                </Typography>
             </div>
@@ -27,7 +27,7 @@ export const userColumns = [
       align: "left",
       width: 200,
       renderCell: (params) => {
-         return <Typography variant={"dataGridTitle"} color={"paragraph"}>
+         return <Typography variant={"dataGridTitle"} color={"blue"}>
             {params?.row?.email}
          </Typography>;
       },
@@ -41,7 +41,7 @@ export const userColumns = [
       renderCell: (params) => {
          return (
             <div className="with__bg gray_bg">
-               <Typography variant={"dataGridTitle"} color={"paragraph"}>
+               <Typography variant={"dataGridTitle"} color={"blue"}>
                   {params?.row?.phoneNumber || "None"}
                </Typography>
             </div>
@@ -57,10 +57,10 @@ export const userColumns = [
       renderCell: (params) => {
          return (
             <div className="row_address__wrapper">
-               <Typography variant={"small"} color={"paragraph"}>
+               <Typography variant={"small"} color={"blue"}>
                   City: {params?.row?.city || "None"}
                </Typography>
-               <Typography variant={"small"} color={"paragraph"}>
+               <Typography variant={"small"} color={"blue"}>
                   Shipping Address: {params?.row?.shippingAddress || "None"}
                </Typography>
             </div>
@@ -76,7 +76,7 @@ export const userColumns = [
       renderCell: (params) => {
          return (
             <div className="with__bg gray_bg">
-               <Typography variant={"dataGridTitle"} color={"paragraph"}>
+               <Typography variant={"dataGridTitle"} color={"blue"}>
                   {params?.row?.purchases.length}
                </Typography>
             </div>

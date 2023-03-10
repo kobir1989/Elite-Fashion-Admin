@@ -4,7 +4,7 @@
 .main_section {
 	@include flex-col-center;
 	width: 100%;
-	.login_from_wrapper {
+	.login_form_wrapper {
 		width: 95%;
 		position: relative;
 		overflow: hidden;
@@ -13,7 +13,6 @@
 		@include box-shadow-sm;
 		border-radius: 4px;
 		padding: 2rem;
-		background-color: $white;
 		gap: 1rem;
 		@include screens-md {
 			width: 28rem;
@@ -58,9 +57,4 @@
 			}
 		}
 	}
-}
-.footer {
-	width: 100%;
-	position: absolute;
-	bottom: 0;
 }

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Typography from '../../../../components/common/Typography/Typography';
 import Button from '../../../../components/common/Button/Button';
 import { LinearProgress } from '@mui/material';
 import styles from "../styles/ForgetPasswordForm.module.scss";
 import Input from '../../../../components/common/Input/Input';
+import { Context } from '../../../../store/Context';
 
 const ForgetPasswordForm = (
    {
@@ -14,8 +15,10 @@ const ForgetPasswordForm = (
       onChangeHandler
    }
 ) => {
+   const { state } = useContext(Context);
+   const { darkMood } = state;
    return (
-      <div className={styles.form_wrappre}>
+      <div className={darkMood ? `${styles.form_wrappre} ${"dark_mood_secondary"}` : `${styles.form_wrappre} ${"light_mood_secondary"}`}>
          <div className={styles.loading_progress}>
             {loading &&
                <LinearProgress
@@ -25,9 +28,9 @@ const ForgetPasswordForm = (
                   }} />
             }
          </div>
-         <Typography variant={"h4"}>Forgot your password?</Typography>
+         <Typography variant={"h4"} color={darkMood ? "paragraph" : "primary"}>Forgot your password?</Typography>
          <form onSubmit={onSubmitHandler}>
-            <Typography variant={"small"} color={"paragraph"}>
+            <Typography variant={"small"} color={darkMood ? "paragraph" : "primary"}>
                Enter your email address below to reset your password
             </Typography>
             <div className={styles.input_wraper}>
@@ -43,7 +46,7 @@ const ForgetPasswordForm = (
                   errorMessage={error ? error.message : ""}
                />
             </div>
-            <Button type={"submit"} variant={"primary"}>
+            <Button type={"submit"} variant={darkMood ? "blue_btn" : "primary"}>
                Submit
             </Button>
          </form>

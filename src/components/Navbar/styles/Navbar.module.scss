@@ -90,11 +90,14 @@
 				@include box-shadow-lg;
 				backdrop-filter: blur(5px);
 				position: absolute;
-				right: 0.5rem;
+				right: -6rem;
 				top: 3.5rem;
 				width: 16rem;
 				padding-bottom: 1.2rem;
 				border-radius: 4px;
+				@include screens-xs {
+					right: 0.5rem;
+				}
 
 				h6 {
 					border-bottom: 2px solid $navy_3;

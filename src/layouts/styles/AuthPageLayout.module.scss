@@ -5,13 +5,9 @@
 	justify-content: center;
 	width: 100%;
 	height: 4rem;
-	background-color: $white;
 }
 .main_layout_wrapper {
-	min-height: 70vh;
+	min-height: 83vh;
 	@include flex-col-center;
 	justify-content: center;
-	@include screens-md {
-		min-height: 76vh;
-	}
 }

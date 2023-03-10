@@ -53,17 +53,17 @@ const PageLayout = ({ children }) => {
             {toggleSidebar &&
                <>
                   <motion.div
-                     initial={{ opacity: 0, transition: { duration: 0.2 } }} animate={{ opacity: 1, }}
-                     exit={{ opacity: 0, transition: { duration: 0.2 } }}
-                     transition={{ default: { ease: "linear" } }}
+                     initial={{ opacity: 0, transition: { duration: 0.1 } }} animate={{ opacity: 1, }}
+                     exit={{ opacity: 0, transition: { duration: 0.2, ease: "easeInOut" } }}
+                     transition={{ default: { ease: "easeInOut" } }}
                      className={styles.backdrop}
                      onClick={handleBackdropClick}>
                   </motion.div>
                   <motion.div
-                     initial={{ x: window.innerWidth > 1280 ? "0%" : "-100%", transition: { duration: 0.2 } }}
+                     initial={{ x: window.innerWidth > 1280 ? "0%" : "-100%", transition: { duration: 0.2, ease: "easeInOut" } }}
                      animate={{ x: 0 }}
                      exit={{ x: window.innerWidth > 1280 ? "0%" : "-100%", transition: { duration: 0.2 } }}
-                     transition={{ default: { ease: "linear" } }}
+                     transition={{ default: { ease: "easeInOut" } }}
                      className={darkMood ? `${styles.sidebar_wrapper} ${"dark_mood_main"}` : `${styles.sidebar_wrapper} ${styles.navy_background}`}>
                      <Sidebar />
                   </motion.div>
@@ -78,7 +78,6 @@ const PageLayout = ({ children }) => {
          <div
             className={styles.page_content_wrapper}>
             <Navbar setToggleSidebar={setToggleSidebar} />
-
             <motion.div
                initial={{ opacity: 0, transition: { duration: 0.2 } }}
                animate={{ opacity: 1, }}

@@ -5,7 +5,6 @@ import Icons from '../../../components/common/Icons/Icons';
 import Typography from '../../../components/common/Typography/Typography';
 import Button from '../../../components/common/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import Footer from '../../../components/Footer/Footer';
 import { useHttpHook } from "../../../hooks/useHttpHook";
 import LinearProgress from '@mui/material/LinearProgress';
 import { toast } from 'react-hot-toast';
@@ -19,13 +18,15 @@ const LoginPage = () => {
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
    const navigate = useNavigate()
-   const { dispatch } = useContext(Context)
+   const { dispatch, state } = useContext(Context);
+   const { darkMood } = state;
    const getResponseData = (payload) => {
       const { userPayload, token } = payload;
       dispatch(getAuthToken({ userPayload, token }));
       if (payload.token) {
          navigate("/");
-         toast.success(`Welcome Back! Mr.${payload?.userPayload?.name}`)
+         toast.dismiss()
+         toast.success(`Welcome Back! ${payload?.userPayload?.name}`)
       }
    };
 
@@ -64,14 +65,14 @@ const LoginPage = () => {
    return (
       <AuthPageLayout>
          <section className={styles.main_section}>
-            <div className={styles.login_from_wrapper}>
+            <div className={darkMood ? `${styles.login_form_wrapper} ${"dark_mood_secondary"}` : `${styles.login_form_wrapper} ${"light_mood_secondary"}`}>
                <div className={styles.loading}>
                   {loading && <LinearProgress />}
 
                </div>
                <div className={styles.logo_wrapper}>
-                  <img src="/assets/logo.png" alt="logo.png" />
-                  <Typography color={"primary"} variant={"subtitle"}>
+                  <img src={darkMood ? "/assets/logo-white.png" : "/assets/logo.png"} alt="logo.png" />
+                  <Typography color={darkMood ? "paragraph" : "primary"} variant={"subtitle"}>
                      ADMIN LOGIN
                   </Typography>
                </div>
@@ -95,12 +96,12 @@ const LoginPage = () => {
                         {showPassword ?
                            <Icons
                               name={"viewOff"}
-                              color={"#727272"}
+                              color={darkMood ? "#3f7fb8" : "#727272"}
                               size={"1.2rem"} />
                            :
                            <Icons
                               name={"viewOn"}
-                              color={"#727272"}
+                              color={darkMood ? "#3f7fb8" : "#727272"}
                               size={"1.2rem"} />
                         }
                      </div>
@@ -116,20 +117,21 @@ const LoginPage = () => {
                         onChange={passwordChangeHandler}
                      />
                   </div>
-                  <Button variant={"primary"} type={"submit"}>
+                  <Button
+                     variant={darkMood ? "blue_btn" : "primary"}
+                     type={"submit"}>
                      <Icons name={"unlock"} />
                      Login
                   </Button>
                </form>
-               <Typography variant={"body"}>
+               <Typography
+                  variant={"body"}
+                  color={darkMood ? "paragraph" : "primary"} >
                   <Link to="/forget-password"> Forget Password?</Link>
                </Typography>
             </div>
          </section>
-         <section className={styles.footer}>
-            <Footer />
-         </section>
-      </AuthPageLayout>
+      </AuthPageLayout >
    )
 }
 

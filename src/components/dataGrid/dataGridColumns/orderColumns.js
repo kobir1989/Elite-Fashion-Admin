@@ -5,7 +5,7 @@ export const orderColumns = [
    {
       field: "id", headerName: "Order Id", width: 250, renderCell: (params) => {
          return (
-            <Typography variant={"small"} color={"paragraph"}>
+            <Typography variant={"small"} color={"blue"}>
                ID: {params?.row?._id}
             </Typography>
          )
@@ -15,7 +15,7 @@ export const orderColumns = [
       field: "phone", headerName: "Customer Phone", headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
          return (
             <div className="with__bg gray_bg">
-               <Typography variant={"dataGridTitle"} color={"paragraph"}>
+               <Typography variant={"dataGridTitle"} color={"blue"}>
                   {params?.row?.phoneNumber}
                </Typography>
             </div>
@@ -27,13 +27,13 @@ export const orderColumns = [
          console.log(params?.row?.row)
          return (
             <div className="row_address__wrapper">
-               <Typography variant={"small"} color={"paragraph"}>
+               <Typography variant={"small"} color={"blue"}>
                   User: {params?.row?.user?.name}
                </Typography>
-               <Typography variant={"small"} color={"paragraph"}>
+               <Typography variant={"small"} color={"blue"}>
                   City: {params?.row?.city}
                </Typography>
-               <Typography variant={"small"} color={"paragraph"}>
+               <Typography variant={"small"} color={"blue"}>
                   Shipping Address: {params?.row?.shippingAddress}
                </Typography>
             </div>
@@ -43,7 +43,7 @@ export const orderColumns = [
    {
       field: "date", headerName: "Order Date", headerAlign: "left", align: "left", width: 200, renderCell: (params) => {
          return (
-            <Typography variant={"small"} color={"paragraph"}>
+            <Typography variant={"small"} color={"blue"}>
                {dayjs(params?.row?.updatedAt).format("MMM D, YYYY h:mm A")}
             </Typography>
          )
@@ -56,7 +56,7 @@ export const orderColumns = [
                params?.row?.orderStatus === "SHIPPED" ? "blue_bg" :
                   params?.row?.orderStatus === "DELIVERED" ? "green_bg" :
                      params?.row?.orderStatus === "CANCELED" ? "red_bg" : ""}`}>
-               <Typography variant={"small"} color={"paragraph"}>
+               <Typography variant={"small"} color={"blue"}>
                   {params?.row?.orderStatus}
                </Typography>
             </div>

@@ -21,7 +21,7 @@ const SubCategoryListPage = () => {
             <PageTitle
                title={"Sub-Category List"}
                linkTo={"/sub-category/create-new"}
-               btnTitle={"Create New Sub-Category"} />
+               btnTitle={"Add Sub-Category"} />
             <div className={styles.sub_category_data_grid_wrapper}>
                <MuiDataGrid
                   columns={subCategoryColumns}

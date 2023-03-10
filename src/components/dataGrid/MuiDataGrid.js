@@ -192,6 +192,7 @@ const MuiDataGrid = (
                '&.MuiDataGrid-root': {
                   border: 'none',
                   width: "100%",
+                  color: "#cc2121"
                },
                "& .MuiDataGrid-columnHeaders": {
                   backgroundColor: darkMood ? "#144272" : "#F3F5F9",

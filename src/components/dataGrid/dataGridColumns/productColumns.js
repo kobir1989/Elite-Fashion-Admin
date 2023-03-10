@@ -7,10 +7,10 @@ export const productColumns = [
             <div className="product_details">
                <img src={params?.row?.image} alt="product.png" />
                <div className="price_and_id">
-                  <Typography variant={"dataGridTitle"} color={"paragraph"}>
+                  <Typography variant={"dataGridTitle"} color={"blue"}>
                      {params?.row?.title}
                   </Typography>
-                  <Typography variant={"dataGridSmall"} color={"paragraph"}>
+                  <Typography variant={"dataGridSmall"} color={"blue"}>
                      ID: {params?.row?._id}
                   </Typography>
                </div>
@@ -21,7 +21,7 @@ export const productColumns = [
    {
       field: "subCategory", headerName: "Category / Sub Category", minWidth: 200, align: "center", headerAlign: "center",
       renderCell: (params) => {
-         return <Typography variant={"dataGridSubTitle"} color={"paragraph"}>
+         return <Typography variant={"dataGridSubTitle"} color={"blue"}>
             {params?.row?.category?.name} / {params?.row?.subCategory?.name}
          </Typography>
       }
@@ -52,7 +52,7 @@ export const productColumns = [
    {
       field: "price", headerName: "Product Cost", minWidth: 200, headerAlign: "center", align: "center", renderCell: (params) => {
          return (
-            <Typography variant={"body"} color={"paragraph"}>
+            <Typography variant={"body"} color={"blue"}>
                &#2547; {params?.row?.price?.toFixed(2)}
             </Typography>
          )
