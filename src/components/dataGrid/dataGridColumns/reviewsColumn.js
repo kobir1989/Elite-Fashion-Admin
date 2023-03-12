@@ -1,17 +1,18 @@
 import Typography from "../../common/Typography/Typography";
+import { Rating } from "@mui/material";
 
 export const reviewsColumns = [
    {
-      field: "user", headerName: "Customer", minWidth: 300, renderCell: (params) => {
+      field: "id", headerName: "Customer", minWidth: 300, renderCell: (params) => {
          return (
-            <div className="product_details">
-               <img src={params?.row?.image} alt="product.png" />
-               <div className="price_and_id">
+            <div className="user_details">
+               <img src={params.row.user.image ? params.row.user.image : "/assets/user.png"} alt="product.png" />
+               <div className="name_and_id">
                   <Typography variant={"dataGridTitle"} color={"blue"}>
-                     {params?.row?.title}
+                     {params?.row?.user?.name}
                   </Typography>
                   <Typography variant={"dataGridSmall"} color={"blue"}>
-                     ID: {params?.row?._id}
+                     ID: {params?.row?.user?._id}
                   </Typography>
                </div>
             </div>
@@ -19,23 +20,42 @@ export const reviewsColumns = [
       }
    },
    {
-      field: "product", headerName: "Product", minWidth: 430, align: "center", headerAlign: "center",
+      field: "product", headerName: "Product", minWidth: 380, align: "start", headerAlign: "start",
       renderCell: (params) => {
-         return <Typography variant={"dataGridSubTitle"} color={"blue"}>
-            {""}
-         </Typography>
+         return (
+            <div className="product_details">
+               <img src={params?.row?.product?.image} alt="product.png" />
+               <Typography variant={"dataGridSubTitle"} color={"blue"}>
+                  {params?.row?.product?.title}
+               </Typography>
+            </div>
+         )
+
       }
    },
    {
-      field: "review", headerName: "Review", align: "center", minWidth: 320, headerAlign: "center", renderCell: (params) => {
-         return <div
-            className={params?.row?.stock <= 0 ? "with__bg red_bg" : "with__bg gray_bg"}>
+      field: "review", headerName: "Review", align: "left", minWidth: 380, headerAlign: "left", renderCell: (params) => {
+         return <div className="review_column">
+            <Rating readOnly size="small" value={parseInt(params?.row?.rating)} />
             <Typography
                variant={"small"}
-               color={params?.row?.stock <= 0 ? "red" : "green"}>
-               {params?.row?.stock}
+               color={"blue"}>
+               {params?.row?.comment}
             </Typography>
          </div>
+      }
+   },
+   {
+      field: "status", headerName: "Status", minWidth: 130, align: "center", headerAlign: "center",
+      renderCell: (params) => {
+         return (
+            <div className="green_bg with__bg">
+               <Typography variant={"dataGridSubTitle"} color={"blue"}>
+                  PUBLISHED
+               </Typography>
+            </div>
+         )
+
       }
    },
 

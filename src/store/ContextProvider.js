@@ -6,7 +6,6 @@ import { Context } from "./Context";
 const ContextProvider = ({ children }) => {
    const [state, dispatch] = useReducer(reducer, initialState);
    const { authToken, darkMood } = state;
-   console.log(darkMood, "DARK")
    // console.log(authToken)
    useEffect(() => {
       localStorage.setItem("admin", JSON.stringify(authToken))
