@@ -113,7 +113,8 @@ ul {
 		text-transform: capitalize;
 	}
 }
-.product_details {
+.product_details,
+.user_details {
 	@include flex-row-center;
 	gap: 0.8rem;
 	width: 100%;
@@ -121,14 +122,27 @@ ul {
 		width: 3.5rem;
 		height: 3.5rem;
 		border-radius: 4px;
+		object-fit: cover;
 	}
-	.price_and_id {
+	.price_and_id,
+	.name_and_id {
 		@include flex-col;
 		align-items: flex-start;
 		gap: 0.5rem;
 		width: 95%;
 	}
 	h2 {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		width: 90%;
+	}
+}
+.review_column {
+	width: 100%;
+	p {
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		width: 90%;

@@ -40,8 +40,8 @@ const Navbar = ({ setToggleSidebar }) => {
          </div>
          <Link to={"https://elite-fashion.vercel.app/"}>
             <div className={styles.website_link}>
-               <Icons name={"earth"} color={"#7d879c"} />
-               <Typography variant={"h5"} color={"paragraph"}>
+               <Icons name={"earth"} color={darkMood ? "#9fa7b6" : "#3b3841"} />
+               <Typography variant={"h5"} color={darkMood ? "paragraph" : "primary"}>
                   Browse Elite Fashion
                </Typography>
             </div>

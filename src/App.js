@@ -24,8 +24,8 @@ import AdminProfile from "./pages/AdminProfile/AdminProfile";
 import UpdateAdminProfile from "./pages/AdminProfile/UpdateAdminProfile";
 import { updateState } from "./store/Action";
 import Earnings from "./pages/Earnings/Earnings";
-import ReviewsListPage from "./pages/Reviews/ReviewsListPage";
-import ReviewDetailsPage from "./pages/Reviews/ReviewDetailsPage";
+import ReviewsListPage from "./pages/Reviews/ReviewListPage/ReviewsListPage";
+import ReviewDetailsPage from "./pages/Reviews/ReviewDetailsPage/ReviewDetailsPage";
 const App = () => {
   const { state, dispatch } = useContext(Context);
   const { isUpdated } = state;
