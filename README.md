@@ -6,11 +6,14 @@
 
 ### The Elite-Fashion Admin Dashboard offers a range of features to streamline management tasks. These include:
 
-- Product Management: Admins can easily manage their product inventory by adding, editing, and deleting products. They can also view all products and filter them by category and sub-category. CRUD operations are available for both categories and sub-categories. Moreover, the dashboard now offers a dark mode feature for better visibility in low-light environments.
-- Order Management: Admins can view all orders and mark them as fulfilled or cancelled, and they can view the details of each order. Additionally, an admin chat feature has been added, allowing admins to communicate with customers regarding their orders.
-- Customer Management: Admins can view all customers and their orders, as well as filter them by location. In addition, customers can now leave reviews and ratings for products, which admins can view and moderate.
+- Product Management: Admins can easily manage their product inventory by adding, editing, and deleting products. They can also view all products and filter them by category and sub-category.
+-  CRUD operations are available for both categories and sub-categories.
+- Order Management: Admins can view all orders and mark them as fulfilled or cancelled, and they can view the details of each order.
+- Admin chat feature has been added, allowing admins to communicate with customers regarding their orders.
+- Customer Management: Admins can view all customers and their orders, as well as filter them by location. In addition, 
+- Customers can now leave reviews and ratings for products, which admins can view and moderate.
 - Payment Management: Admins can view all payments and filter them by status.
-- Analytics: The Elite-Fashion Admin Dashboard now includes analytics data, including daily sales, weekly sales, monthly sales, and yearly revenue. Admins can view this data in easy-to-read charts and graphs.
+- Analytics: The Elite-Fashion Admin Dashboard includes analytics data, including daily sales, weekly sales, monthly sales, and yearly revenue. Admins can view this data in easy-to-read charts and graphs.
 - The dashboard also offers a dark mode feature for better visibility in low-light environments.
 
 ## Installation
