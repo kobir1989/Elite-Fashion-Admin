@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# Elite-Fashion Admin Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+###  Elite-Fashion store operations through an easy-to-use interface. The app allows admins to manage products, orders, customers, and payments.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+### The Elite-Fashion Admin Dashboard offers a range of features to streamline management tasks. These include:
 
-### `npm start`
+- Product Management: Admins can easily manage their product inventory by adding, editing, and deleting products. They can also view all products and filter them by category and sub-category. CRUD operations are available for both categories and sub-categories. Moreover, the dashboard now offers a dark mode feature for better visibility in low-light environments.
+- Order Management: Admins can view all orders and mark them as fulfilled or cancelled, and they can view the details of each order. Additionally, an admin chat feature has been added, allowing admins to communicate with customers regarding their orders.
+- Customer Management: Admins can view all customers and their orders, as well as filter them by location. In addition, customers can now leave reviews and ratings for products, which admins can view and moderate.
+- Payment Management: Admins can view all payments and filter them by status.
+- Analytics: The Elite-Fashion Admin Dashboard now includes analytics data, including daily sales, weekly sales, monthly sales, and yearly revenue. Admins can view this data in easy-to-read charts and graphs.
+- The dashboard also offers a dark mode feature for better visibility in low-light environments.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### To install and run this project locally, follow these steps:
 
-### `npm test`
+1. Clone the project repository to your local machine.
+2. Open a terminal and navigate to the project directory.
+3. Run `npm install` to install the project dependencies.
+4. Run `npm start` to start the development server and view the project in your browser.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies and External Libraries Used
 
-### `npm run build`
+### The Admin dashboard was developed using the following technologies and external libraries:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React: a JavaScript library for building user interfaces.
+- React Router: a library for handling client-side routing in React applications.
+- Axios: a library for making HTTP requests from the browser.
+- Material-UI (MUI): A front-end framework for building responsive web applications.
+- SCSS: A CSS preprocessor that enhances the capabilities of CSS.
+- jwt-decode: A library for decoding JSON Web Tokens (JWTs).
+- react-dropzone: A simple and flexible React component for file uploads.
+- framer-motion: A library for creating fluid animations in React applications.
+- react-hot-toast: A lightweight toast notification library for React.
+- recharts: A library designed to display analytical data, such as revenue and graphs.
+- react-circular-progressbar:  A library utilized to display circular progress bars within React applications.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Contributing
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Contributions to this project are welcome. To contribute, follow the steps below:
+- Fork the project repository to your own GitHub account.
+- Clone the forked repository to your local machine.
+- Create a new branch for your changes.
+- Make your changes to the project code.
+- Commit your changes and push them to your forked repository.
+- Open a pull request on the original project repository. 
