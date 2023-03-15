@@ -1,5 +1,7 @@
 # Elite-Fashion Admin Dashboard
 
+## Live Demo [Dashboard](https://elite-fashion-admin.vercel.app/)
+
 ###  Elite-Fashion store operations through an easy-to-use interface. The app allows admins to manage products, orders, customers, and payments.
 
 ## Overview
