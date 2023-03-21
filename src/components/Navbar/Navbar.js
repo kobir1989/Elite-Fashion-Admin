@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Typography from "../common/Typography/Typography";
@@ -8,12 +8,21 @@ import Button from "../common/Button/Button";
 import styles from "./styles/Navbar.module.scss";
 import { Context } from "../../store/Context";
 import { logout, setDarkMood, setShowSearchModal } from "../../store/Action";
+import { socket } from "../../socket"
+import { toast } from 'react-hot-toast';
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+// Import the relativeTime plugin
+dayjs.extend(relativeTime);
 
 const Navbar = ({ setToggleSidebar }) => {
    const [showDropdown, setShowDropdown] = useState(false);
    const [showNotification, setShowNotification] = useState(false);
+   const [orderNotification, setOrderNotification] = useState([])
    const { state, dispatch } = useContext(Context);
    const { darkMood, authToken } = state;
+
 
    //Menu Toggle handler for small screens
    const menuToggleHandler = () => {
@@ -31,6 +40,22 @@ const Navbar = ({ setToggleSidebar }) => {
       setShowDropdown(!showDropdown)
       setShowNotification(false)
    }
+
+   useEffect(() => {
+      socket.on("order_created", (data) => {
+         toast.dismiss()
+         toast.success("New Order Received")
+         setOrderNotification([...orderNotification, data])
+      });
+
+      // Disconnect from the Socket.IO server
+      return () => {
+         if (socket.connected) {
+            socket.disconnect();
+         }
+      };
+   }, []);
+
    return (
       <nav className={darkMood ? `${styles.navbar} ${"dark_mood_secondary"}` : `${styles.navbar} ${"light_mood_secondary"}`}>
          <div className={styles.menue_btn} onClick={menuToggleHandler}>
@@ -69,39 +94,37 @@ const Navbar = ({ setToggleSidebar }) => {
                      >
                         <Typography
                            variant={"h6"}
-                           color={darkMood ? "white" : "primary"}>
-                           New (2)
+                           color={"red"}>
+                           New ({orderNotification?.length})
                         </Typography>
-                        <div className={styles.notifications}>
-                           <Icons name={"addOrder"} color={"#2c74b3"} />
-                           <div className={styles.notifications_title}>
-                              <Typography
-                                 variant={"body"}
-                                 color={darkMood ? "white" : "primary"}>
-                                 New Order Received
-                              </Typography>
-                              <Typography
-                                 variant={"small"}
-                                 color={"light-gray"}>
-                                 Just Now
-                              </Typography>
-                           </div>
-                        </div>
-                        <div className={styles.notifications}>
-                           <Icons name={"addOrder"} color={"#2c74b3"} />
-                           <div className={styles.notifications_title}>
-                              <Typography
-                                 variant={"body"}
-                                 color={darkMood ? "white" : "primary"}>
-                                 New Order Received
-                              </Typography>
-                              <Typography
-                                 variant={"small"}
-                                 color={"light-gray"}>
-                                 Just Now
-                              </Typography>
-                           </div>
-                        </div>
+                        {orderNotification && orderNotification?.length ? orderNotification.map((order) => (
+                           <Link
+                              to={`/order-details/${order?._id}`}
+                              key={order?._id}>
+                              <div className={styles.notifications}>
+                                 <Icons name={"addOrder"} color={"#2c74b3"} />
+                                 <div className={styles.notifications_title}>
+                                    <Typography
+                                       variant={"body"}
+                                       color={darkMood ? "white" : "primary"}>
+                                       New Order Received
+                                    </Typography>
+                                    <Typography
+                                       variant={"small"}
+                                       color={"light-gray"}>
+                                       {dayjs(order?.createdAt).fromNow()}
+                                    </Typography>
+                                 </div>
+                              </div>
+                           </Link>
+
+                        )) : <div className={styles.notifications}>
+                           <Typography
+                              variant={"body"}
+                              color={darkMood ? "white" : "primary"}>
+                              No new order!
+                           </Typography>
+                        </div>}
                      </motion.div>
                   )}
                </AnimatePresence>
