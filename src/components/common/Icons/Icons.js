@@ -41,6 +41,8 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import CancelIcon from '@mui/icons-material/Cancel';
 import WarningIcon from '@mui/icons-material/Warning';
+import ChatIcon from '@mui/icons-material/Chat';
+import SendIcon from '@mui/icons-material/Send';
 
 const icons = {
    viewOn: VisibilityIcon,
@@ -84,7 +86,9 @@ const icons = {
    camera: AddAPhotoIcon,
    upload: DriveFolderUploadIcon,
    cancel: CancelIcon,
-   warning: WarningIcon
+   warning: WarningIcon,
+   chatIcon: ChatIcon,
+   send: SendIcon
 }
 const Icons = React.forwardRef((props, ref) => {
    const { name, size, color, ...others } = props;

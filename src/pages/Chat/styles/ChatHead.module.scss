@@ -1,0 +1,51 @@
+@import '../../../scss/scss-utils/color';
+@import '../../../scss/scss-utils/mixins';
+
+.chat_head_wrapper {
+	@include flex-row-center;
+	gap: 0.7rem;
+	box-shadow: rgb(246, 249, 252, 0.1) 0px 48px 100px 0px;
+	background-color: $white;
+	padding: 0.8rem 1rem;
+	border-radius: 8px;
+	transition: all 0.2s ease-in-out;
+	cursor: pointer;
+	.avater {
+		position: relative;
+		width: 4rem;
+		height: 4rem;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			border: 2px solid $white;
+			border-radius: 50%;
+			box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+		}
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0.5rem;
+			right: 0.7rem;
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background-color: rgb(78, 201, 78);
+			z-index: 10;
+		}
+	}
+
+	.last_message_details {
+		@include flex-col;
+		gap: 0.3rem;
+	}
+
+	.message_time {
+		font-size: 0.7rem;
+		color: $light_gray;
+	}
+	&:hover {
+		box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+		transition: all 0.2s ease-in-out;
+	}
+}
