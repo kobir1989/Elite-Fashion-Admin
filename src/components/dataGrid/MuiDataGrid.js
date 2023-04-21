@@ -35,9 +35,12 @@ const MuiDataGrid = (
 ) => {
    const [selectedProduct, setSelectedProduct] = useState(null)
    const navigate = useNavigate()
-   const { sendRequest, loading: isLoading } = useHttpHook();
+   const { sendRequest } = useHttpHook();
    const { state, dispatch } = useContext(Context);
    const { darkMood } = state;
+
+   //Sorting 
+   const sortedRows = rows.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
    //Pagination
    const CustomPagination = () => {
@@ -91,11 +94,12 @@ const MuiDataGrid = (
       if (data?.success) {
          dispatch(updateState(true))
          toast.success(deleteUrl === "/product/delete" ? "Product Deleted" : "Collection Deleted");
-
+         setSelectedProduct(null)
       };
    };
    //Delete Handler
-   const deleteProductHandler = () => {
+
+   const handleDelete = () => {
       if (selectedProduct) {
          sendRequest(
             {
@@ -108,8 +112,16 @@ const MuiDataGrid = (
             getResponseData
          );
       };
-      setSelectedProduct(null)
    };
+
+   const SortedDescendingIcon = () => {
+      return <Icons name={"downArrow"} color={darkMood ? "#FFF" : "#7d879c"} />;
+   }
+
+   const SortedAscendingIcon = () => {
+
+      return <Icons name={"upArrow"} color={darkMood ? "#FFF" : "#7d879c"} />;
+   }
 
    const actionColumn = [
       {
@@ -145,17 +157,7 @@ const MuiDataGrid = (
       },
    ]
 
-   //Sorting 
-   const sortedRows = rows.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-   const SortedDescendingIcon = () => {
-      return <Icons name={"downArrow"} color={darkMood ? "#FFF" : "#7d879c"} />;
-   }
-
-   const SortedAscendingIcon = () => {
-
-      return <Icons name={"upArrow"} color={darkMood ? "#FFF" : "#7d879c"} />;
-   }
 
    return (
       <div className={darkMood ? `${styles.data_grid_wrapper} ${styles[`shadow-${shadow}`]} ${"dark_mood_children"}` : `${styles.data_grid_wrapper} ${styles[`shadow-${shadow}`]} ${"light_mood_secondary"}`}>
@@ -169,7 +171,7 @@ const MuiDataGrid = (
                   <div className={styles.warning_btns}>
                      <Button
                         variant={"blue_btn"}
-                        onClick={deleteProductHandler}>
+                        onClick={handleDelete}>
                         Yes
                      </Button>
                      <Button
@@ -182,7 +184,7 @@ const MuiDataGrid = (
             </div>
          }
          <div className={styles.loading_line}>
-            {loading || isLoading ? <LinearProgress /> : null}
+            {loading ? <LinearProgress /> : null}
          </div>
          <DataGrid
             rowHeight={rowHeight}
@@ -190,7 +192,7 @@ const MuiDataGrid = (
             getRowId={(row) => row._id || row.id}
             columns={!hideAction ? columns.concat(actionColumn) : columns}
             error={error}
-            loading={loading}
+            // loading={loading}
             sx={{
                '& .MuiDataGrid-columnSeparator': {
                   display: 'none',
