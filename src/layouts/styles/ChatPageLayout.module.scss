@@ -1,0 +1,13 @@
+@import '../../scss/scss-utils/mixins';
+
+.chat_page_wrapper {
+	width: 100%;
+	min-height: 100vh;
+	.messages_container_main {
+		@include flex-row-space-between;
+		gap: 2rem;
+		.conversation_list {
+			width: 25%;
+		}
+	}
+}

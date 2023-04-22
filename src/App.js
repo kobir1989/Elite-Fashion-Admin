@@ -26,7 +26,8 @@ import { updateState } from "./store/Action";
 import Earnings from "./pages/Earnings/Earnings";
 import ReviewsListPage from "./pages/Reviews/ReviewListPage/ReviewsListPage";
 import ReviewDetailsPage from "./pages/Reviews/ReviewDetailsPage/ReviewDetailsPage";
-import Chat from './pages/Chat/Chat';
+import ChatPage from './pages/Chat/ChatPage';
+import ChatDetailsPage from './pages/Chat/ChatDetailsPage';
 
 const App = () => {
   const { state, dispatch } = useContext(Context);
@@ -76,7 +77,8 @@ const App = () => {
         <Route path="/analytics/earning" element={<Earnings />} />
         <Route path="/reviews/list" element={<ReviewsListPage />} />
         <Route path="/review/details/:reviewId" element={<ReviewDetailsPage />} />
-        <Route path='/chat' element={<Chat />} />
+        <Route path='/chat' element={<ChatPage />} />
+        <Route path='/chat/details/:userId' element={<ChatDetailsPage />} />
       </Route>
       <Route path="/forget-password" element={<ForgetPassword />} />
       <Route path='*' element={<Navigate to='/' replace />} />
