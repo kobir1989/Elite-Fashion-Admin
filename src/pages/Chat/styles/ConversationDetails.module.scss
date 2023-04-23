@@ -45,6 +45,7 @@
 	width: 94%;
 	form {
 		input {
+			position: relative;
 			width: 100%;
 			padding: 1rem 3.5rem 1rem 1rem;
 			outline: none;
@@ -70,4 +71,22 @@
 }
 .message_list::-webkit-scrollbar {
 	display: none;
+}
+
+.not_found_message {
+	text-align: center;
+}
+.input_error_styles {
+	border: 1px solid #cc2121 !important;
+	&::placeholder {
+		color: #cc2121;
+	}
+}
+.error_message_wrapper {
+	position: absolute;
+	bottom: -1.2rem;
+	left: 1.5rem;
+	p {
+		font-size: 0.7rem;
+	}
 }
