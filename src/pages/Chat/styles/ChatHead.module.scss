@@ -2,18 +2,26 @@
 @import '../../../scss/scss-utils/mixins';
 
 .chat_head_wrapper {
-	@include flex-row-center;
+	@include flex-col-center;
 	gap: 0.7rem;
 	box-shadow: rgb(246, 249, 252, 0.1) 0px 48px 100px 0px;
-	background-color: $white;
 	padding: 0.8rem 1rem;
-	border-radius: 8px;
 	transition: all 0.2s ease-in-out;
 	cursor: pointer;
+	min-width: 8rem;
+	@include screens-md {
+		@include flex-row-center;
+	}
 	.avater {
 		position: relative;
-		width: 4rem;
-		height: 4rem;
+		width: 3rem;
+		height: 3rem;
+
+		border-radius: 50%;
+		@include screens-md {
+			width: 4rem;
+			height: 4rem;
+		}
 		img {
 			width: 100%;
 			height: 100%;
@@ -26,24 +34,61 @@
 			content: '';
 			position: absolute;
 			top: 0.5rem;
-			right: 0.7rem;
+			right: 0;
 			width: 10px;
 			height: 10px;
 			border-radius: 50%;
 			background-color: rgb(78, 201, 78);
 			z-index: 10;
+			@include screens-md {
+				right: 0.3rem;
+			}
 		}
 	}
 
 	.last_message_details {
-		@include flex-col;
+		@include flex-col-center;
+		width: 100%;
 		gap: 0.3rem;
+		h2 {
+			font-size: 0.7rem;
+			text-align: center;
+		}
+		@include screens-md {
+			@include flex-col;
+			width: 80%;
+			align-items: flex-start;
+			h2 {
+				font-size: 0.9rem;
+				text-align: start;
+			}
+		}
+		p {
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: 0.7rem;
+			color: $light_gray;
+		}
 	}
 
 	.message_time {
 		font-size: 0.7rem;
 		color: $light_gray;
 	}
+}
+
+.active {
+	background-color: rgb(230, 243, 248);
+	border-radius: 8px;
+	transition: all 0.2s ease-in-out;
+}
+.unactive {
+	border-radius: 8px;
+	background-color: $white;
+	transition: all 0.2s ease-in-out;
 	&:hover {
 		box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
 		transition: all 0.2s ease-in-out;

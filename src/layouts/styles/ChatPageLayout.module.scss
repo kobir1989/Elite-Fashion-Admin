@@ -2,12 +2,33 @@
 
 .chat_page_wrapper {
 	width: 100%;
-	min-height: 100vh;
 	.messages_container_main {
-		@include flex-row-space-between;
+		@include flex-col;
 		gap: 2rem;
+		@include screens-md {
+			@include flex-row-space-between;
+		}
 		.conversation_list {
-			width: 25%;
+			@include flex-row;
+			gap: 1rem;
+			overflow-x: scroll;
+			@include screens-md {
+				@include flex-col;
+				width: 20rem;
+			}
+			overflow-x: scroll;
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+		}
+		.messages_wrapper {
+			max-height: 75vh;
+			width: 100%;
+			@include screens-md {
+				width: 75%;
+			}
 		}
 	}
+}
+.conversation_list::-webkit-scrollbar {
+	display: none;
 }

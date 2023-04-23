@@ -16,6 +16,7 @@
 .time_right,
 .time_left {
 	font-size: 0.7rem;
+	color: #b6b5b5;
 	width: 80%;
 	display: block;
 	margin-top: 0.4rem;
@@ -29,10 +30,12 @@
 
 .message_blue_bg,
 .message_gray_bg {
-	padding: 0.5rem 1rem;
+	padding: 0.6rem 1rem;
 	max-width: 80%;
 	p {
 		font-weight: 200;
+		line-height: 1.6;
+		font-size: 0.9rem;
 	}
 }
 .message_blue_bg {

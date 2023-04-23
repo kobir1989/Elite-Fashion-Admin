@@ -78,7 +78,7 @@ const App = () => {
         <Route path="/reviews/list" element={<ReviewsListPage />} />
         <Route path="/review/details/:reviewId" element={<ReviewDetailsPage />} />
         <Route path='/chat' element={<ChatPage />} />
-        <Route path='/chat/details/:userId' element={<ChatDetailsPage />} />
+        <Route path='/chat/details/:roomId' element={<ChatDetailsPage />} />
       </Route>
       <Route path="/forget-password" element={<ForgetPassword />} />
       <Route path='*' element={<Navigate to='/' replace />} />

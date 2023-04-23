@@ -12,7 +12,6 @@ const Earnings = () => {
 
    //Get response data from server
    const getAnalyticsData = (data) => {
-      console.log(data)
       setAnalyticsData(data)
    }
 
