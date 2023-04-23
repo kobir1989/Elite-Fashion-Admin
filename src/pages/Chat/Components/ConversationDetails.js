@@ -8,7 +8,6 @@ import { Context } from '../../../store/Context';
 import { useHttpHook } from '../../../hooks/useHttpHook';
 
 const ConversationDetails = ({ messages = [], loading, error, roomId }) => {
-  console.log(messages)
   const [text, setText] = useState('')
   const [isEror, setIsError] = useState(null)
   const { state } = useContext(Context);
@@ -50,6 +49,7 @@ const ConversationDetails = ({ messages = [], loading, error, roomId }) => {
     }, getResponseData)
     setText('')
   }
+  const sortedMessages = messages.slice().sort((a, b) => new Date(b?.createdAt) - new Date(a?.createdAt))
 
   return (
     <div className={styles.conversation_details}>
@@ -68,7 +68,7 @@ const ConversationDetails = ({ messages = [], loading, error, roomId }) => {
 
       {/* messages */}
       <div className={styles.message_list}>
-        {!loading && !error && messages?.length > 0 ? messages.map((message) => (
+        {!loading && !error && sortedMessages?.length > 0 ? sortedMessages.map((message) => (
           <Message
             isAdmin={message?.sender?._id === userPayload?._id || message?.sender === userPayload?._id ? true : false}
             message={message?.message}
