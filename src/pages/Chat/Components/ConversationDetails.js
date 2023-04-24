@@ -1,54 +1,34 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Button from '../../../components/common/Button/Button';
+import React, { useContext, useEffect } from 'react'
 import Typography from '../../../components/common/Typography/Typography';
 import Message from './Message';
-import Icons from '../../../components/common/Icons/Icons';
 import styles from '../styles/ConversationDetails.module.scss';
 import { Context } from '../../../store/Context';
-import { useHttpHook } from '../../../hooks/useHttpHook';
+import { socket } from '../../../socket';
+import MessageForm from './MessageForm';
 
-const ConversationDetails = ({ messages = [], loading, error, roomId }) => {
-  const [text, setText] = useState('')
-  const [isEror, setIsError] = useState(null)
+const ConversationDetails = ({ messages = [], loading, error, roomId, setMessages }) => {
   const { state } = useContext(Context);
   const { authToken } = state;
   const { userPayload } = authToken;
+
+  //Finding message sender from messages Array so it can be usefull when sent a new message, as message receiver.
   const findSender = messages.find(msg => msg?.chatRoom === roomId);
 
-  //onChage Handler 
-  const handleTextChange = (e) => {
-    setText(e.target.value)
-    if (e.target.value !== '') {
-      setIsError(null)
-    }
-  }
-  //this function will hold the response sent from server.
-  const getResponseData = (data) => {
-    if (data) {
-      messages.push(data?.newMessage)
-    }
-  }
-  //custom hook to send request to server 
-  const { sendRequest, loading: textSubmitLoading } = useHttpHook()
+  //Socket real-time chat 
+  useEffect(() => {
+    socket.on('message', (message) => {
+      console.log(message, "SOCKET MESSAGE")
+      setMessages(prevMgs => [...prevMgs, message])
+    })
+    // Disconnect from the Socket-io server
+    return () => {
+      if (socket.connected) {
+        socket.disconnect();
+      }
+    };
+  }, [])
 
-  //onSubmit handler 
-  const handleTextMessage = (e) => {
-    e.preventDefault()
-    if (!roomId) {
-      return setIsError('Please choose a person to engage in conversation!')
-    }
-    const data = {
-      message: text,
-      sender: userPayload?._id,
-      receiver: findSender?.sender?._id,
-    }
-    sendRequest({
-      url: `/new/message/${roomId}`,
-      method: 'POST',
-      postData: data
-    }, getResponseData)
-    setText('')
-  }
+  //Sorting the messages array to show the latest messages in UI
   const sortedMessages = messages.slice().sort((a, b) => new Date(b?.createdAt) - new Date(a?.createdAt))
 
   return (
@@ -65,10 +45,9 @@ const ConversationDetails = ({ messages = [], loading, error, roomId }) => {
           </Typography>
         </div>
       </div>}
-
       {/* messages */}
       <div className={styles.message_list}>
-        {!loading && !error && sortedMessages?.length > 0 ? sortedMessages.map((message) => (
+        {sortedMessages?.length > 0 ? sortedMessages.map((message) => (
           <Message
             isAdmin={message?.sender?._id === userPayload?._id || message?.sender === userPayload?._id ? true : false}
             message={message?.message}
@@ -82,30 +61,14 @@ const ConversationDetails = ({ messages = [], loading, error, roomId }) => {
             </Typography>}
           </div>
         }
-
       </div>
       {/* form */}
-      <div className={styles.message_from_wrapper}>
-        <form onSubmit={handleTextMessage}>
-          <input
-            type="text"
-            placeholder='Message'
-            required name='message'
-            autoComplete='off'
-            value={text}
-            onChange={handleTextChange}
-            className={isEror ? styles.input_error_styles : ''}
-          />
-          <Button
-            disabled={textSubmitLoading}
-            type='submit'
-            variant='variant-icon-btn-normal'
-          >
-            <Icons name='send' color='#9fa7b6' />
-          </Button>
-          {isEror && <div className={styles.error_message_wrapper}>  <Typography variant='small' color='red'>{isEror}</Typography></div>}
-        </form>
-      </div>
+      <MessageForm
+        messages={messages}
+        roomId={roomId}
+        receiver={findSender?.sender?._id}
+        loggedInUserId={userPayload?._id}
+      />
     </div>
   )
 }

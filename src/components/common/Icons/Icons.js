@@ -43,6 +43,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import WarningIcon from '@mui/icons-material/Warning';
 import ChatIcon from '@mui/icons-material/Chat';
 import SendIcon from '@mui/icons-material/Send';
+import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 
 const icons = {
    viewOn: VisibilityIcon,
@@ -88,7 +89,8 @@ const icons = {
    cancel: CancelIcon,
    warning: WarningIcon,
    chatIcon: ChatIcon,
-   send: SendIcon
+   send: SendIcon,
+   emoji: SentimentSatisfiedAltIcon
 }
 const Icons = React.forwardRef((props, ref) => {
    const { name, size, color, ...others } = props;

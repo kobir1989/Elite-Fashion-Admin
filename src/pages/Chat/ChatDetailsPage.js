@@ -10,6 +10,7 @@ const ChatDetailsPage = () => {
 
   const getResponseData = (data) => {
     setMessages(data?.messages)
+    console.log(data, 'RESPOSER DATA')
   }
   const { sendRequest, loading, hasError } = useHttpHook()
 
@@ -23,6 +24,7 @@ const ChatDetailsPage = () => {
         loading={loading}
         error={hasError}
         roomId={roomId}
+        setMessages={setMessages}
       />
     </ChatPageLayout>
   )

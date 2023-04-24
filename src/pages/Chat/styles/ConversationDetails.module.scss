@@ -39,37 +39,6 @@
 	}
 }
 
-.message_from_wrapper {
-	position: absolute;
-	bottom: 1.5rem;
-	left: 3%;
-	width: 94%;
-	form {
-		input {
-			position: relative;
-			width: 100%;
-			padding: 1rem 3.5rem 1rem 1rem;
-			outline: none;
-			border-radius: 2rem;
-			border: 1px solid #e1e1e1;
-			position: relative;
-			transition: all 0.1s ease-in-out;
-			font-size: 0.9rem;
-			letter-spacing: 0.3px;
-			&:focus {
-				border: 1px solid rgb(95, 104, 233, 0.5);
-				transition: all 0.1s ease-in-out;
-			}
-		}
-		button {
-			padding: 0;
-			position: absolute;
-			right: 0.5rem;
-			top: 50%;
-			transform: translate(-50%, -50%);
-		}
-	}
-}
 .message_list::-webkit-scrollbar {
 	display: none;
 }
