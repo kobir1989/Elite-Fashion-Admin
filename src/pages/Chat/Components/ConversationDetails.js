@@ -38,6 +38,8 @@ const ConversationDetails = ({ messages = [], loading, error, roomId, setMessage
   //Sorting the messages array to show the latest messages in UI
   const sortedMessages = messages.slice().sort((a, b) => new Date(b?.createdAt) - new Date(a?.createdAt))
 
+
+
   return (
     <div className={styles.conversation_details}>
       {/* userDetails */}

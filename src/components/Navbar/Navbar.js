@@ -76,6 +76,14 @@ const Navbar = ({ setToggleSidebar }) => {
                onClick={() => { dispatch(setShowSearchModal(true)) }}>
                <Icons name={"search"} color={"#7d879c"} />
             </Button>
+            <Link to='/chat'>
+               <div className={styles.chat_link}>
+                  <Button variant={darkMood ? "icon-btn-bg-dark" : "icon-btn-bg"}>
+                     <Icons name={"chatIcon"} color={"#7d879c"} />
+                  </Button>
+               </div>
+            </Link>
+
             <div className={styles.notification_wrapper}>
                <Button
                   variant={darkMood ? "icon-btn-bg-dark" : "icon-btn-bg"}
@@ -141,6 +149,7 @@ const Navbar = ({ setToggleSidebar }) => {
                   onClick={toggleAdminInfo}
                >
                   <Avatar
+                     sx={{ width: '2rem', height: '2rem' }}
                      alt="avatar.jpg"
                      src={authToken?.userPayload?.imageUrl || "/assets/avatar.jpg"} />
                </Button>

@@ -90,7 +90,8 @@ const icons = {
    warning: WarningIcon,
    chatIcon: ChatIcon,
    send: SendIcon,
-   emoji: SentimentSatisfiedAltIcon
+   emoji: SentimentSatisfiedAltIcon,
+
 }
 const Icons = React.forwardRef((props, ref) => {
    const { name, size, color, ...others } = props;

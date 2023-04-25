@@ -2,7 +2,9 @@
 
 .chat_page_wrapper {
 	width: 100%;
-	height: 85vh;
+	@include screens-md {
+		height: 85vh;
+	}
 	.messages_container_main {
 		@include flex-col;
 		height: 100%;
@@ -12,16 +14,16 @@
 		}
 		.conversation_list {
 			@include flex-row;
-			height: 92%;
 			gap: 1rem;
-			overflow-y: scroll;
-			@include screens-md {
-				@include flex-col;
-				width: 20rem;
-			}
 			overflow-x: scroll;
 			scrollbar-width: none;
 			-ms-overflow-style: none;
+			@include screens-md {
+				@include flex-col;
+				width: 20rem;
+				height: 92%;
+				overflow-y: scroll;
+			}
 		}
 		.messages_wrapper {
 			max-height: 75vh;

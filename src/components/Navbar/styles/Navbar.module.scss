@@ -4,10 +4,13 @@
 .navbar {
 	@include flex-row-space-between;
 	align-items: center;
-	padding: 0.5rem 1rem;
+	padding: 1.1rem 1rem;
 	// background-color: $white;
 	width: 100%;
 	@include box-shadow-sm;
+	@include screens-sm {
+		padding: 1.1rem 2rem;
+	}
 	.menue_btn {
 		@include screens-xl {
 			display: none;
@@ -23,8 +26,11 @@
 		}
 	}
 	.nav_buttons_wrapper {
+		button {
+			padding: 0;
+		}
 		@include flex-row-center;
-		gap: 1.3rem;
+		gap: 1rem;
 		.avater_wrapper {
 			position: relative;
 		}
@@ -82,8 +88,8 @@
 				width: 0.5rem;
 				height: 0.5rem;
 				background-color: $red_main;
-				right: 0.5rem;
-				top: 0.4rem;
+				right: 0.1rem;
+				top: -0.1rem;
 				border-radius: 1rem;
 			}
 			.notification_dropdown_wrapper {
@@ -128,6 +134,22 @@
 					}
 				}
 			}
+		}
+	}
+}
+
+.chat_link {
+	position: relative;
+	button {
+		&::before {
+			content: '';
+			position: absolute;
+			width: 0.5rem;
+			height: 0.5rem;
+			background-color: $red_main;
+			right: -0.1rem;
+			top: -0.1rem;
+			border-radius: 1rem;
 		}
 	}
 }

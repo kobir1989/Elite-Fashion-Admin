@@ -35,7 +35,10 @@
 		overflow-y: auto;
 		scrollbar-width: none;
 		-ms-overflow-style: none;
-		max-height: 50vh;
+		height: 35vh;
+		@include screens-md {
+			height: 50vh;
+		}
 	}
 }
 
