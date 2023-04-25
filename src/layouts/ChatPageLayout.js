@@ -15,24 +15,20 @@ const ChatPageLayout = ({ children }) => {
   useEffect(() => {
     sendRequest({ url: '/chat-rooms/all' }, getResposeData)
   }, [])
-
-
-  const rooms = chatRooms.flatMap(room => room.messages.map(message => message));
-
   return (
     <PageLayout>
       <section className={styles.chat_page_wrapper}>
         <PageTitle title='Messages' showBtn={false} />
         <div className={styles.messages_container_main}>
           <div className={styles.conversation_list}>
-            {!loading && !error && rooms?.length > 0 ? rooms.map((room) => (
+            {!loading && !error && chatRooms?.length > 0 ? chatRooms.map((room) => (
               <ChatHead
-                key={room?.chatRoom}
-                sender={room?.sender?.name}
+                key={room?._id}
+                sender={room?.user?.name}
                 lastMessage={room?.message}
                 time={room?.createdAt}
-                avater={room?.sender?.image}
-                roomId={room?.chatRoom}
+                avater={room?.user?.image}
+                roomId={room?._id}
               />
             )) : null}
           </div>

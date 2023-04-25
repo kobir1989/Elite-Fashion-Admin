@@ -10,7 +10,6 @@ const ChatDetailsPage = () => {
 
   const getResponseData = (data) => {
     setMessages(data?.messages)
-    console.log(data, 'RESPOSER DATA')
   }
   const { sendRequest, loading, hasError } = useHttpHook()
 

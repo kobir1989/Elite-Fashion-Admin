@@ -1,32 +1,39 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Typography from '../../../components/common/Typography/Typography';
 import Message from './Message';
 import styles from '../styles/ConversationDetails.module.scss';
 import { Context } from '../../../store/Context';
 import { socket } from '../../../socket';
 import MessageForm from './MessageForm';
+import { useHttpHook } from '../../../hooks/useHttpHook';
 
 const ConversationDetails = ({ messages = [], loading, error, roomId, setMessages }) => {
+  const [chatRooms, setChatRooms] = useState([])
   const { state } = useContext(Context);
   const { authToken } = state;
   const { userPayload } = authToken;
 
-  //Finding message sender from messages Array so it can be usefull when sent a new message, as message receiver.
-  const findSender = messages.find(msg => msg?.chatRoom === roomId);
+  //Chat room Response from server.
+  const getResposeData = (data) => {
+    setChatRooms(data?.chatRooms)
+  }
+  const { sendRequest } = useHttpHook()
 
-  //Socket real-time chat 
   useEffect(() => {
-    socket.on('message', (message) => {
-      console.log(message, "SOCKET MESSAGE")
-      setMessages(prevMgs => [...prevMgs, message])
-    })
-    // Disconnect from the Socket-io server
-    return () => {
-      if (socket.connected) {
-        socket.disconnect();
-      }
-    };
+    sendRequest({ url: '/chat-rooms/all' }, getResposeData)
   }, [])
+  // listen for incoming messages
+  useEffect(() => {
+    socket.on("getMessage", (message) => {
+      console.log(message, 'SOCKET_ADMIN_MESSAGE')
+      setMessages(prevMsgs => [...prevMsgs, message])
+    });
+    // clean up event listener
+    return () => socket.off("getMessage");
+  }, [])
+
+  //Finding message sender from messages Array so it can be usefull when sent a new message, as message receiver.
+  const findSender = chatRooms.find(room => room?._id === roomId);
 
   //Sorting the messages array to show the latest messages in UI
   const sortedMessages = messages.slice().sort((a, b) => new Date(b?.createdAt) - new Date(a?.createdAt))
@@ -34,14 +41,14 @@ const ConversationDetails = ({ messages = [], loading, error, roomId, setMessage
   return (
     <div className={styles.conversation_details}>
       {/* userDetails */}
-      {roomId && <div className={styles.message_sender_details}>
-        <img src={findSender?.sender?.image || "/assets/user.png"} alt="user" />
+      {findSender && <div className={styles.message_sender_details}>
+        <img src={findSender?.user?.image || "/assets/user.png"} alt="user" />
         <div className={styles.sender_info}>
           <Typography variant='smBold700' color="primary">
-            {findSender?.sender?.name}
+            {findSender?.user?.name}
           </Typography>
           <Typography variant='small' color="paragraph">
-            {findSender?.sender?.email}
+            {findSender?.user?.email}
           </Typography>
         </div>
       </div>}
@@ -57,7 +64,7 @@ const ConversationDetails = ({ messages = [], loading, error, roomId, setMessage
         )) :
           <div className={styles.not_found_message}>
             {!loading && !error && <Typography variant='body' color='red'>
-              Please choose a person to engage in conversation.
+              {sortedMessages?.length === 0 ? 'No Message found!' : '  Please choose a person to engage in conversation.'}
             </Typography>}
           </div>
         }
@@ -66,7 +73,7 @@ const ConversationDetails = ({ messages = [], loading, error, roomId, setMessage
       <MessageForm
         messages={messages}
         roomId={roomId}
-        receiver={findSender?.sender?._id}
+        receiver={findSender?.user?._id}
         loggedInUserId={userPayload?._id}
       />
     </div>

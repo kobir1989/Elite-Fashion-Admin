@@ -7,12 +7,13 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import LinearProgress from '@mui/material/LinearProgress';
 import { Context } from "../store/Context";
 import SearchModal from "../components/searchModal/SearchModal";
-
+import { socket } from '../socket';
 
 const PageLayout = ({ children }) => {
    const [toggleSidebar, setToggleSidebar] = useState(window.innerWidth >= 1280 ? true : false);
    const [pageLoaing, setPageLoading] = useState(true);
    const { state } = useContext(Context);
+   const { authToken } = state;
    const { showSearchModal, darkMood } = state;
 
    const handleBackdropClick = () => {
@@ -43,7 +44,15 @@ const PageLayout = ({ children }) => {
       };
    }, []);
 
-   // console.log(pageLoaing, "Page Loading")
+   useEffect(() => {
+      socket.on("connect", () => {
+         console.log(socket.id, "connected");
+         socket.emit("addUser", authToken?.userPayload?._id);
+      });
+      // clean up event listener
+      return () => socket.off("getMessage");
+   }, [])
+
    return (
       <div className={darkMood ? `${styles.page_layout_wrapper} ${"dark_mood_main"}` : `${styles.page_layout_wrapper} ${"light_mood_main"}`}>
          <AnimatePresence>

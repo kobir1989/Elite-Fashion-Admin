@@ -10,4 +10,3 @@ export const socket = io(URL, {
    upgrade: false,
    rejectUnauthorized: true,
 });
-console.log(socket)

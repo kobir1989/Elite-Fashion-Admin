@@ -58,10 +58,11 @@ const MessageForm = ({ roomId, receiver, messages, loggedInUserId }) => {
       method: 'POST',
       postData: data
     }, getResponseData)
+    //emit socket event 
+    socket.emit("sendMessage", data);
     setText('')
     setToggleEmoji(false)
-    //emit socket event 
-    socket.emit('message', data)
+
   }
   return (
     <div className={styles.message_from_wrapper}>
