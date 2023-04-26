@@ -211,7 +211,12 @@ const Sidebar = () => {
                      Reviews
                   </li>
                </NavLink>
-
+               <NavLink to={"/chat"} className={({ isActive }) => isActive ? `${styles.active_li}` : ""}>
+                  <li>
+                     <Icons name={"chatIcon"} />
+                     Chat
+                  </li>
+               </NavLink>
                <li>
                   <Typography variant={"small"} color={"light-gray"}>
                      ADMINISTRATION

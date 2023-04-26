@@ -25,7 +25,6 @@ const ReviewDetailsView = ({ review }) => {
    const { sendRequest } = useHttpHook()
 
    const deleteHandler = () => {
-      console.log(review)
       sendRequest(
          {
             url: `/review/delete/${review._id}`,
