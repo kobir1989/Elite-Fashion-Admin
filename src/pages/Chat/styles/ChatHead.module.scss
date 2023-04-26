@@ -5,7 +5,6 @@
 	@include flex-col-center;
 	gap: 0.7rem;
 	position: relative;
-	box-shadow: rgb(246, 249, 252, 0.1) 0px 48px 100px 0px;
 	padding: 0.8rem 1rem;
 	transition: all 0.2s ease-in-out;
 	cursor: pointer;
@@ -67,19 +66,22 @@
 	}
 }
 
-.active {
-	background-color: rgb(230, 243, 248);
-	border-radius: 8px;
-	transition: all 0.2s ease-in-out;
-}
+.active,
+.active_dark_mood,
 .unactive {
+	transform: scale(1);
 	border-radius: 8px;
-	background-color: $white;
 	transition: all 0.2s ease-in-out;
 	&:hover {
-		box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+		transform: scale(1.02);
 		transition: all 0.2s ease-in-out;
 	}
+}
+.active {
+	background-color: #e6f3f8 !important;
+}
+.active_dark_mood {
+	background-color: $navy_2 !important;
 }
 
 .online_dot {
@@ -108,4 +110,13 @@
 	color: $white;
 	font-size: 0.7rem;
 	font-weight: 600;
+}
+
+.dark_mood_bg {
+	background-color: $dark_mood_secondary;
+}
+
+.light_mood_bg {
+	background-color: $white;
+	box-shadow: rgb(246, 249, 252, 0.1) 0px 48px 100px 0px;
 }

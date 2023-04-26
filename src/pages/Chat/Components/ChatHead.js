@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from '../styles/ChatHead.module.scss';
 import Typography from '../../../components/common/Typography/Typography';
 import { NavLink } from 'react-router-dom';
 import { socket } from '../../../socket'
+import { Context } from '../../../store/Context';
 
 const ChatHead = ({ sender, avater, roomId, isOnline, senderId }) => {
   const [newMessage, setNewMessage] = useState(null)
+  const { state } = useContext(Context);
+  const { darkMood } = state;
 
   // listen for incoming messages
   useEffect(() => {
@@ -17,7 +20,7 @@ const ChatHead = ({ sender, avater, roomId, isOnline, senderId }) => {
   }, [])
 
   return (
-    <NavLink to={`/chat/details/${roomId}`} className={({ isActive }) => isActive ? `${styles.active}` : `${styles.unactive}`}>
+    <NavLink to={`/chat/details/${roomId}`} className={({ isActive }) => isActive && darkMood ? `${styles.active_dark_mood} ${styles.dark_mood_bg}` : darkMood && !isActive ? `${styles.unactive} ${styles.dark_mood_bg}` : !darkMood && isActive ? `${styles.active} ${styles.light_mood_bg}` : `${styles.unactive} ${styles.light_mood_bg}`}>
       <div className={styles.chat_head_wrapper}>
         {senderId === newMessage?.sender &&
           <span className={styles.new_text}>
@@ -27,7 +30,7 @@ const ChatHead = ({ sender, avater, roomId, isOnline, senderId }) => {
           <img src={avater || "/assets/user.png"} alt="user" />
         </div>
         <div className={styles.last_message_details}>
-          <Typography variant='smBold700' color="primary">{sender}</Typography>
+          <Typography variant='smBold700' color={darkMood ? "paragraph" : "primary"}>{sender}</Typography>
           <Typography variant='body' color="primary">
             {senderId === newMessage?.sender ? newMessage?.message : null}
           </Typography>

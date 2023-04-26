@@ -10,7 +10,7 @@ import { useHttpHook } from '../../../hooks/useHttpHook';
 const ConversationDetails = ({ messages = [], loading, error, roomId, setMessages }) => {
   const [chatRooms, setChatRooms] = useState([])
   const { state } = useContext(Context);
-  const { authToken } = state;
+  const { authToken, darkMood } = state;
   const { userPayload } = authToken;
 
   //Chat room Response from server.
@@ -41,12 +41,12 @@ const ConversationDetails = ({ messages = [], loading, error, roomId, setMessage
 
 
   return (
-    <div className={styles.conversation_details}>
+    <div className={darkMood ? `${'dark_mood_secondary'} ${styles.conversation_details}` : `${'light_mood_secondary'} ${styles.conversation_details}`}>
       {/* userDetails */}
       {findSender && <div className={styles.message_sender_details}>
         <img src={findSender?.user?.image || "/assets/user.png"} alt="user" />
         <div className={styles.sender_info}>
-          <Typography variant='smBold700' color="primary">
+          <Typography variant='smBold700' color={darkMood ? "paragraph" : "primary"}>
             {findSender?.user?.name}
           </Typography>
           <Typography variant='small' color="paragraph">
@@ -66,7 +66,7 @@ const ConversationDetails = ({ messages = [], loading, error, roomId, setMessage
         )) :
           <div className={styles.not_found_message}>
             {!loading && !error && <Typography variant='body' color='red'>
-              {sortedMessages?.length === 0 ? 'No Message found!' : '  Please choose a person to engage in conversation.'}
+              Please choose a person to engage in conversation.
             </Typography>}
           </div>
         }
@@ -77,6 +77,7 @@ const ConversationDetails = ({ messages = [], loading, error, roomId, setMessage
         roomId={roomId}
         receiver={findSender?.user?._id}
         loggedInUserId={userPayload?._id}
+        darkMood={darkMood}
       />
     </div>
   )

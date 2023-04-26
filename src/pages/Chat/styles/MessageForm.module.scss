@@ -8,7 +8,7 @@
 	width: 94%;
 	.emoji_wrapper {
 		position: absolute;
-		bottom: 3rem;
+		bottom: 3.3rem;
 	}
 	form {
 		input {
@@ -22,6 +22,8 @@
 			transition: all 0.1s ease-in-out;
 			font-size: 0.9rem;
 			letter-spacing: 0.3px;
+			background-color: inherit;
+			color: inherit;
 			&:focus {
 				border: 1px solid rgb(95, 104, 233, 0.5);
 				transition: all 0.1s ease-in-out;
@@ -41,4 +43,7 @@
 			transform: translate(-50%, -50%);
 		}
 	}
+}
+.dark_mood_color {
+	color: #e1e1e1;
 }

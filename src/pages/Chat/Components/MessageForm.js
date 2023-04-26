@@ -9,7 +9,7 @@ import Emoji from './Emoji';
 import { AnimatePresence, motion } from 'framer-motion'
 
 
-const MessageForm = ({ roomId, receiver, messages, loggedInUserId }) => {
+const MessageForm = ({ roomId, receiver, messages, loggedInUserId, darkMood }) => {
   const [text, setText] = useState('')
   const [isEror, setIsError] = useState(null)
   const [toggleEmoji, setToggleEmoji] = useState(false);
@@ -78,7 +78,7 @@ const MessageForm = ({ roomId, receiver, messages, loggedInUserId }) => {
           </motion.div>
         }
       </AnimatePresence>
-      <form onSubmit={handleTextMessage}>
+      <form onSubmit={handleTextMessage} className={darkMood ? `${styles.dark_mood_color}` : ''}>
         <input
           type="text"
           placeholder='Message'
