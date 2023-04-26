@@ -78,7 +78,6 @@ const Navbar = ({ setToggleSidebar }) => {
       navigate(newMessage?.roomId === '' ? '/chat' : `/chat/details/${newMessage?.roomId}`)
    }
 
-   console.log(newMessage)
    return (
       <nav className={darkMood ? `${styles.navbar} ${"dark_mood_secondary"}` : `${styles.navbar} ${"light_mood_secondary"}`}>
          <div className={styles.menue_btn} onClick={menuToggleHandler}>

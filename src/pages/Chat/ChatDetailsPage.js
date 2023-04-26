@@ -23,10 +23,11 @@ const ChatDetailsPage = () => {
   // listen for incoming messages
   useEffect(() => {
     socket.on("getMessage", (message) => {
+
       if (message) {
         setSocketMessage(message)
       }
-      if (roomId === message.roomId) {
+      if (roomId === message.chatRoom) {
         setMessages(prevMsgs => [...prevMsgs, message])
       }
 

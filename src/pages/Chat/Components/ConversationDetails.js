@@ -6,12 +6,11 @@ import { Context } from '../../../store/Context';
 import MessageForm from './MessageForm';
 import { useHttpHook } from '../../../hooks/useHttpHook';
 
-const ConversationDetails = ({ messages = [], loading, error, roomId, socketMessage }) => {
+const ConversationDetails = ({ messages = [], loading, error, roomId }) => {
   const [chatRooms, setChatRooms] = useState([])
   const { state } = useContext(Context);
   const { authToken, darkMood } = state;
   const { userPayload } = authToken;
-  console.log(messages, "TEST MSG")
   //Chat room Response from server.
   const getResposeData = (data) => {
     setChatRooms(data?.chatRooms)
