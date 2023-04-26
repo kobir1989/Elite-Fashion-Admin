@@ -6,7 +6,7 @@ import ChatHead from '../pages/Chat/Components/ChatHead';
 import { useHttpHook } from '../hooks/useHttpHook';
 import { socket } from '../socket';
 
-const ChatPageLayout = ({ children }) => {
+const ChatPageLayout = ({ children, socketMessage }) => {
   const [chatRooms, setChatRooms] = useState([])
   const [onlineUsers, setOnlineUsers] = useState([])
   const getResposeData = (data) => {
@@ -50,6 +50,7 @@ const ChatPageLayout = ({ children }) => {
                 avater={room?.user?.image}
                 roomId={room?._id}
                 isOnline={room?.isOnline}
+                socketMessage={socketMessage}
               />
             )) : null}
           </div>

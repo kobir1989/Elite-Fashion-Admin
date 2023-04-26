@@ -3,16 +3,15 @@ import Typography from '../../../components/common/Typography/Typography';
 import Message from './Message';
 import styles from '../styles/ConversationDetails.module.scss';
 import { Context } from '../../../store/Context';
-import { socket } from '../../../socket';
 import MessageForm from './MessageForm';
 import { useHttpHook } from '../../../hooks/useHttpHook';
 
-const ConversationDetails = ({ messages = [], loading, error, roomId, setMessages }) => {
+const ConversationDetails = ({ messages = [], loading, error, roomId, socketMessage }) => {
   const [chatRooms, setChatRooms] = useState([])
   const { state } = useContext(Context);
   const { authToken, darkMood } = state;
   const { userPayload } = authToken;
-
+  console.log(messages, "TEST MSG")
   //Chat room Response from server.
   const getResposeData = (data) => {
     setChatRooms(data?.chatRooms)
@@ -22,23 +21,13 @@ const ConversationDetails = ({ messages = [], loading, error, roomId, setMessage
   useEffect(() => {
     sendRequest({ url: '/chat-rooms/all' }, getResposeData)
   }, [])
-  // listen for incoming messages
-  useEffect(() => {
-    socket.on("getMessage", (message) => {
-      console.log(message, 'SOCKET_ADMIN_MESSAGE')
-      setMessages(prevMsgs => [...prevMsgs, message])
-    });
-    // clean up event listener
-    return () => socket.off("getMessage");
-  }, [])
+
 
   //Finding message sender from messages Array so it can be usefull when sent a new message, as message receiver.
   const findSender = chatRooms.find(room => room?._id === roomId);
 
   //Sorting the messages array to show the latest messages in UI
   const sortedMessages = messages.slice().sort((a, b) => new Date(b?.createdAt) - new Date(a?.createdAt))
-
-
 
   return (
     <div className={darkMood ? `${'dark_mood_secondary'} ${styles.conversation_details}` : `${'light_mood_secondary'} ${styles.conversation_details}`}>

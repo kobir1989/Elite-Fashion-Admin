@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Typography from "../common/Typography/Typography";
 import Icons from "../common/Icons/Icons";
@@ -18,11 +18,12 @@ dayjs.extend(relativeTime);
 
 const Navbar = ({ setToggleSidebar }) => {
    const [showDropdown, setShowDropdown] = useState(false);
+   const [newMessage, setNewMessage] = useState({ roomId: '', count: 0 })
    const [showNotification, setShowNotification] = useState(false);
    const [orderNotification, setOrderNotification] = useState([])
    const { state, dispatch } = useContext(Context);
    const { darkMood, authToken } = state;
-
+   const navigate = useNavigate()
 
    //Menu Toggle handler for small screens
    const menuToggleHandler = () => {
@@ -41,21 +42,43 @@ const Navbar = ({ setToggleSidebar }) => {
       setShowNotification(false)
    }
 
+   // listen for order notification
    useEffect(() => {
       socket.on("order_created", (data) => {
          toast.dismiss()
          toast.success("New Order Received")
          setOrderNotification([...orderNotification, data])
       });
-
-      // Disconnect from the Socket.IO server
-      return () => {
-         if (socket.connected) {
-            socket.disconnect();
-         }
-      };
+      // clean up event listener
+      return () => socket.off("order_created");
    }, []);
 
+   // listen for incoming messages
+   useEffect(() => {
+      socket.on("getMessage", (message) => {
+         if (message) {
+            setNewMessage(prev => {
+               return {
+                  roomId: message?.chatRoom,
+                  count: prev.count + 1
+               }
+            })
+         }
+      });
+      // clean up event listener
+      return () => socket.off("getMessage");
+   }, [])
+
+   //Chat navigation handler 
+   const handleChatNavigation = () => {
+      setNewMessage({
+         roomId: "",
+         count: 0
+      })
+      navigate(newMessage?.roomId === '' ? '/chat' : `/chat/details/${newMessage?.roomId}`)
+   }
+
+   console.log(newMessage)
    return (
       <nav className={darkMood ? `${styles.navbar} ${"dark_mood_secondary"}` : `${styles.navbar} ${"light_mood_secondary"}`}>
          <div className={styles.menue_btn} onClick={menuToggleHandler}>
@@ -76,14 +99,15 @@ const Navbar = ({ setToggleSidebar }) => {
                onClick={() => { dispatch(setShowSearchModal(true)) }}>
                <Icons name={"search"} color={"#7d879c"} />
             </Button>
-            <Link to='/chat'>
-               <div className={styles.chat_link}>
-                  <Button variant={darkMood ? "icon-btn-bg-dark" : "icon-btn-bg"}>
-                     <Icons name={"chatIcon"} color={"#7d879c"} />
-                  </Button>
-               </div>
-            </Link>
-
+            <div className={styles.chat_link}>
+               <Button
+                  variant={darkMood ? "icon-btn-bg-dark" : "icon-btn-bg"}
+                  onClick={handleChatNavigation}
+               >
+                  <Icons name={"chatIcon"} color={"#7d879c"} />
+                  <span className={styles.message_count}>{newMessage?.count}</span>
+               </Button>
+            </div>
             <div className={styles.notification_wrapper}>
                <Button
                   variant={darkMood ? "icon-btn-bg-dark" : "icon-btn-bg"}
@@ -95,9 +119,9 @@ const Navbar = ({ setToggleSidebar }) => {
                <AnimatePresence>
                   {showNotification && (
                      <motion.div
-                        initial={{ opacity: 0, transition: { duration: 0.2 } }}
+                        initial={{ opacity: 0, transition: { duration: 0.1 } }}
                         animate={{ opacity: 1 }}
-                        exit={{ opacity: 0, transition: { duration: 0.2 } }}
+                        exit={{ opacity: 0, transition: { duration: 0.1 } }}
                         className={darkMood ? `${styles.notification_dropdown_wrapper} ${"dark_mood_popup"}` : `${styles.notification_dropdown_wrapper} ${"light_mood_secondary"}`}
                      >
                         <Typography
@@ -158,9 +182,9 @@ const Navbar = ({ setToggleSidebar }) => {
                <AnimatePresence>
                   {showDropdown && (
                      <motion.div
-                        initial={{ opacity: 0, transition: { duration: 0.2 } }}
+                        initial={{ opacity: 0, transition: { duration: 0.1 } }}
                         animate={{ opacity: 1 }}
-                        exit={{ opacity: 0, transition: { duration: 0.2 } }}
+                        exit={{ opacity: 0, transition: { duration: 0.1 } }}
                         className={darkMood ? `${styles.dropdown_wrapper} ${"dark_mood_popup"}` : `${styles.dropdown_wrapper} ${"light_mood_secondary"}`}
 
                      >

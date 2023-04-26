@@ -38,8 +38,8 @@
 			@include flex-col;
 			backdrop-filter: blur(5px);
 			position: absolute;
-			right: 3%;
-			top: 3.9rem;
+			right: 2%;
+			top: 3.4rem;
 			width: 12rem;
 			@include box-shadow-lg;
 			padding: 1.5rem;
@@ -96,15 +96,14 @@
 				@include box-shadow-lg;
 				backdrop-filter: blur(5px);
 				position: absolute;
-				right: -6rem;
-				top: 3.5rem;
+				right: -5rem;
+				top: 3rem;
 				width: 16rem;
 				padding-bottom: 1.2rem;
 				border-radius: 4px;
 				@include screens-sm {
-					right: 0.5rem;
+					right: 0;
 				}
-
 				h6 {
 					border-bottom: 2px solid $navy_3;
 					padding: 0.6rem 1rem;
@@ -141,15 +140,17 @@
 .chat_link {
 	position: relative;
 	button {
-		&::before {
-			content: '';
-			position: absolute;
-			width: 0.5rem;
-			height: 0.5rem;
+		padding: 0;
+		.message_count {
+			padding: 0.2rem 0.28rem;
+			border-radius: 50%;
 			background-color: $red_main;
-			right: -0.1rem;
-			top: -0.1rem;
-			border-radius: 1rem;
+			line-height: 0.8;
+			font-size: 0.7rem;
+			color: $white;
+			position: absolute;
+			top: -0.2rem;
+			right: -0.4rem;
 		}
 	}
 }
