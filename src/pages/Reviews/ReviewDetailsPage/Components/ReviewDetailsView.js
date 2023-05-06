@@ -42,7 +42,7 @@ const ReviewDetailsView = ({ review }) => {
                </Button>
             </div>
             <div className={styles.user_details}>
-               <img src={review?.user?.image} alt="user" />
+               <img src={review?.user?.image || '/assets/avater.png'} alt="user" />
                <Typography
                   variant={"body"}
                   color={darkMood ? "paragraph" : "primary"}>
@@ -65,11 +65,13 @@ const ReviewDetailsView = ({ review }) => {
                      {dayjs(review?.createdAt).format("MMM D, YYYY h:mm A")}
                   </Typography>
                </div>
-               <Typography
-                  variant={"body"}
-                  color={darkMood ? "paragraph" : "primary"}>
-                  {review?.comment}
-               </Typography>
+               <div className={styles.comments_wrapper}>
+                  <Typography
+                     variant={"body"}
+                     color={darkMood ? "paragraph" : "primary"}>
+                     {review?.comment}
+                  </Typography>
+               </div>
             </div>
          </div>
 

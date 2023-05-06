@@ -6,7 +6,7 @@ export const reviewsColumns = [
       field: "id", headerName: "Customer", minWidth: 300, renderCell: (params) => {
          return (
             <div className="user_details">
-               <img src={params.row.user.image ? params.row.user.image : "/assets/user.png"} alt="product.png" />
+               <img src={params?.row?.image ? params?.row?.image : "/assets/avater.png"} alt="product.png" />
                <div className="name_and_id">
                   <Typography variant={"dataGridTitle"} color={"blue"}>
                      {params?.row?.user?.name}
@@ -20,7 +20,7 @@ export const reviewsColumns = [
       }
    },
    {
-      field: "product", headerName: "Product", minWidth: 380, align: "start", headerAlign: "start",
+      field: "product", headerName: "Product", minWidth: 380, align: "left", headerAlign: "left",
       renderCell: (params) => {
          return (
             <div className="product_details">
@@ -47,7 +47,7 @@ export const reviewsColumns = [
    },
    {
       field: "status", headerName: "Status", minWidth: 130, align: "center", headerAlign: "center",
-      renderCell: (params) => {
+      renderCell: (_params) => {
          return (
             <div className="green_bg with__bg">
                <Typography variant={"dataGridSubTitle"} color={"blue"}>

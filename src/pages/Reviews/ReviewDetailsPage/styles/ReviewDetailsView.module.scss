@@ -1,5 +1,5 @@
-@import "../../../../scss/scss-utils/color";
-@import "../../../../scss/scss-utils/mixins";
+@import '../../../../scss/scss-utils/color';
+@import '../../../../scss/scss-utils/mixins';
 
 .review_details_main_flex {
 	position: relative;
@@ -50,4 +50,11 @@
 		font-weight: 500;
 	}
 	margin-bottom: 1rem;
+}
+.comments_wrapper {
+	border-top: 1px solid rgba(168, 168, 168, 0.3);
+	p {
+		padding-top: 0.8rem;
+		text-transform: capitalize;
+	}
 }
