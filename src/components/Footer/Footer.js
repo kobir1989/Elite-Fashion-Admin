@@ -11,22 +11,32 @@ const Footer = () => {
    return (
       <footer className={darkMood ? "dark_mood_secondary" : "light_mood_secondary"}>
          <div className={styles.footer_content_wrapper}>
-            <Typography variant={"small"}>&copy; 2023 Kabir Hossain | All Rights Reserved. </Typography>
+            <Typography variant={"small"}>&copy; {new Date().getFullYear()} Kabir Hossain | All Rights Reserved. </Typography>
             <div className={styles.footer_icons_wrapper}>
-               <Link to={"https://www.facebook.com/kabir.ritu"}>
+               <a
+                  href="https://www.facebook.com/kabir.ritu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+               >
                   <Icons name={"facebook"} color={"#3b5998"} />
-               </Link>
-               <Link
-                  to={"https://www.linkedin.com/in/kabir-hossain-07a69b238/"}>
+               </a>
+               <a
+                  href="https://www.linkedin.com/in/kabir-hossain-07a69b238/" target="_blank"
+                  rel="noopener noreferrer"
+               >
                   <Icons name={"linkedIn"} color={"#0072b1"} />
-               </Link>
-               <Link to={"https://github.com/kobir1989"}>
+               </a>
+               <a
+                  href="https://github.com/kobir1989"
+                  target="_blank"
+                  rel="noopener noreferrer"
+               >
                   <Icons name={"github"} color={"#171515"} />
-               </Link>
+               </a>
             </div>
          </div>
       </footer>
    )
 }
 
-export default Footer
+export default Footer;
