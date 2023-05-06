@@ -24,7 +24,6 @@ export const orderColumns = [
    },
    {
       field: "address", headerName: "Shipping Address", headerAlign: "left", align: "left", width: 350, renderCell: (params) => {
-         console.log(params?.row?.row)
          return (
             <div className="row_address__wrapper">
                <Typography variant={"small"} color={"blue"}>

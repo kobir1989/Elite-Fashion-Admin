@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Typography from "../common/Typography/Typography";
 import Icons from "../common/Icons/Icons";
@@ -12,6 +12,7 @@ import { socket } from "../../socket"
 import { toast } from 'react-hot-toast';
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { ClickAwayListener } from '@mui/material';
 
 // Import the relativeTime plugin
 dayjs.extend(relativeTime);
@@ -33,13 +34,11 @@ const Navbar = ({ setToggleSidebar }) => {
    //Toggle notification dropdown
    const toggleNotifications = () => {
       setShowNotification(!showNotification);
-      setShowDropdown(false)
    }
 
    //Toggle Admin profile info dropdown
    const toggleAdminInfo = () => {
       setShowDropdown(!showDropdown)
-      setShowNotification(false)
    }
 
    // listen for order notification
@@ -117,46 +116,50 @@ const Navbar = ({ setToggleSidebar }) => {
                {/*NOTIFICATIONS START*/}
                <AnimatePresence>
                   {showNotification && (
-                     <motion.div
-                        initial={{ opacity: 0, transition: { duration: 0.1 } }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0, transition: { duration: 0.1 } }}
-                        className={darkMood ? `${styles.notification_dropdown_wrapper} ${"dark_mood_popup"}` : `${styles.notification_dropdown_wrapper} ${"light_mood_secondary"}`}
+                     <ClickAwayListener
+                        onClickAway={() => setShowNotification(false)}
                      >
-                        <Typography
-                           variant={"h6"}
-                           color={"red"}>
-                           New ({orderNotification?.length})
-                        </Typography>
-                        {orderNotification && orderNotification?.length ? orderNotification.map((order) => (
-                           <Link
-                              to={`/order-details/${order?._id}`}
-                              key={order?._id}>
-                              <div className={styles.notifications}>
-                                 <Icons name={"addOrder"} color={"#2c74b3"} />
-                                 <div className={styles.notifications_title}>
-                                    <Typography
-                                       variant={"body"}
-                                       color={darkMood ? "white" : "primary"}>
-                                       New Order Received
-                                    </Typography>
-                                    <Typography
-                                       variant={"small"}
-                                       color={"light-gray"}>
-                                       {dayjs(order?.createdAt).fromNow()}
-                                    </Typography>
-                                 </div>
-                              </div>
-                           </Link>
-
-                        )) : <div className={styles.notifications}>
+                        <motion.div
+                           initial={{ opacity: 0, transition: { duration: 0.1 } }}
+                           animate={{ opacity: 1 }}
+                           exit={{ opacity: 0, transition: { duration: 0.1 } }}
+                           className={darkMood ? `${styles.notification_dropdown_wrapper} ${"dark_mood_popup"}` : `${styles.notification_dropdown_wrapper} ${"light_mood_secondary"}`}
+                        >
                            <Typography
-                              variant={"body"}
-                              color={darkMood ? "white" : "primary"}>
-                              No new order!
+                              variant={"h6"}
+                              color={"red"}>
+                              New ({orderNotification?.length || 0})
                            </Typography>
-                        </div>}
-                     </motion.div>
+                           {orderNotification && orderNotification?.length ? orderNotification.map((order) => (
+                              <Link
+                                 to={`/order-details/${order?._id}`}
+                                 key={order?._id}>
+                                 <div className={styles.notifications}>
+                                    <Icons name={"addOrder"} color={"#2c74b3"} />
+                                    <div className={styles.notifications_title}>
+                                       <Typography
+                                          variant={"body"}
+                                          color={darkMood ? "white" : "primary"}>
+                                          New Order Received
+                                       </Typography>
+                                       <Typography
+                                          variant={"small"}
+                                          color={"light-gray"}>
+                                          {dayjs(order?.createdAt).fromNow()}
+                                       </Typography>
+                                    </div>
+                                 </div>
+                              </Link>
+
+                           )) : <div className={styles.notifications}>
+                              <Typography
+                                 variant={"body"}
+                                 color={darkMood ? "white" : "primary"}>
+                                 No new order!
+                              </Typography>
+                           </div>}
+                        </motion.div>
+                     </ClickAwayListener>
                   )}
                </AnimatePresence>
                {/*NOTIFICATIONS END*/}
@@ -180,60 +183,64 @@ const Navbar = ({ setToggleSidebar }) => {
                {/* DROPDOWN START*/}
                <AnimatePresence>
                   {showDropdown && (
-                     <motion.div
-                        initial={{ opacity: 0, transition: { duration: 0.1 } }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0, transition: { duration: 0.1 } }}
-                        className={darkMood ? `${styles.dropdown_wrapper} ${"dark_mood_popup"}` : `${styles.dropdown_wrapper} ${"light_mood_secondary"}`}
-
+                     <ClickAwayListener
+                        onClickAway={() => setShowDropdown(false)}
                      >
-                        <div className={styles.admin_details}>
-                           <Typography
-                              variant={"body"}
-                              color={darkMood ? "white" : "primary"}>
-                              Kabir Hossain
-                           </Typography>
-                           <Typography
-                              variant={"small"}
-                              color={darkMood ? "paragraph" : "primary"}>
-                              Admin
-                           </Typography>
-                        </div>
-                        <ul>
-                           <li>
-                              <Link to={"/admin/profile"}>
-                                 <Typography
-                                    variant={"small"}
-                                    color={darkMood ? "white" : "primary"}>
-                                    Profile
-                                 </Typography>
-                              </Link>
-                           </li>
-                           <li>
-                              <Link to={"/admin/profile/update"}>
-                                 <Typography
-                                    variant={"small"}
-                                    color={darkMood ? "white" : "primary"}>
-                                    Settings
-                                 </Typography>
-                              </Link>
-                           </li>
-                           <li>
-                              <Button
-                                 variant={"icon-btn-normal"}
-                                 onClick={() => {
-                                    dispatch(logout());
-                                 }}
-                              >
-                                 <Typography
-                                    variant={"small"}
-                                    color={darkMood ? "white" : "primary"}>
-                                    Logout
-                                 </Typography>
-                              </Button>
-                           </li>
-                        </ul>
-                     </motion.div>
+                        <motion.div
+                           initial={{ opacity: 0, transition: { duration: 0.1 } }}
+                           animate={{ opacity: 1 }}
+                           exit={{ opacity: 0, transition: { duration: 0.1 } }}
+                           className={darkMood ? `${styles.dropdown_wrapper} ${"dark_mood_popup"}` : `${styles.dropdown_wrapper} ${"light_mood_secondary"}`}
+
+                        >
+                           <div className={styles.admin_details}>
+                              <Typography
+                                 variant={"body"}
+                                 color={darkMood ? "white" : "primary"}>
+                                 Kabir Hossain
+                              </Typography>
+                              <Typography
+                                 variant={"small"}
+                                 color={darkMood ? "paragraph" : "primary"}>
+                                 Admin
+                              </Typography>
+                           </div>
+                           <ul>
+                              <li>
+                                 <Link to={"/admin/profile"}>
+                                    <Typography
+                                       variant={"small"}
+                                       color={darkMood ? "white" : "primary"}>
+                                       Profile
+                                    </Typography>
+                                 </Link>
+                              </li>
+                              <li>
+                                 <Link to={"/admin/profile/update"}>
+                                    <Typography
+                                       variant={"small"}
+                                       color={darkMood ? "white" : "primary"}>
+                                       Settings
+                                    </Typography>
+                                 </Link>
+                              </li>
+                              <li>
+                                 <Button
+                                    variant={"icon-btn-normal"}
+                                    onClick={() => {
+                                       dispatch(logout());
+                                    }}
+                                 >
+                                    <Typography
+                                       variant={"small"}
+                                       color={darkMood ? "white" : "primary"}>
+                                       Logout
+                                    </Typography>
+                                 </Button>
+                              </li>
+                           </ul>
+                        </motion.div>
+                     </ClickAwayListener>
                   )}
                </AnimatePresence>
                {/*DROPDOWN END*/}

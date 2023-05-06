@@ -47,3 +47,12 @@
 .dark_mood_color {
 	color: #e1e1e1;
 }
+.error_message_wrapper {
+	position: absolute;
+	bottom: -1.1rem;
+	left: 2%;
+
+	p {
+		font-size: 0.7rem;
+	}
+}

@@ -11,7 +11,7 @@ export const userColumns = [
       renderCell: (params) => {
          return (
             <div className="data-grid-flex-col">
-               <Avatar alt="Remy Sharp" src="/assets/user.png"
+               <Avatar alt="Remy Sharp" src={params?.row?.image || "/assets/avater.png"}
                   sx={{ width: 56, height: 56 }} />
                <Typography variant={"dataGridTitle"} color={"blue"}>
                   {params?.row?.name}
