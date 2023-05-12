@@ -36,18 +36,17 @@ const Form = (
    //Fetching sub-category data based on Category id, exmp: if user select Men category all the sub-category related to Men category will be fetched. 
    const getRelatedSubCtg = (data) => {
       setSubCategories(data?.subCategories);
-      console.log(data, "DDDDDDDD")
    }
    const { sendRequest } = useHttpHook()
    const fetchSubCtgData = (id) => {
-      console.log(id, "ID")
       sendRequest({ url: `/sub-category/${id}` }, getRelatedSubCtg)
    }
    useEffect(() => {
       if (editProductId) {
          fetchSubCtgData(inputValue?.category)
       }
-   }, [editProductId])
+      // eslint-disable-next-line 
+   }, [editProductId, sendRequest])
 
    // console.log(categories, "CATEGORY")
    return (

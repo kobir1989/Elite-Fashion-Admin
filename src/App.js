@@ -50,7 +50,8 @@ const App = () => {
     return () => {
       dispatch(updateState(false)) // when isUpdated is true this useEffect will run again and will call the api again to update UI.
     }
-  }, [isUpdated, dispatch])
+    // eslint-disable-next-line
+  }, [isUpdated, dispatch, sendRequest])
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />

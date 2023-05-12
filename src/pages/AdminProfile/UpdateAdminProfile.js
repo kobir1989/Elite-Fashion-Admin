@@ -24,7 +24,7 @@ const UpdateAdminProfile = () => {
    );
    const [image, setImage] = useState("");
    const [imageUrl, setImageUrl] = useState(authToken?.userPayload?.imageUrl);
-   const [uploadError, setUploadError] = useState(null);
+   const [uploadError] = useState(null);
    const navigate = useNavigate()
 
    //File Upload Handler

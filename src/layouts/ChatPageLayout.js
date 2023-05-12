@@ -16,7 +16,7 @@ const ChatPageLayout = ({ children, socketMessage }) => {
 
   useEffect(() => {
     sendRequest({ url: '/chat-rooms/all' }, getResposeData)
-  }, [])
+  }, [sendRequest])
 
 
   //list of online users 

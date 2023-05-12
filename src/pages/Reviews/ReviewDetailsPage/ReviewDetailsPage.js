@@ -23,7 +23,7 @@ const ReviewDetailsPage = () => {
          { url: `/review/details/${reviewId}` }
          , getReviewsData
       )
-   }, [])
+   }, [reviewId, sendRequest])
    return (
       <PageLayout>
          <section className={styles.review_details_wrapper}>

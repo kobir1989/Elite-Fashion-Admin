@@ -33,7 +33,7 @@ const HomePage = () => {
          },
          getResponseData
       )
-   }, []);
+   }, [sendRequest]);
 
    return (
       <PageLayout>

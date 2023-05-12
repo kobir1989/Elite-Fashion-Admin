@@ -14,7 +14,7 @@ const SubCategoryListPage = () => {
    const { sendRequest, hasError, loading } = useHttpHook()
    useEffect(() => {
       sendRequest({ url: "/sub-category/list/all" }, getSubCategoryData)
-   }, [])
+   }, [sendRequest])
    return (
       <PageLayout>
          <div className={styles.sub_category_page_wrapper}>

@@ -15,7 +15,7 @@ const OrderListPage = () => {
 
    useEffect(() => {
       sendRequest({ url: "/orders/all" }, getOrderData)
-   }, [])
+   }, [sendRequest])
    return (
       <PageLayout>
          <div className={styles.order_page_wrapper}>
