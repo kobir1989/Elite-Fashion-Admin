@@ -14,7 +14,7 @@ const UserListPage = () => {
    const { hasError, sendRequest, loading } = useHttpHook();
    useEffect(() => {
       sendRequest({ url: "/user/all/profile" }, getUserData)
-   }, [])
+   }, [sendRequest])
    return (
       <PageLayout>
          <div className={styles.user_page_wrapper}>

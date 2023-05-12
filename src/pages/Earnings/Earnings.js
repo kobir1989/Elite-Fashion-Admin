@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PageLayout from '../../layouts/PageLayout';
 import styles from "./styles/Earnings.module.scss";
 import EarningsPieChart from "./Components/EarningsPieChart";
-import { Context } from '../../store/Context';
 import RevenueTable from './Components/RevenueTable';
 import PageTitle from "../../components/common/PageTitle/PageTitle";
 import { useHttpHook } from '../../hooks/useHttpHook';
@@ -23,7 +22,7 @@ const Earnings = () => {
          },
          getAnalyticsData
       )
-   }, []);
+   }, [sendRequest]);
    return (
       <PageLayout>
          <section className={styles.earnings_page_content_wrapper}>

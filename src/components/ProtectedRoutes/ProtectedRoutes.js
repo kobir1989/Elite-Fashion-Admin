@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Outlet, useLocation, Navigate, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { Context } from "../../store/Context";
 import { logout } from "../../store/Action";

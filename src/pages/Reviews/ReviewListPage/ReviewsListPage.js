@@ -14,7 +14,7 @@ const ReviewsListPage = () => {
    const { sendRequest, hasError, loading } = useHttpHook();
    useEffect(() => {
       sendRequest({ url: "/reviews/all" }, getReviewData);
-   }, [])
+   }, [sendRequest])
    return (
       <PageLayout>
          <section className={styles.review_list_page}>

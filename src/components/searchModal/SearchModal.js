@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '../common/Button/Button';
 import Input from "../common/Input/Input";
 import Modal from "../common/Modal/Modal";

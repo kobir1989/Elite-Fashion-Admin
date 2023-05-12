@@ -51,7 +51,7 @@ const PageLayout = ({ children }) => {
       });
       // clean up event listener
       return () => socket.off("getMessage");
-   }, [])
+   }, [authToken?.userPayload?._id])
 
    return (
       <div className={darkMood ? `${styles.page_layout_wrapper} ${"dark_mood_main"}` : `${styles.page_layout_wrapper} ${"light_mood_main"}`}>

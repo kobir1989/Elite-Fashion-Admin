@@ -17,7 +17,7 @@ const ChatDetailsPage = () => {
 
   useEffect(() => {
     sendRequest({ url: `/messages/${roomId}` }, getResponseData)
-  }, [roomId])
+  }, [roomId, sendRequest])
 
 
   // listen for incoming messages
@@ -26,6 +26,8 @@ const ChatDetailsPage = () => {
 
       if (message) {
         setSocketMessage(message)
+        const notification = new Audio('/assets/Notification.mp3');
+        notification.play();
       }
       if (roomId === message.chatRoom) {
         setMessages(prevMsgs => [...prevMsgs, message])
@@ -34,7 +36,7 @@ const ChatDetailsPage = () => {
     });
     // clean up event listener
     return () => socket.off("getMessage");
-  }, [])
+  }, [roomId])
 
   return (
     <ChatPageLayout socketMessage={socketMessage}  >

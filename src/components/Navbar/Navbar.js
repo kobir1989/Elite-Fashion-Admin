@@ -50,7 +50,7 @@ const Navbar = ({ setToggleSidebar }) => {
       });
       // clean up event listener
       return () => socket.off("order_created");
-   }, []);
+   }, [orderNotification]);
 
    // listen for incoming messages
    useEffect(() => {

@@ -19,7 +19,7 @@ const ConversationDetails = ({ messages = [], loading, error, roomId }) => {
 
   useEffect(() => {
     sendRequest({ url: '/chat-rooms/all' }, getResposeData)
-  }, [])
+  }, [sendRequest])
 
 
   //Finding message sender from messages Array so it can be usefull when sent a new message, as message receiver.

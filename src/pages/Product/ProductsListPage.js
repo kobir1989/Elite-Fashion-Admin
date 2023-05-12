@@ -2,8 +2,6 @@ import React, { useContext } from 'react';
 import PageLayout from "../../layouts/PageLayout";
 import MuiDataGrid from '../../components/dataGrid/MuiDataGrid';
 import styles from "./styles/ProductListPage.module.scss";
-import Typography from '../../components/common/Typography/Typography';
-import Button from '../../components/common/Button/Button';
 import { productColumns } from "../../components/dataGrid/dataGridColumns/productColumns";
 import { Context } from "../../store/Context";
 import PageTitle from "../../components/common/PageTitle/PageTitle";
