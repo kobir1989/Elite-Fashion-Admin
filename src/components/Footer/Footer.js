@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import styles from "./styles/Footer.module.scss";
 import Typography from '../common/Typography/Typography';
 import Icons from '../common/Icons/Icons';
-import { Link } from "react-router-dom";
 import { Context } from "../../store/Context";
 
 const Footer = () => {
