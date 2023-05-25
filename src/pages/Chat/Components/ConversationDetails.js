@@ -21,7 +21,6 @@ const ConversationDetails = ({ messages = [], loading, error, roomId }) => {
     sendRequest({ url: '/chat-rooms/all' }, getResposeData)
   }, [sendRequest])
 
-
   //Finding message sender from messages Array so it can be usefull when sent a new message, as message receiver.
   const findSender = chatRooms.find(room => room?._id === roomId);
 
@@ -44,20 +43,20 @@ const ConversationDetails = ({ messages = [], loading, error, roomId }) => {
       </div>}
       {/* messages */}
       <div className={styles.message_list}>
-        {sortedMessages?.length > 0 ? sortedMessages.map((message) => (
+        {sortedMessages?.length > 0 && sortedMessages.map((message) => (
           <Message
             isAdmin={message?.sender?._id === userPayload?._id || message?.sender === userPayload?._id ? true : false}
             message={message?.message}
             key={message?._id}
             time={message?.createdAt}
           />
-        )) :
-          <div className={styles.not_found_message}>
-            {!loading && !error && <Typography variant='body' color='red'>
-              Please choose a person to engage in conversation.
-            </Typography>}
-          </div>
-        }
+        ))}
+
+        <div className={styles.not_found_message}>
+          {!roomId && <Typography variant='body' color='red'>
+            Please choose a person to engage in conversation.
+          </Typography>}
+        </div>
       </div>
       {/* form */}
       <MessageForm

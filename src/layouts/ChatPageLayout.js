@@ -5,6 +5,7 @@ import styles from './styles/ChatPageLayout.module.scss';
 import ChatHead from '../pages/Chat/Components/ChatHead';
 import { useHttpHook } from '../hooks/useHttpHook';
 import { socket } from '../socket';
+import TextSkeleton from '../components/common/Skeleton/TextSkeleton';
 
 const ChatPageLayout = ({ children, socketMessage }) => {
   const [chatRooms, setChatRooms] = useState([])
@@ -52,7 +53,7 @@ const ChatPageLayout = ({ children, socketMessage }) => {
                 isOnline={room?.isOnline}
                 socketMessage={socketMessage}
               />
-            )) : null}
+            )) : <TextSkeleton row={4} />}
           </div>
           <div className={styles.messages_wrapper}>
             {children}

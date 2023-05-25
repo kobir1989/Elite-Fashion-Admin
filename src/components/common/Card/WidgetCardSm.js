@@ -8,7 +8,7 @@ import { Context } from "../../../store/Context";
 import TextSkeleton from "../Skeleton/TextSkeleton";
 import CardSkeleton from "../../common/Skeleton/CardSkeleton";
 
-const WidgetCardSm = ({ title, count, percentage, loading }) => {
+const WidgetCardSm = ({ title, count, percentage = 0, loading }) => {
    const { state } = useContext(Context);
    const { darkMood } = state;
    return (
@@ -33,7 +33,7 @@ const WidgetCardSm = ({ title, count, percentage, loading }) => {
                      <span>
                         <Icons name={percentage > 0 ? "upArrow" : "downArrow"} />
                      </span>
-                     {percentage}%
+                     {percentage.toFixed(1)}%
                   </Typography>
                </div>
             </div>
@@ -49,8 +49,8 @@ const WidgetCardSm = ({ title, count, percentage, loading }) => {
                      trailColor: percentage > 0 ? "#e5e5e5" : "#cc2121",
                      transitionDuration: "1",
                   })}
-                  value={percentage || 0}
-                  text={`${percentage || 0}%`} />
+                  value={percentage.toFixed(1)}
+                  text={`${percentage.toFixed(1)}%`} />
             }
          </div>
       </div>
