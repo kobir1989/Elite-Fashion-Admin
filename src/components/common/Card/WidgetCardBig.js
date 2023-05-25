@@ -43,7 +43,7 @@ const WidgetCardBig = ({ imgUrl, todaySales, loading }) => {
                   <Typography
                      variant={"widgetAmount"}
                      color={darkMood ? "light-gray" : "primary"}>
-                     15000
+                     45
                   </Typography>
                   <Typography color={"paragraph"} variant={"small"}>
                      Today’s Visit
