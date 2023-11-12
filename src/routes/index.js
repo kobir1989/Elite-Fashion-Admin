@@ -1,55 +1,29 @@
-import React, { lazy } from 'react';
+import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import ProtectedRoutes from '../components/ProtectedRoutes/ProtectedRoutes';
-const AdminProfile = lazy(() => import('../pages/AdminProfile/AdminProfile'));
-const UpdateAdminProfile = lazy(() =>
-  import('../pages/AdminProfile/UpdateAdminProfile')
-);
-const ForgetPassword = lazy(() =>
-  import('../pages/Auth/ForgetPassword/ForgetPassword')
-);
-const LoginPage = lazy(() => import('../pages/Auth/LoginPage/LoginPage'));
-const ChatDetailsPage = lazy(() => import('../pages/Chat/ChatDetailsPage'));
-const ChatPage = lazy(() => import('../pages/Chat/ChatPage'));
-const Earnings = lazy(() => import('../pages/Earnings/Earnings'));
-const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
-const OrderDetailsPage = lazy(() => import('../pages/Order/OrderDetailsPage'));
-const OrderListPage = lazy(() => import('../pages/Order/OrderListPage'));
-const CrateProductPage = lazy(() =>
-  import('../pages/Product/CrateProductPage')
-);
-const ProductEditPage = lazy(() => import('../pages/Product/ProductEditPage'));
-const ProductsListPage = lazy(() =>
-  import('../pages/Product/ProductsListPage')
-);
-const SingleProductPage = lazy(() =>
-  import('../pages/Product/SingleProductPage')
-);
-const ReviewDetailsPage = lazy(() =>
-  import('../pages/Reviews/ReviewDetailsPage/ReviewDetailsPage')
-);
-const ReviewsListPage = lazy(() =>
-  import('../pages/Reviews/ReviewListPage/ReviewsListPage')
-);
-const UserListPage = lazy(() => import('../pages/UserList/UserListPage'));
-const CategoryListPage = lazy(() =>
-  import('../pages/category/CategoryListPage')
-);
-const CreateCategoryPage = lazy(() =>
-  import('../pages/category/CreateCategoryPage')
-);
-const EditCategoryPage = lazy(() =>
-  import('../pages/category/EditCategoryPage')
-);
-const AddSubCategoryPage = lazy(() =>
-  import('../pages/subCategory/AddSubCategoryPage')
-);
-const EditSubCategoryPage = lazy(() =>
-  import('../pages/subCategory/EditSubCategoryPage')
-);
-const SubCategoryListPage = lazy(() =>
-  import('../pages/subCategory/SubCategoryListPage')
-);
+import AdminProfile from '../pages/AdminProfile/AdminProfile';
+import UpdateAdminProfile from '../pages/AdminProfile/UpdateAdminProfile';
+import ForgetPassword from '../pages/Auth/ForgetPassword/ForgetPassword';
+import LoginPage from '../pages/Auth/LoginPage/LoginPage';
+import ChatDetailsPage from '../pages/Chat/ChatDetailsPage';
+import ChatPage from '../pages/Chat/ChatPage';
+import Earnings from '../pages/Earnings/Earnings';
+import HomePage from '../pages/HomePage/HomePage';
+import OrderDetailsPage from '../pages/Order/OrderDetailsPage';
+import OrderListPage from '../pages/Order/OrderListPage';
+import CrateProductPage from '../pages/Product/CrateProductPage';
+import ProductEditPage from '../pages/Product/ProductEditPage';
+import ProductsListPage from '../pages/Product/ProductsListPage';
+import SingleProductPage from '../pages/Product/SingleProductPage';
+import ReviewDetailsPage from '../pages/Reviews/ReviewDetailsPage/ReviewDetailsPage';
+import ReviewsListPage from '../pages/Reviews/ReviewListPage/ReviewsListPage';
+import UserListPage from '../pages/UserList/UserListPage';
+import CategoryListPage from '../pages/category/CategoryListPage';
+import CreateCategoryPage from '../pages/category/CreateCategoryPage';
+import EditCategoryPage from '../pages/category/EditCategoryPage';
+import AddSubCategoryPage from '../pages/subCategory/AddSubCategoryPage';
+import EditSubCategoryPage from '../pages/subCategory/EditSubCategoryPage';
+import SubCategoryListPage from '../pages/subCategory/SubCategoryListPage';
 
 const PageRoutes = () => {
   return (
